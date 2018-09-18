@@ -12,6 +12,36 @@
 		2B2203F021507F1800FC9A98 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B2203EE21507F1800FC9A98 /* MainMenu.xib */; };
 		2B2203FC21507F1800FC9A98 /* MediaLibraryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2203FB21507F1800FC9A98 /* MediaLibraryManagerTests.swift */; };
 		2B22040721507F1800FC9A98 /* MediaLibraryManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22040621507F1800FC9A98 /* MediaLibraryManagerUITests.swift */; };
+		2B22042021507F5B00FC9A98 /* FileTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041421507F5A00FC9A98 /* FileTypes.swift */; };
+		2B22042121507F5B00FC9A98 /* FileTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041421507F5A00FC9A98 /* FileTypes.swift */; };
+		2B22042221507F5B00FC9A98 /* FileTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041421507F5A00FC9A98 /* FileTypes.swift */; };
+		2B22042321507F5B00FC9A98 /* FileImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041521507F5A00FC9A98 /* FileImporter.swift */; };
+		2B22042421507F5B00FC9A98 /* FileImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041521507F5A00FC9A98 /* FileImporter.swift */; };
+		2B22042521507F5B00FC9A98 /* FileImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041521507F5A00FC9A98 /* FileImporter.swift */; };
+		2B22042621507F5B00FC9A98 /* commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041621507F5A00FC9A98 /* commands.swift */; };
+		2B22042721507F5B00FC9A98 /* commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041621507F5A00FC9A98 /* commands.swift */; };
+		2B22042821507F5B00FC9A98 /* commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041621507F5A00FC9A98 /* commands.swift */; };
+		2B22042921507F5B00FC9A98 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041721507F5A00FC9A98 /* File.swift */; };
+		2B22042A21507F5B00FC9A98 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041721507F5A00FC9A98 /* File.swift */; };
+		2B22042B21507F5B00FC9A98 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041721507F5A00FC9A98 /* File.swift */; };
+		2B22042C21507F5B00FC9A98 /* FileExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041821507F5A00FC9A98 /* FileExporter.swift */; };
+		2B22042D21507F5B00FC9A98 /* FileExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041821507F5A00FC9A98 /* FileExporter.swift */; };
+		2B22042E21507F5B00FC9A98 /* FileExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041821507F5A00FC9A98 /* FileExporter.swift */; };
+		2B22042F21507F5B00FC9A98 /* FileValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041921507F5A00FC9A98 /* FileValidator.swift */; };
+		2B22043021507F5B00FC9A98 /* FileValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041921507F5A00FC9A98 /* FileValidator.swift */; };
+		2B22043121507F5B00FC9A98 /* FileValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041921507F5A00FC9A98 /* FileValidator.swift */; };
+		2B22043221507F5B00FC9A98 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041A21507F5A00FC9A98 /* Library.swift */; };
+		2B22043321507F5B00FC9A98 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041A21507F5A00FC9A98 /* Library.swift */; };
+		2B22043421507F5B00FC9A98 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041A21507F5A00FC9A98 /* Library.swift */; };
+		2B22043821507F5B00FC9A98 /* MediaLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041C21507F5B00FC9A98 /* MediaLibraryTests.swift */; };
+		2B22043921507F5B00FC9A98 /* MediaLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041C21507F5B00FC9A98 /* MediaLibraryTests.swift */; };
+		2B22043A21507F5B00FC9A98 /* MediaLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041C21507F5B00FC9A98 /* MediaLibraryTests.swift */; };
+		2B22044121507F5B00FC9A98 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041F21507F5B00FC9A98 /* Metadata.swift */; };
+		2B22044221507F5B00FC9A98 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041F21507F5B00FC9A98 /* Metadata.swift */; };
+		2B22044321507F5B00FC9A98 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22041F21507F5B00FC9A98 /* Metadata.swift */; };
+		2B22044521507FCA00FC9A98 /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22044421507FCA00FC9A98 /* protocols.swift */; };
+		2B22044621507FCA00FC9A98 /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22044421507FCA00FC9A98 /* protocols.swift */; };
+		2B22044721507FCA00FC9A98 /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22044421507FCA00FC9A98 /* protocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +74,16 @@
 		2B22040221507F1800FC9A98 /* MediaLibraryManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MediaLibraryManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B22040621507F1800FC9A98 /* MediaLibraryManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryManagerUITests.swift; sourceTree = "<group>"; };
 		2B22040821507F1800FC9A98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B22041421507F5A00FC9A98 /* FileTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTypes.swift; sourceTree = "<group>"; };
+		2B22041521507F5A00FC9A98 /* FileImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileImporter.swift; sourceTree = "<group>"; };
+		2B22041621507F5A00FC9A98 /* commands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = commands.swift; sourceTree = "<group>"; };
+		2B22041721507F5A00FC9A98 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		2B22041821507F5A00FC9A98 /* FileExporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileExporter.swift; sourceTree = "<group>"; };
+		2B22041921507F5A00FC9A98 /* FileValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileValidator.swift; sourceTree = "<group>"; };
+		2B22041A21507F5A00FC9A98 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		2B22041C21507F5B00FC9A98 /* MediaLibraryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLibraryTests.swift; sourceTree = "<group>"; };
+		2B22041F21507F5B00FC9A98 /* Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
+		2B22044421507FCA00FC9A98 /* protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +134,16 @@
 		2B2203E921507F1600FC9A98 /* MediaLibraryManager */ = {
 			isa = PBXGroup;
 			children = (
+				2B22041621507F5A00FC9A98 /* commands.swift */,
+				2B22044421507FCA00FC9A98 /* protocols.swift */,
+				2B22041821507F5A00FC9A98 /* FileExporter.swift */,
+				2B22041521507F5A00FC9A98 /* FileImporter.swift */,
+				2B22041921507F5A00FC9A98 /* FileValidator.swift */,
+				2B22041A21507F5A00FC9A98 /* Library.swift */,
+				2B22041421507F5A00FC9A98 /* FileTypes.swift */,
+				2B22041721507F5A00FC9A98 /* File.swift */,
+				2B22041F21507F5B00FC9A98 /* Metadata.swift */,
+				2B22041C21507F5B00FC9A98 /* MediaLibraryTests.swift */,
 				2B2203EA21507F1600FC9A98 /* AppDelegate.swift */,
 				2B2203EC21507F1800FC9A98 /* Assets.xcassets */,
 				2B2203EE21507F1800FC9A98 /* MainMenu.xib */,
@@ -251,7 +301,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B22042921507F5B00FC9A98 /* File.swift in Sources */,
 				2B2203EB21507F1600FC9A98 /* AppDelegate.swift in Sources */,
+				2B22042021507F5B00FC9A98 /* FileTypes.swift in Sources */,
+				2B22042321507F5B00FC9A98 /* FileImporter.swift in Sources */,
+				2B22042C21507F5B00FC9A98 /* FileExporter.swift in Sources */,
+				2B22043821507F5B00FC9A98 /* MediaLibraryTests.swift in Sources */,
+				2B22044521507FCA00FC9A98 /* protocols.swift in Sources */,
+				2B22043221507F5B00FC9A98 /* Library.swift in Sources */,
+				2B22042621507F5B00FC9A98 /* commands.swift in Sources */,
+				2B22044121507F5B00FC9A98 /* Metadata.swift in Sources */,
+				2B22042F21507F5B00FC9A98 /* FileValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +319,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B22042A21507F5B00FC9A98 /* File.swift in Sources */,
 				2B2203FC21507F1800FC9A98 /* MediaLibraryManagerTests.swift in Sources */,
+				2B22042121507F5B00FC9A98 /* FileTypes.swift in Sources */,
+				2B22042421507F5B00FC9A98 /* FileImporter.swift in Sources */,
+				2B22042D21507F5B00FC9A98 /* FileExporter.swift in Sources */,
+				2B22043921507F5B00FC9A98 /* MediaLibraryTests.swift in Sources */,
+				2B22044621507FCA00FC9A98 /* protocols.swift in Sources */,
+				2B22043321507F5B00FC9A98 /* Library.swift in Sources */,
+				2B22042721507F5B00FC9A98 /* commands.swift in Sources */,
+				2B22044221507F5B00FC9A98 /* Metadata.swift in Sources */,
+				2B22043021507F5B00FC9A98 /* FileValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +337,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B22042B21507F5B00FC9A98 /* File.swift in Sources */,
 				2B22040721507F1800FC9A98 /* MediaLibraryManagerUITests.swift in Sources */,
+				2B22042221507F5B00FC9A98 /* FileTypes.swift in Sources */,
+				2B22042521507F5B00FC9A98 /* FileImporter.swift in Sources */,
+				2B22042E21507F5B00FC9A98 /* FileExporter.swift in Sources */,
+				2B22043A21507F5B00FC9A98 /* MediaLibraryTests.swift in Sources */,
+				2B22044721507FCA00FC9A98 /* protocols.swift in Sources */,
+				2B22043421507F5B00FC9A98 /* Library.swift in Sources */,
+				2B22042821507F5B00FC9A98 /* commands.swift in Sources */,
+				2B22044321507F5B00FC9A98 /* Metadata.swift in Sources */,
+				2B22043121507F5B00FC9A98 /* FileValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
