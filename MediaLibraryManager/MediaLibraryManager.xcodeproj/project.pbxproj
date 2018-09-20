@@ -42,6 +42,12 @@
 		2B22044521507FCA00FC9A98 /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22044421507FCA00FC9A98 /* protocols.swift */; };
 		2B22044621507FCA00FC9A98 /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22044421507FCA00FC9A98 /* protocols.swift */; };
 		2B22044721507FCA00FC9A98 /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22044421507FCA00FC9A98 /* protocols.swift */; };
+		2BFB197621533AB30022D55D /* LibraryMainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB197421533AB30022D55D /* LibraryMainWindow.swift */; };
+		2BFB197721533AB30022D55D /* LibraryMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BFB197521533AB30022D55D /* LibraryMainWindow.xib */; };
+		2BFB197E21533E0D0022D55D /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB197C21533E0D0022D55D /* BookmarksViewController.swift */; };
+		2BFB197F21533E0D0022D55D /* BookmarksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BFB197D21533E0D0022D55D /* BookmarksViewController.xib */; };
+		2BFB1982215341C00022D55D /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB1980215341C00022D55D /* LibraryViewController.swift */; };
+		2BFB1983215341C00022D55D /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BFB1981215341C00022D55D /* LibraryViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +90,12 @@
 		2B22041C21507F5B00FC9A98 /* MediaLibraryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLibraryTests.swift; sourceTree = "<group>"; };
 		2B22041F21507F5B00FC9A98 /* Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
 		2B22044421507FCA00FC9A98 /* protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocols.swift; sourceTree = "<group>"; };
+		2BFB197421533AB30022D55D /* LibraryMainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryMainWindow.swift; sourceTree = "<group>"; };
+		2BFB197521533AB30022D55D /* LibraryMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryMainWindow.xib; sourceTree = "<group>"; };
+		2BFB197C21533E0D0022D55D /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
+		2BFB197D21533E0D0022D55D /* BookmarksViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarksViewController.xib; sourceTree = "<group>"; };
+		2BFB1980215341C00022D55D /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		2BFB1981215341C00022D55D /* LibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +161,12 @@
 				2B2203EE21507F1800FC9A98 /* MainMenu.xib */,
 				2B2203F121507F1800FC9A98 /* Info.plist */,
 				2B2203F221507F1800FC9A98 /* MediaLibraryManager.entitlements */,
+				2BFB197421533AB30022D55D /* LibraryMainWindow.swift */,
+				2BFB197521533AB30022D55D /* LibraryMainWindow.xib */,
+				2BFB197C21533E0D0022D55D /* BookmarksViewController.swift */,
+				2BFB197D21533E0D0022D55D /* BookmarksViewController.xib */,
+				2BFB1980215341C00022D55D /* LibraryViewController.swift */,
+				2BFB1981215341C00022D55D /* LibraryViewController.xib */,
 			);
 			path = MediaLibraryManager;
 			sourceTree = "<group>";
@@ -275,7 +293,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BFB197F21533E0D0022D55D /* BookmarksViewController.xib in Resources */,
+				2BFB1983215341C00022D55D /* LibraryViewController.xib in Resources */,
 				2B2203ED21507F1800FC9A98 /* Assets.xcassets in Resources */,
+				2BFB197721533AB30022D55D /* LibraryMainWindow.xib in Resources */,
 				2B2203F021507F1800FC9A98 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,7 +326,10 @@
 				2B2203EB21507F1600FC9A98 /* AppDelegate.swift in Sources */,
 				2B22042021507F5B00FC9A98 /* FileTypes.swift in Sources */,
 				2B22042321507F5B00FC9A98 /* FileImporter.swift in Sources */,
+				2BFB1982215341C00022D55D /* LibraryViewController.swift in Sources */,
+				2BFB197621533AB30022D55D /* LibraryMainWindow.swift in Sources */,
 				2B22042C21507F5B00FC9A98 /* FileExporter.swift in Sources */,
+				2BFB197E21533E0D0022D55D /* BookmarksViewController.swift in Sources */,
 				2B22043821507F5B00FC9A98 /* MediaLibraryTests.swift in Sources */,
 				2B22044521507FCA00FC9A98 /* protocols.swift in Sources */,
 				2B22043221507F5B00FC9A98 /* Library.swift in Sources */,
