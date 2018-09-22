@@ -22,6 +22,9 @@ class LibraryMainWindow: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
 
+		//self.window?.title = "MediaLibraryManager"
+		mainWindow.title = "Media Library Manager"
+		
 		let splitVC = NSSplitViewController()
 		let bookmarksVC = BookmarksViewController()
 		let libraryVC = LibraryViewController()
