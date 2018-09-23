@@ -62,6 +62,22 @@ class File: MMFile {
         self._fFilename = filename
         self._fPath = path
         self._fCreator = creator
+		
+
+		let m: MMMetadata = Metadata(keyword: "filename", value: filename)
+		var fullpath : String = ""
+		fullpath += path
+		fullpath += filename
+		let m2: MMMetadata = Metadata(keyword: "fullpath", value: fullpath)
+		self._fMetadata.append(m)
+		self._fMetadata.append(m2)
+		
+		// Potential to add without the file extension.
+		let fileWithoutExtension: [String] = filename.split(separator: ".").map({String($0)})
+		let m3: MMMetadata = Metadata(keyword: "_name", value: fileWithoutExtension[0])
+		self._fMetadata.append(m3)
+		
+
     }
     
     // The collection of the file's metadata.

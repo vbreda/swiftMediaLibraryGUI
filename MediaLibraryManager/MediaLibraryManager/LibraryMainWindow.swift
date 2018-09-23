@@ -10,9 +10,12 @@ import Cocoa
 
 class LibraryMainWindow: NSWindowController {
 	
+	static let model : LibraryModel = LibraryModel()
+	
 	@IBOutlet var mainWindow: NSWindow!
 	
 	@IBOutlet weak var mainView: NSView!
+
 	
 	convenience init() {
 		self.init(windowNibName: NSNib.Name(rawValue: "LibraryMainWindow"));
