@@ -11,6 +11,7 @@
                 <outlet property="importFilesButton" destination="zwg-e6-kMc" id="QEP-3p-5NT"/>
                 <outlet property="searchButton" destination="H92-Fv-ADX" id="YrJ-C8-Q8A"/>
                 <outlet property="searchTextField" destination="Nu6-5E-9J7" id="Tga-U0-QKU"/>
+                <outlet property="tableView" destination="Zgs-w4-9ka" id="fHi-nd-fWo"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
