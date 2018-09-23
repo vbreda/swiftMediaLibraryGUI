@@ -10,7 +10,25 @@ import Cocoa
 
 class LibraryViewController: NSViewController {
 
-    override func viewDidLoad() {
+	@IBOutlet weak var importFilesButton: NSButton!
+	
+	@IBAction func importFilesButtonAction(_ sender: Any) {
+	}
+	
+	@IBOutlet weak var addBookmarkButton: NSButton!
+	
+	@IBAction func addBookmarkButtonAction(_ sender: Any) {
+	}
+	
+	@IBOutlet weak var searchTextField: NSTextField!
+	
+	@IBOutlet weak var searchButton: NSButton!
+	
+	@IBAction func searchButtonAction(_ sender: Any) {
+		
+	}
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }

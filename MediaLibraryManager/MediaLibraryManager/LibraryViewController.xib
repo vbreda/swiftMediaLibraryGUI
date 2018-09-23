@@ -7,6 +7,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="LibraryViewController" customModule="MediaLibraryManager" customModuleProvider="target">
             <connections>
+                <outlet property="addBookmarkButton" destination="ycT-Z0-gEe" id="CHG-q2-aKB"/>
+                <outlet property="importFilesButton" destination="zwg-e6-kMc" id="QEP-3p-5NT"/>
+                <outlet property="searchButton" destination="H92-Fv-ADX" id="YrJ-C8-Q8A"/>
+                <outlet property="searchTextField" destination="Nu6-5E-9J7" id="Tga-U0-QKU"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -261,6 +265,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="importFilesButtonAction:" target="-2" id="DWT-wn-L2A"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycT-Z0-gEe">
                     <rect key="frame" x="126" y="606" width="129" height="32"/>
@@ -269,6 +276,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="addBookmarkButtonAction:" target="-2" id="cCz-ec-Hmg"/>
+                    </connections>
                 </button>
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nu6-5E-9J7">
                     <rect key="frame" x="416" y="613" width="194" height="22"/>
@@ -286,6 +296,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="searchButtonAction:" target="-2" id="6bn-Ti-PMX"/>
+                    </connections>
                 </button>
             </subviews>
             <point key="canvasLocation" x="596" y="190"/>

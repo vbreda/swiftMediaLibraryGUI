@@ -42,6 +42,8 @@
 		2B22044521507FCA00FC9A98 /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22044421507FCA00FC9A98 /* protocols.swift */; };
 		2B22044621507FCA00FC9A98 /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22044421507FCA00FC9A98 /* protocols.swift */; };
 		2B22044721507FCA00FC9A98 /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22044421507FCA00FC9A98 /* protocols.swift */; };
+		2B88506F21571451007C39E6 /* jsonData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B88506E21571451007C39E6 /* jsonData.json */; };
+		2B88507221571D40007C39E6 /* LibraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B88507121571D40007C39E6 /* LibraryModel.swift */; };
 		2BFB197621533AB30022D55D /* LibraryMainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB197421533AB30022D55D /* LibraryMainWindow.swift */; };
 		2BFB197721533AB30022D55D /* LibraryMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BFB197521533AB30022D55D /* LibraryMainWindow.xib */; };
 		2BFB197E21533E0D0022D55D /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB197C21533E0D0022D55D /* BookmarksViewController.swift */; };
@@ -90,6 +92,8 @@
 		2B22041C21507F5B00FC9A98 /* MediaLibraryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLibraryTests.swift; sourceTree = "<group>"; };
 		2B22041F21507F5B00FC9A98 /* Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
 		2B22044421507FCA00FC9A98 /* protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocols.swift; sourceTree = "<group>"; };
+		2B88506E21571451007C39E6 /* jsonData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = jsonData.json; sourceTree = "<group>"; };
+		2B88507121571D40007C39E6 /* LibraryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryModel.swift; sourceTree = "<group>"; };
 		2BFB197421533AB30022D55D /* LibraryMainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryMainWindow.swift; sourceTree = "<group>"; };
 		2BFB197521533AB30022D55D /* LibraryMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryMainWindow.xib; sourceTree = "<group>"; };
 		2BFB197C21533E0D0022D55D /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 				2B22041721507F5A00FC9A98 /* File.swift */,
 				2B22041F21507F5B00FC9A98 /* Metadata.swift */,
 				2B22041C21507F5B00FC9A98 /* MediaLibraryTests.swift */,
+				2B88506E21571451007C39E6 /* jsonData.json */,
 				2B2203EA21507F1600FC9A98 /* AppDelegate.swift */,
 				2B2203EC21507F1800FC9A98 /* Assets.xcassets */,
 				2B2203EE21507F1800FC9A98 /* MainMenu.xib */,
@@ -167,6 +172,7 @@
 				2BFB197D21533E0D0022D55D /* BookmarksViewController.xib */,
 				2BFB1980215341C00022D55D /* LibraryViewController.swift */,
 				2BFB1981215341C00022D55D /* LibraryViewController.xib */,
+				2B88507121571D40007C39E6 /* LibraryModel.swift */,
 			);
 			path = MediaLibraryManager;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 				2B2203ED21507F1800FC9A98 /* Assets.xcassets in Resources */,
 				2BFB197721533AB30022D55D /* LibraryMainWindow.xib in Resources */,
 				2B2203F021507F1800FC9A98 /* MainMenu.xib in Resources */,
+				2B88506F21571451007C39E6 /* jsonData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +339,7 @@
 				2BFB197E21533E0D0022D55D /* BookmarksViewController.swift in Sources */,
 				2B22043821507F5B00FC9A98 /* MediaLibraryTests.swift in Sources */,
 				2B22044521507FCA00FC9A98 /* protocols.swift in Sources */,
+				2B88507221571D40007C39E6 /* LibraryModel.swift in Sources */,
 				2B22043221507F5B00FC9A98 /* Library.swift in Sources */,
 				2B22042621507F5B00FC9A98 /* commands.swift in Sources */,
 				2B22044121507F5B00FC9A98 /* Metadata.swift in Sources */,
