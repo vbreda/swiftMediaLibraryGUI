@@ -42,12 +42,16 @@ class FileImporter : MMFileImport {
 		if filename.hasPrefix("/") || filename.hasPrefix("~") {
 			let directory = NSString(string: filename).expandingTildeInPath
 			filePath = URL(fileURLWithPath: directory)
+		} else if filename.hasPrefix("f") {
+			filePath = URL(string: filename)!
 		} else {
 			let working = fileManager.currentDirectoryPath
 			let workingDirectory = URL(fileURLWithPath: working)
 			//print(workingDirectory)
 			filePath = workingDirectory.appendingPathComponent(filename)
 		}
+		//print("filename: \(filename)")
+		//print("FILE PATH: \(filePath)")
 
 		// Decodes the json data into array of Media structs.
 		let decoder = JSONDecoder()

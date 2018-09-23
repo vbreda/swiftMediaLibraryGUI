@@ -31,6 +31,7 @@ protocol MMFile: CustomStringConvertible {
     var metadata: [MMMetadata] {get set}
     var filename: String {get set}
     var path: String {get set}
+	var creators: String {get set}
 }
 
 ///

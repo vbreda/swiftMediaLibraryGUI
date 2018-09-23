@@ -14,19 +14,29 @@ class LibraryViewController: NSViewController {
 	
 	@IBAction func importFilesButtonAction(_ sender: Any) {
 		
-		let filename: String = "~/346/media/jsonData.json"
+		let openPanel : NSOpenPanel = NSOpenPanel()
+		let userChoice = openPanel.runModal()
 		
-		var commandInput: String = ""
-		
-		commandInput += "load "
-		commandInput += filename
-		
-		//let main : LibraryModel = LibraryModel()
-		
-		LibraryMainWindow.model.runCommand(input: commandInput)
-		
-		// Populate table
-		
+		switch userChoice {
+		case .OK :
+			let panelResult = openPanel.url
+			if let panelResult = panelResult {
+				
+				let filename : String = panelResult.absoluteString
+				var commandInput: String = ""
+				
+				commandInput += "load "
+				commandInput += filename
+				
+				LibraryMainWindow.model.runCommand(input: commandInput)
+				LibraryMainWindow.model.makeInitialBookmarks()
+				
+			}
+		case .cancel :
+			print("> user cancelled importing files")
+		default:
+			print("> An open panel will never return anything other than OK or cancel")
+		}
 	}
 	
 	@IBOutlet weak var addBookmarkButton: NSButton!
@@ -39,10 +49,7 @@ class LibraryViewController: NSViewController {
 		// Create a new result set from the selected files
 		LibraryMainWindow.model.last = MMResultSet()
 		
-		
-		let commandInput = "save-search newFilename.json"
-		LibraryMainWindow.model.runCommand(input: commandInput)
-	}
+		}
 	
 	@IBOutlet weak var searchTextField: NSTextField!
 	
@@ -60,5 +67,8 @@ class LibraryViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
     }
+	
+	
+
     
 }

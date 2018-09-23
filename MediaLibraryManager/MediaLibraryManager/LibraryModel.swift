@@ -12,6 +12,14 @@ public class LibraryModel {
 	
 	var library : Library = Library()
 	var last = MMResultSet()
+	var bookmarks : [String: [MMFile]] = [:]
+	
+	// Returns the number of current bookmarks
+	var numBookmarks : Int {
+		get {
+			return bookmarks.count
+		}
+	}
 	
 	init() {
 		
@@ -106,6 +114,67 @@ public class LibraryModel {
 			print("Oops - a new error")
 		}
 	}
+	
+	/**
+	Adds a new bookmark to the bookmarks dictionary
+	*/
+	func addBookmarks(name: String, files: [MMFile]) {
+		
+		bookmarks.updateValue(files, forKey: name)
+		print("Bookmarks count is now: \(numBookmarks)")
+		
+	}
+	
+	
+	/**
+	Creates the default bookmarks for newly imported media
+	*/
+	func makeInitialBookmarks() {
+		// Create bookmark for ALL, images, documents, audios, videos.
+		
+		let b1 = "All"
+		let b1Files = callListCommand(term: "")
+		addBookmarks(name: b1, files: b1Files)
+		
+		let b2 = "Images"
+		let b2Files = callListCommand(term: "image")
+		addBookmarks(name: b2, files: b2Files)
+		
+		let b3 = "Videos"
+		let b3Files = callListCommand(term: "video")
+		addBookmarks(name: b3, files: b3Files)
+		
+		let b4 = "Documents"
+		let b4Files = callListCommand(term: "document")
+		addBookmarks(name: b4, files: b4Files)
+		
+		let b5 = "Audio"
+		let b5Files = callListCommand(term: "audio")
+		addBookmarks(name: b5, files: b5Files)
+	}
+	
+	/**
+	Call the list commmand on a search term.
+	Return the files found if
+	*/
+	func callListCommand(term: String) -> [MMFile] {
+		
+		var files : [MMFile] = []
+		
+		var commandInput = "list "
+		commandInput += term
+		LibraryMainWindow.model.runCommand(input: commandInput)
+		
+		do {
+			try files = LibraryMainWindow.model.last.getAll()
+		} catch {
+			print("fucking oops - what happened here? ---------------")
+		}
+		return files
+	}
+	
+	
+	
 
 	
 }
