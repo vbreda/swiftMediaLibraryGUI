@@ -8,11 +8,22 @@
 
 import Foundation
 
+public protocol BookmarksDelegate {
+	func tableDataDidChange()
+}
+
+public protocol LibraryDelegate {
+	func tableDataDidChange()
+}
+
 public class LibraryModel {
 	
 	var library : Library = Library()
 	var last = MMResultSet()
 	var bookmarks : [String: [MMFile]] = [:]
+	
+	public var bookmarksDelegate: BookmarksDelegate? = nil;
+	public var libraryDelegate: LibraryDelegate? = nil;
 	
 	// Returns the number of current bookmarks
 	var numBookmarks : Int {
@@ -23,6 +34,18 @@ public class LibraryModel {
 	
 	init() {
 		
+	}
+	
+	// Alert delegate 1
+	func alertBookmarksDelegate() {
+		print("bookmark delgate alerted -----------------------")
+		bookmarksDelegate?.tableDataDidChange()
+	}
+	
+	// Alert delegate 2
+	func alertLibraryDelegate() {
+		print("library delgate alerted -********************-")
+		bookmarksDelegate?.tableDataDidChange()
 	}
 	
 	func runCommand(input: String) {
@@ -42,18 +65,23 @@ public class LibraryModel {
 			switch(commandString) {
 			case "load" :
 				command = LoadCommand(loadfiles: parts, library: library)
+				alertLibraryDelegate()
 				break
 			case "list":
 				command = ListCommand(keyword: parts, library: library)
+				//alertLibraryDelegate()
 				break
 			case "add":
 				command = AddCommand(data: parts, library: library, lastsearch: try last.getAll())
+				alertLibraryDelegate()
 				break
 			case "set":
 				command = SetCommand(data: parts, library: library, lastsearch: try last.getAll())
+				alertLibraryDelegate()
 				break
 			case "del":
 				command = DeleteCommand(data: parts, library: library, lastsearch: try last.getAll())
+				alertLibraryDelegate()
 				break
 			case "save-search":
 				command = SaveSearchCommand(data: parts, lastsearch: try last.getAll())
@@ -81,6 +109,7 @@ public class LibraryModel {
 				results.show()
 				last = results
 			}
+			
 		
 		} catch MMCliError.unknownCommand {
 			print("Command \"\(commandString)\" not found -- see \"help\" for list.")
@@ -115,13 +144,28 @@ public class LibraryModel {
 		}
 	}
 	
+	/*
+	Returns the current bookmarks
+	*/
+	func getBookmarks() -> [String: [MMFile]] {
+		return bookmarks
+	}
+	
+	/*
+	Returns the current bookmark names only
+	*/
+	func getBookmarkNames() -> [String] {
+		var keys = Array(bookmarks.keys)
+		return keys
+	}
+	
+	
 	/**
 	Adds a new bookmark to the bookmarks dictionary
 	*/
 	func addBookmarks(name: String, files: [MMFile]) {
-		
 		bookmarks.updateValue(files, forKey: name)
-		print("Bookmarks count is now: \(numBookmarks)")
+		//print("Bookmarks count is now: \(numBookmarks)")
 		
 	}
 	
@@ -151,6 +195,8 @@ public class LibraryModel {
 		let b5 = "Audio"
 		let b5Files = callListCommand(term: "audio")
 		addBookmarks(name: b5, files: b5Files)
+		
+		alertBookmarksDelegate()
 	}
 	
 	/**
@@ -168,7 +214,7 @@ public class LibraryModel {
 		do {
 			try files = LibraryMainWindow.model.last.getAll()
 		} catch {
-			print("fucking oops - what happened here? ---------------")
+			print("well oops - what happened here? ---------------")
 		}
 		return files
 	}

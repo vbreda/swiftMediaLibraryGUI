@@ -8,39 +8,49 @@
 
 import Cocoa
 
-class LibraryViewController: NSViewController {
+class LibraryViewController: NSViewController, LibraryDelegate {
     
     @IBOutlet weak var importFilesButton: NSButton!
     @IBOutlet weak var tableView: NSTableView!
     
     @IBAction func importFilesButtonAction(_ sender: Any) {
-        
-        let openPanel : NSOpenPanel = NSOpenPanel()
-        let userChoice = openPanel.runModal()
-        
-        switch userChoice {
-        case .OK :
-            let panelResult = openPanel.url
-            if let panelResult = panelResult {
-                
-                let filename : String = panelResult.absoluteString
-                var commandInput: String = ""
-                
-                commandInput += "load "
-                commandInput += filename
-                
-                LibraryMainWindow.model.runCommand(input: commandInput)
-                LibraryMainWindow.model.makeInitialBookmarks()
-                
-                tableView.reloadData()
-                
-            }
-        case .cancel :
-            print("> user cancelled importing files")
-        default:
-            print("> An open panel will never return anything other than OK or cancel")
-        }
-    }
+		
+		//TODO put the open panel back!
+//        let openPanel : NSOpenPanel = NSOpenPanel()
+//        let userChoice = openPanel.runModal()
+//
+//        switch userChoice {
+//        case .OK :
+//            let panelResult = openPanel.url
+//            if let panelResult = panelResult {
+//
+//                let filename : String = panelResult.absoluteString
+//                var commandInput: String = ""
+//
+//                commandInput += "load "
+//                commandInput += filename
+//
+//                LibraryMainWindow.model.runCommand(input: commandInput)
+//				LibraryMainWindow.model.makeInitialBookmarks()
+//
+//				updateTable()
+//            }
+//        case .cancel :
+//            print("> user cancelled importing files")
+//        default:
+//            print("> An open panel will never return anything other than OK or cancel")
+//        }
+		
+		let filename : String = "~/346/media/jsonData.json"
+		var commandInput: String = ""
+		
+		commandInput += "load "
+		commandInput += filename
+		
+		LibraryMainWindow.model.runCommand(input: commandInput)
+		LibraryMainWindow.model.makeInitialBookmarks()
+		tableView.reloadData()
+	}
     
     @IBOutlet weak var addBookmarkButton: NSButton!
     
@@ -71,6 +81,10 @@ class LibraryViewController: NSViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+	
+	func tableDataDidChange() {
+		tableView.reloadData()
+	}
 }
 
 extension LibraryViewController : NSTableViewDataSource {

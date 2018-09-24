@@ -221,23 +221,23 @@ class LoadCommand: MMCommand {
         
         
         // Print out the names of the added files.
-        if newCount > oldCount {
-            var allFiles = library.all()
-            var index: Int = 1
-            for i in library.count-diff...library.count-1 {
-                print("\t\(index): \(allFiles[i].filename)")
-                index += 1
-            }
-        }
+//        if newCount > oldCount {
+//            var allFiles = library.all()
+//            var index: Int = 1
+//            for i in library.count-diff...library.count-1 {
+//                print("\t\(index): \(allFiles[i].filename)")
+//                index += 1
+//            }
+//        }
         
         // Print out the names of any duplicate files not added
         if duplicatedNotAdded.count > 0 {
             print ("> Duplicates found:")
-            var index: Int = 1
-            for d in duplicatedNotAdded {
-                print("\t\(index): \(d.filename) not added")
-                index += 1
-            }
+//            var index: Int = 1
+//            for d in duplicatedNotAdded {
+//                print("\t\(index): \(d.filename) not added")
+//                index += 1
+//            }
         }
     }
 }
