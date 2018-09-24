@@ -74,6 +74,7 @@ class LibraryViewController: NSViewController, LibraryDelegate {
         let commandInput = "list \(searchTerm)"
         
         LibraryMainWindow.model.runCommand(input: commandInput)
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -104,12 +105,20 @@ extension LibraryViewController : NSTableViewDelegate {
         static let CellCreator = "CellCreatorID"
     }
     
+    func filesToLoad() -> [MMFile] {
+        var item : [MMFile] = []
+        if (importFilesButton.isEnabled) {
+            item = LibraryMainWindow.model.library.all()
+        }
+        return item
+    }
+    
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
         var text: String = ""
         var cellIdentifier: String = ""
         
-        let item = LibraryMainWindow.model.library.all()[row]
+        let item = filesToLoad()[row]
         
         if tableColumn == tableView.tableColumns[0] {
             text = String(row+1)
