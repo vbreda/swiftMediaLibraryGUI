@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="addBookmarkButton" destination="ycT-Z0-gEe" id="CHG-q2-aKB"/>
                 <outlet property="importFilesButton" destination="zwg-e6-kMc" id="QEP-3p-5NT"/>
+                <outlet property="openViewerButton" destination="0V1-lD-W4W" id="wRg-St-3fc"/>
                 <outlet property="searchButton" destination="H92-Fv-ADX" id="YrJ-C8-Q8A"/>
                 <outlet property="searchTextField" destination="Nu6-5E-9J7" id="Tga-U0-QKU"/>
                 <outlet property="statusLabel" destination="psE-rb-llv" id="4V0-9a-QWW"/>
@@ -298,14 +299,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hf5-6r-0ij">
-                    <rect key="frame" x="166" y="577" width="158" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="?" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="otD-b6-BvH">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
+                    <connections>
+                        <action selector="openViewerButtonAction:" target="-2" id="EbM-6J-yBM"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycT-Z0-gEe">
                     <rect key="frame" x="166" y="606" width="158" height="32"/>

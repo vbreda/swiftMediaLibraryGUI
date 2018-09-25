@@ -17,7 +17,8 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	@IBOutlet weak var addBookmarkButton: NSButton!
     @IBOutlet weak var importFilesButton: NSButton!
 	
-//	var libraryViewController : LibraryViewController = LibraryViewController()
+	@IBOutlet weak var openViewerButton: NSButton!
+	//	var libraryViewController : LibraryViewController = LibraryViewController()
 //	var mainWindowController : LibraryMainWindow = LibraryMainWindow()
 	
 	var filesInTable : [MMFile] = []
@@ -28,6 +29,8 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		tableView.dataSource = self
 		LibraryMainWindow.model.libraryDelegate = self
 		tableView.doubleAction = #selector(tableViewDoubleClick(_:))
+		openViewerButton.isEnabled = false
+		addBookmarkButton.isEnabled = false
 		
 //		libraryViewController = self.view.window?.contentViewController as! LibraryViewController
 //		mainWindowController = self.view.window?.windowController as! LibraryMainWindow
@@ -76,29 +79,70 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		
 	}
     
-	
+	/**
+	Adds a new bookmark based on the user's currrent selection.
+	Prompts for bookmark name via NSAlert with NSTextField.
+	*/
     @IBAction func addBookmarkButtonAction(_ sender: Any) {
+		
         // Check what is selected in the table view
         var filesToSave : [MMFile] = []
 		let numItemsSelected = tableView.selectedRowIndexes.count
         // build this files array
+		
         // Create a new result set from the selected files
-        LibraryMainWindow.model.last = MMResultSet()
-        
+		
+		let newBookmarkName = getString(title: "New Bookmark Name:", question: "Please enter a name for your bookmark. You cannot use the same name as already existing bookmark.", defaultValue: "New Bookmark")
+		
+//		let fileIndex = tableView.selectedRow
+//		let file = filesInTable[fileIndex]
+//		LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: [file])
+		
     }
 
-    
+	/**
+	Alternative to double clicking a file name
+	*/
+	@IBAction func openViewerButtonAction(_ sender: Any) {
+		
+	}
+	
+	/**
+	Prompt the user to enter some text e.g. the Book
+	*/
+	func getString(title: String, question: String, defaultValue: String) -> String {
+		let msg = NSAlert()
+		msg.addButton(withTitle: "OK")      // 1st button
+		msg.addButton(withTitle: "Cancel")  // 2nd button
+		msg.messageText = title
+		msg.informativeText = question
+		
+		let txt = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
+		txt.stringValue = defaultValue
+		
+		msg.accessoryView = txt
+		let response: NSApplication.ModalResponse = msg.runModal()
+		
+		if (response == NSApplication.ModalResponse.alertFirstButtonReturn) {
+			return txt.stringValue
+		} else {
+			return ""
+		}
+	}
+	
+	/**
+	Actions that occurs when user clicks the search button
+	*/
     @IBAction func searchButtonAction(_ sender: Any) {
         
         let searchTerm : String = searchTextField.stringValue
         let commandInput = "list \(searchTerm)"
-        
         LibraryMainWindow.model.runCommand(input: commandInput)
 		do {
 			changeFilesInTable(newFiles: try LibraryMainWindow.model.last.getAll())
 		} catch { }
-		tableView.noteNumberOfRowsChanged()
-		tableView.reloadData();
+		
+		tableDataDidChange()
     }
 	
 	// Required function to conform to LibraryDelegate
@@ -109,6 +153,29 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	// Updates the data field of filesInTable
 	func changeFilesInTable(newFiles: [MMFile]) {
 		filesInTable = newFiles
+	}
+	
+	/**
+	Disables and enables the buttons based upon whats selected in the table
+	*/
+	func manageButtons() {
+		importFilesButton.isEnabled = true
+		searchButton.isEnabled = true
+		let numItemsSelected = tableView.selectedRowIndexes.count
+		if numItemsSelected == 0 {
+			// no files selected
+			openViewerButton.isEnabled = false
+			addBookmarkButton.isEnabled = false
+
+		} else if numItemsSelected == 1 {
+			// 1 file selected
+			openViewerButton.isEnabled = true
+			addBookmarkButton.isEnabled = true
+		} else {
+			// more than one file selected
+			openViewerButton.isEnabled = false
+			addBookmarkButton.isEnabled = true
+		}
 	}
 	
 	
@@ -205,5 +272,6 @@ extension LibraryViewController : NSTableViewDelegate {
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         updateStatus()
+		manageButtons()
     }
 }
