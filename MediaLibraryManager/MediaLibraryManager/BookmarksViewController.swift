@@ -8,14 +8,20 @@
 
 import Cocoa
 
-class BookmarksViewController: NSViewController, BookmarksDelegate {
+public protocol BookmarksViewDelegate {
+	func selectionDidChange()
+}
+
+class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	
 
 	@IBOutlet weak var labelBookmarks: NSTextField!
-	
-	@IBOutlet weak var labelTotalBookmarks: NSTextField!
-	
+	@IBOutlet weak var statusLabel: NSTextField!
 	@IBOutlet weak var tableView: NSTableView!
+	
+	var delegate : BookmarksViewDelegate? = nil
+//	var libraryViewController : LibraryViewController = LibraryViewController()
+//	var mainWindowController : LibraryMainWindow = LibraryMainWindow()
 	
 	var fontSize = (NSFont.systemFontSize(for: NSControl.ControlSize.regular) + 2)
 	
@@ -25,15 +31,33 @@ class BookmarksViewController: NSViewController, BookmarksDelegate {
         // Do view setup here.
 		tableView.delegate = self
 		tableView.dataSource = self
+		tableView.allowsMultipleSelection = false
+//		tableView.allowsEmptySelection = false
 		LibraryMainWindow.model.bookmarksDelegate = self
 		
+//		libraryViewController = self.view.window?.contentViewController as! LibraryViewController
+//		let mainWindowController = self.view.window?.windowController as! LibraryMainWindow
     }
 	
 	// Delegate method
 	func tableDataDidChange() {
 		tableView.reloadData()
+		updateStatus()
 	}
 	
+	/**
+	Updates the label at bottom of table.
+	Shows the total items and those selected.
+	*/
+	func updateStatus() {
+		let text: String
+		if LibraryMainWindow.model.numBookmarks == 0 {
+			text = "No bookmarks"
+		} else {
+			text = "\(LibraryMainWindow.model.numBookmarks) bookmarks"
+		}
+		statusLabel.stringValue = text
+	}
 }
 
 
@@ -67,29 +91,34 @@ extension BookmarksViewController : NSTableViewDelegate {
 		
 		tableView.rowHeight = textField.frame.height + 2
 		
-//		cellView.textField?.textColor = NSColor.black
-		
 		return cellView
-//
-//		var text: String = ""
-//		var cellIdentifier: String = ""
-//
-//		let item = LibraryMainWindow.model.getBookmarkNames()[row]
-//
-//		if tableColumn == tableView.tableColumns[0] {
-//			text = String(item)
-//			cellIdentifier = CellIdentifiers.CellNumber
-//		}
-//
-//		if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
-//			cell.textField?.stringValue = text
-//			return cell
-//		}
-//		return nil
 	}
 	
+	/**
+	When a new bookmark is selected, open it!
+	*/
 	func tableViewSelectionDidChange(_ notification: Notification) {
-		// updateStatus()
+		
+		guard tableView.selectedRow > 0 else {
+			return
+		}
+		
+		let bookmark = LibraryMainWindow.model.getBookmarkNames()[tableView.selectedRow]
+		let files = LibraryMainWindow.model.getBookmarkValues(key: bookmark)
+		
+		if files.count == 1 {
+			// Open the media viewer right away, only one file
+			LibraryMainWindow.newViewerWindow(file: files[0])
+			print("single clicked: \(bookmark)")
+		} else {
+			// update LibraryViewController tableView
+			print("should update table view")
+			LibraryMainWindow.libraryVC.changeFilesInTable(newFiles: files)
+			LibraryMainWindow.libraryVC.tableDataDidChange()
+			//	libraryViewController.changeFilesInTable(newFiles: files)
+		}
+		
+		
 	}
 	
 }

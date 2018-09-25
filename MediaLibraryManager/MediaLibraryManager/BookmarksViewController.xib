@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="labelBookmarks" destination="Rha-pm-rze" id="9qW-iq-ruu"/>
                 <outlet property="labelTotalBookmarks" destination="XSx-JL-lNx" id="oUU-eF-g03"/>
+                <outlet property="statusLabel" destination="XSx-JL-lNx" id="kf5-90-Fx6"/>
                 <outlet property="tableView" destination="5P2-GO-NZU" id="otA-Tx-E0I"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -29,9 +30,9 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="XSx-JL-lNx">
-                    <rect key="frame" x="66" y="14" width="105" height="17"/>
+                    <rect key="frame" x="66" y="14" width="92" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="x total boomarks" id="fff-2K-p0v">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No bookmarks" id="fff-2K-p0v">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

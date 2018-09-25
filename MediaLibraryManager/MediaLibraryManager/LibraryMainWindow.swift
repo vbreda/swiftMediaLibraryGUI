@@ -11,11 +11,16 @@ import Cocoa
 class LibraryMainWindow: NSWindowController {
 	
 	static let model : LibraryModel = LibraryModel()
-	
+	static var viewerWindows : [MediaViewerWindowController] = []
+	let splitVC = NSSplitViewController()
+	static let bookmarksVC = BookmarksViewController()
+	static let libraryVC = LibraryViewController()
+
 	@IBOutlet var mainWindow: NSWindow!
 	
-	@IBOutlet weak var mainView: NSView!
-
+	@IBAction func menuEditNotes(_ sender: Any) {
+		print("MENU ITEM: edit notes")
+	}
 	
 	convenience init() {
 		self.init(windowNibName: NSNib.Name(rawValue: "LibraryMainWindow"));
@@ -24,18 +29,18 @@ class LibraryMainWindow: NSWindowController {
 	
     override func windowDidLoad() {
         super.windowDidLoad()
-
-		//self.window?.title = "MediaLibraryManager"
 		mainWindow.title = "Media Library Manager"
 		
-		let splitVC = NSSplitViewController()
-		let bookmarksVC = BookmarksViewController()
-		let libraryVC = LibraryViewController()
-		
-	splitVC.addSplitViewItem(NSSplitViewItem(contentListWithViewController: bookmarksVC))
-	splitVC.addSplitViewItem(NSSplitViewItem(contentListWithViewController: libraryVC))
+		splitVC.addSplitViewItem(NSSplitViewItem(contentListWithViewController: LibraryMainWindow.bookmarksVC))
+		splitVC.addSplitViewItem(NSSplitViewItem(contentListWithViewController: LibraryMainWindow.libraryVC))
 		
 		mainWindow.contentViewController = splitVC
     }
+	
+	static func newViewerWindow(file: MMFile) {
+		let viewer = MediaViewerWindowController(file: file)
+		viewerWindows.append(viewer)
+		viewer.showWindow(self)
+	}
     
 }

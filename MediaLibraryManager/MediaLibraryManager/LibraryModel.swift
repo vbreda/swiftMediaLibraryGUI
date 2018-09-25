@@ -8,11 +8,11 @@
 
 import Foundation
 
-public protocol BookmarksDelegate {
+public protocol ModelBookmarksDelegate {
 	func tableDataDidChange()
 }
 
-public protocol LibraryDelegate {
+public protocol ModelLibraryDelegate {
 	func tableDataDidChange()
 }
 
@@ -22,8 +22,8 @@ public class LibraryModel {
 	var last = MMResultSet()
 	var bookmarks : [String: [MMFile]] = [:]
 	
-	public var bookmarksDelegate: BookmarksDelegate? = nil;
-	public var libraryDelegate: LibraryDelegate? = nil;
+	public var bookmarksDelegate: ModelBookmarksDelegate? = nil;
+	public var libraryDelegate: ModelLibraryDelegate? = nil;
 	
 	// Returns the number of current bookmarks
 	var numBookmarks : Int {
@@ -38,13 +38,13 @@ public class LibraryModel {
 	
 	// Alert delegate 1
 	func alertBookmarksDelegate() {
-		print("bookmark delgate alerted -----------------------")
+//		print("bookmark delgate alerted -----------------------")
 		bookmarksDelegate?.tableDataDidChange()
 	}
 	
 	// Alert delegate 2
 	func alertLibraryDelegate() {
-		print("library delgate alerted -********************-")
+//		print("library delgate alerted -********************-")
 		bookmarksDelegate?.tableDataDidChange()
 	}
 	
@@ -155,10 +155,21 @@ public class LibraryModel {
 	Returns the current bookmark names only
 	*/
 	func getBookmarkNames() -> [String] {
-		var keys = Array(bookmarks.keys)
-		return keys
+		let keys : [String] = Array(bookmarks.keys)
+		let sortedArray = keys.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
+		return sortedArray
 	}
 	
+	/*
+	Returns the file list of a bookmark given the bookmark name.
+	*/
+	func getBookmarkValues(key: String) -> [MMFile] {
+		if let files : [MMFile] = bookmarks[key] {
+			return files
+		} else {
+			return []
+		}
+	}
 	
 	/**
 	Adds a new bookmark to the bookmarks dictionary
@@ -178,6 +189,9 @@ public class LibraryModel {
 		
 		let b1 = "All"
 		let b1Files = callListCommand(term: "")
+		for f in b1Files {
+			print("all: file is: \(f)")
+		}
 		addBookmarks(name: b1, files: b1Files)
 		
 		let b2 = "Images"
@@ -218,9 +232,5 @@ public class LibraryModel {
 		}
 		return files
 	}
-	
-	
-	
-
 	
 }

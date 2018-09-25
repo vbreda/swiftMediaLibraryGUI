@@ -46,7 +46,14 @@ class File: MMFile {
     private var _fFilename = String()
     private var _fPath = String()
     private var _fCreator = String()
-    
+	
+	init() {
+	}
+	
+	init(filename: String) {
+		self._fFilename = filename
+	}
+	
     /**
       Designated initialiser
      
