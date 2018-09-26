@@ -28,7 +28,7 @@ class ImageViewController: NSViewController {
 //        imageView.image = NSImage(contentsOfFile: bundlePath!+"/"+fileToOpen.filename)
         
         print("showImage(): \(fullpath)")
-        imageView.image = NSImage(byReferencingFile: fullpath)
+        imageView.image = NSImage(contentsOfFile: fullpath)
         
 //        print(fileToOpen.fullpath)
 //        imageView.image = NSImage.init(contentsOfFile: fullpath)
