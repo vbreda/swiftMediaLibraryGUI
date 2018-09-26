@@ -93,14 +93,11 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		if numItemsSelected == 0 {
 			// Save the entire table view
 			filesToSave = filesInTable
-			
 		} else {
 			// Save-search
 			for i in indexes {
 				filesToSave.append(filesInTable[i])
 			}
-			
-			
 		}
 		
 		let savePanel : NSSavePanel = NSSavePanel()
