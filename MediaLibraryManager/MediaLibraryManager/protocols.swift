@@ -32,6 +32,7 @@ protocol MMFile: CustomStringConvertible {
     var filename: String {get set}
     var path: String {get set}
 	var creator: String {get set}
+    var fullpath: String {get set}
 }
 
 ///
