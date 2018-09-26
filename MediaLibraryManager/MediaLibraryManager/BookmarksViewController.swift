@@ -20,9 +20,6 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	@IBOutlet weak var tableView: NSTableView!
 	
 	var delegate : BookmarksViewDelegate? = nil
-//	var libraryViewController : LibraryViewController = LibraryViewController()
-//	var mainWindowController : LibraryMainWindow = LibraryMainWindow()
-	
 	var fontSize = (NSFont.systemFontSize(for: NSControl.ControlSize.regular) + 2)
 	
 	
@@ -32,12 +29,9 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.allowsMultipleSelection = false
-//		tableView.allowsEmptySelection = false
+		tableView.allowsEmptySelection = false
 		LibraryMainWindow.model.bookmarksDelegate = self
-		
-//		libraryViewController = self.view.window?.contentViewController as! LibraryViewController
-//		let mainWindowController = self.view.window?.windowController as! LibraryMainWindow
-    }
+	}
 	
 	// Delegate method
 	func tableDataDidChange() {
@@ -76,6 +70,8 @@ extension BookmarksViewController : NSTableViewDelegate {
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		
+		
+		
 		let cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CellBookmark"), owner: self) as! NSTableCellView
 		
 		let textField = cellView.textField!
@@ -91,6 +87,12 @@ extension BookmarksViewController : NSTableViewDelegate {
 		
 		tableView.rowHeight = textField.frame.height + 2
 		
+		
+		let index = NSIndexSet(index: 0)
+		self.tableView.scrollRowToVisible(0)
+		self.tableView.selectRowIndexes(index as IndexSet, byExtendingSelection: true)
+		
+		
 		return cellView
 	}
 	
@@ -98,11 +100,7 @@ extension BookmarksViewController : NSTableViewDelegate {
 	When a new bookmark is selected, open it!
 	*/
 	func tableViewSelectionDidChange(_ notification: Notification) {
-		
-		guard tableView.selectedRow > 0 else {
-			return
-		}
-		
+
 		let bookmark = LibraryMainWindow.model.getBookmarkNames()[tableView.selectedRow]
 		let files = LibraryMainWindow.model.getBookmarkValues(key: bookmark)
 		
@@ -112,10 +110,9 @@ extension BookmarksViewController : NSTableViewDelegate {
 			print("single clicked: \(bookmark)")
 		} else {
 			// update LibraryViewController tableView
-			print("should update table view")
+			print("single clicked should open: \(bookmark)")
 			LibraryMainWindow.libraryVC.changeFilesInTable(newFiles: files)
 			LibraryMainWindow.libraryVC.tableDataDidChange()
-			//	libraryViewController.changeFilesInTable(newFiles: files)
 		}
 		
 		
