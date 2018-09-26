@@ -110,6 +110,7 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	Delegate method
 	*/
 	func tableDataDidChange() {
+		// TODO
 		if currentNumBookmarks == 0 {
 			currentNumBookmarks = LibraryMainWindow.model.numBookmarks
 		}
