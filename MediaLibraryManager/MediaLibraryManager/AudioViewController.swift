@@ -23,9 +23,8 @@ class AudioViewController: NSViewController {
     
     var soundPlayer =  AVAudioPlayer();
     
-    @IBAction func play(_ sender: NSButtonCell) {
-        print("playing") ;
-        soundPlayer.play();
+    @IBAction func play(_ sender: NSButton) {
+            print("playing")
     }
     
     override func viewDidLoad() {

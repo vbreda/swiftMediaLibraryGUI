@@ -18,6 +18,7 @@ class MediaViewerWindowController: NSWindowController {
     @IBOutlet var viewerWindow: NSWindow!
     
     var fileToOpen: MMFile = File(filename: "MLM - Media Viewer")
+    var allFiles: [MMFile] = []
     
 	convenience init() {
 		self.init(windowNibName: NSNib.Name(rawValue: "MediaViewerWindowController"));
@@ -30,6 +31,15 @@ class MediaViewerWindowController: NSWindowController {
 		self.init(windowNibName: NSNib.Name(rawValue: "MediaViewerWindowController"));
 		fileToOpen = file
 	}
+    
+    /**
+     Initialises the new controller with a specific file as the start point.
+     */
+    convenience init(file: MMFile, files: [MMFile]) {
+        self.init(windowNibName: NSNib.Name(rawValue: "MediaViewerWindowController"));
+        fileToOpen = file
+        allFiles = files
+    }
 	
     override func windowDidLoad() {
         super.windowDidLoad()

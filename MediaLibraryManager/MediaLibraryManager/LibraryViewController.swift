@@ -208,7 +208,9 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		// Open the file in MediaViewerWindow if only one selected
 		if numItemsSelected == 1 {
 			// Open the media viewer right away, only one file
-			LibraryMainWindow.newViewerWindow(file: item)
+//            LibraryMainWindow.newViewerWindow(file: item)
+            LibraryMainWindow.newViewerWindow(file: item, files: filesInTable)
+
 		} else {
 			// TODO
 		}	
