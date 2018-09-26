@@ -23,15 +23,9 @@ class ImageViewController: NSViewController {
     @IBOutlet weak var imageView: NSImageView!
     
     func showImage() {
-//        let bundlePath = Bundle.main.resourcePath
-//        print(bundlePath!+"/"+fileToOpen.filename)
-//        imageView.image = NSImage(contentsOfFile: bundlePath!+"/"+fileToOpen.filename)
         
         print("showImage(): \(fullpath)")
-        imageView.image = NSImage(contentsOfFile: fullpath)
-        
-//        print(fileToOpen.fullpath)
-//        imageView.image = NSImage.init(contentsOfFile: fullpath)
+        imageView.image = NSImage(contentsOfFile: "/home/cshome/v/vbredabezerrarego/346/media/\(fileToOpen.filename)")
         
     }
     
