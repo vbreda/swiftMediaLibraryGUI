@@ -40,13 +40,16 @@ extension MMFile {
   Creates a media file with metadata.
  */
 class File: MMFile {
+  
     
     // STORED PROPERTIES
     private var _fMetadata : [MMMetadata] = []
     private var _fFilename = String()
     private var _fPath = String()
     private var _fCreator = String()
-	
+    
+    var fullpath: String = ""
+    
 	init() {
 	}
 	
@@ -84,6 +87,7 @@ class File: MMFile {
 		let m3: MMMetadata = Metadata(keyword: "_name", value: fileWithoutExtension[0])
 		self._fMetadata.append(m3)
 
+        fullpath = "\(path)\(filename)"
     }
     
     // The collection of the file's metadata.
