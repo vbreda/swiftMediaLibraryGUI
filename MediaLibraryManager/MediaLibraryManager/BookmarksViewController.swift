@@ -70,10 +70,7 @@ extension BookmarksViewController : NSTableViewDelegate {
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		
-		
-		
 		let cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CellBookmark"), owner: self) as! NSTableCellView
-		
 		let textField = cellView.textField!
 		textField.textColor = NSColor.black
 		
@@ -87,11 +84,9 @@ extension BookmarksViewController : NSTableViewDelegate {
 		
 		tableView.rowHeight = textField.frame.height + 2
 		
-		
 		let index = NSIndexSet(index: 0)
 		self.tableView.scrollRowToVisible(0)
 		self.tableView.selectRowIndexes(index as IndexSet, byExtendingSelection: true)
-		
 		
 		return cellView
 	}
@@ -106,7 +101,7 @@ extension BookmarksViewController : NSTableViewDelegate {
 		
 		if files.count == 1 {
 			// Open the media viewer right away, only one file
-			LibraryMainWindow.newViewerWindow(file: files[0])
+//			LibraryMainWindow.newViewerWindow(file: files[0])
 			print("single clicked: \(bookmark)")
 		} else {
 			// update LibraryViewController tableView

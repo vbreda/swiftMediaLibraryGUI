@@ -167,17 +167,13 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		let numItemsSelected = tableView.selectedRowIndexes.count
 		let item = filesInTable[tableView.selectedRow]
 		
-		
 		// Open the file in MediaViewerWindow if only one selected
 		if numItemsSelected == 1 {
 			// Open the media viewer right away, only one file
 			LibraryMainWindow.newViewerWindow(file: item)
 		} else {
-			
 			// TODO
-		}
-		
-		
+		}	
 	}
 	
 	/**
@@ -274,9 +270,9 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		if LibraryMainWindow.model.library.count == 0 {
 			text = "No items"
 		} else if numItemsSelected == 0 {
-			text = "\(LibraryMainWindow.model.library.count) items"
+			text = "\(filesInTable.count) items"
 		} else {
-			text = "\(numItemsSelected) of \(LibraryMainWindow.model.library.count) selected"
+			text = "\(numItemsSelected) of \(filesInTable.count) selected"
 		}
 		statusLabel.stringValue = text
 	}
