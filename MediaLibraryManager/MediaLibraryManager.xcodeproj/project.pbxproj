@@ -52,6 +52,8 @@
 		2BFB1982215341C00022D55D /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB1980215341C00022D55D /* LibraryViewController.swift */; };
 		2BFB1983215341C00022D55D /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BFB1981215341C00022D55D /* LibraryViewController.xib */; };
 		6B94FD4F215B0F7800E43DB1 /* MediaViewerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B94FD4E215B0F7800E43DB1 /* MediaViewerWindowController.swift */; };
+		6B94FD52215B1AC700E43DB1 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B94FD50215B1AC700E43DB1 /* DocumentViewController.swift */; };
+		6B94FD53215B1AC700E43DB1 /* DocumentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B94FD51215B1AC700E43DB1 /* DocumentViewController.xib */; };
 		6BA3A1202159F97F004B4D3E /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA3A11E2159F97F004B4D3E /* ImageViewController.swift */; };
 		6BA3A1212159F97F004B4D3E /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BA3A11F2159F97F004B4D3E /* ImageViewController.xib */; };
 /* End PBXBuildFile section */
@@ -106,6 +108,8 @@
 		2BFB1980215341C00022D55D /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		2BFB1981215341C00022D55D /* LibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
 		6B94FD4E215B0F7800E43DB1 /* MediaViewerWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerWindowController.swift; sourceTree = "<group>"; };
+		6B94FD50215B1AC700E43DB1 /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
+		6B94FD51215B1AC700E43DB1 /* DocumentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentViewController.xib; sourceTree = "<group>"; };
 		6BA3A11E2159F97F004B4D3E /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		6BA3A11F2159F97F004B4D3E /* ImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +189,8 @@
 				2B88507421574692007C39E6 /* MediaViewerWindowController.xib */,
 				6BA3A11E2159F97F004B4D3E /* ImageViewController.swift */,
 				6BA3A11F2159F97F004B4D3E /* ImageViewController.xib */,
+				6B94FD50215B1AC700E43DB1 /* DocumentViewController.swift */,
+				6B94FD51215B1AC700E43DB1 /* DocumentViewController.xib */,
 			);
 			path = MediaLibraryManager;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 			files = (
 				2BFB197F21533E0D0022D55D /* BookmarksViewController.xib in Resources */,
 				2BFB1983215341C00022D55D /* LibraryViewController.xib in Resources */,
+				6B94FD53215B1AC700E43DB1 /* DocumentViewController.xib in Resources */,
 				6BA3A1212159F97F004B4D3E /* ImageViewController.xib in Resources */,
 				2B88507621574692007C39E6 /* MediaViewerWindowController.xib in Resources */,
 				2B2203ED21507F1800FC9A98 /* Assets.xcassets in Resources */,
@@ -363,6 +370,7 @@
 				2B22043221507F5B00FC9A98 /* Library.swift in Sources */,
 				2B22042621507F5B00FC9A98 /* commands.swift in Sources */,
 				6B94FD4F215B0F7800E43DB1 /* MediaViewerWindowController.swift in Sources */,
+				6B94FD52215B1AC700E43DB1 /* DocumentViewController.swift in Sources */,
 				2B22044121507F5B00FC9A98 /* Metadata.swift in Sources */,
 				2B22042F21507F5B00FC9A98 /* FileValidator.swift in Sources */,
 			);

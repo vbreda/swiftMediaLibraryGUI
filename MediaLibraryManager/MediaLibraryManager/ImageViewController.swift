@@ -23,9 +23,9 @@ class ImageViewController: NSViewController {
     @IBOutlet weak var imageView: NSImageView!
     
     func showImage() {
-        
-        print("showImage(): \(fullpath)")
-        imageView.image = NSImage(contentsOfFile: "/home/cshome/v/vbredabezerrarego/346/media/\(fileToOpen.filename)")
+        let directory : String = NSString(string: fullpath).expandingTildeInPath
+        print("showImage(): \(directory)")
+        imageView.image = NSImage(contentsOfFile: directory)
         
     }
     
