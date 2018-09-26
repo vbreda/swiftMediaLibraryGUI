@@ -177,7 +177,7 @@ public class LibraryModel {
 	func addBookmarks(name: String, files: [MMFile]) {
 		bookmarks.updateValue(files, forKey: name)
 		//print("Bookmarks count is now: \(numBookmarks)")
-		
+		alertBookmarksDelegate()
 	}
 	
 	
@@ -189,9 +189,6 @@ public class LibraryModel {
 		
 		let b1 = "All"
 		let b1Files = callListCommand(term: "")
-		for f in b1Files {
-			print("all: file is: \(f)")
-		}
 		addBookmarks(name: b1, files: b1Files)
 		
 		let b2 = "Images"
