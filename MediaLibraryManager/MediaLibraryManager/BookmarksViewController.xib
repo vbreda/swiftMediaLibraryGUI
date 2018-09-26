@@ -7,8 +7,11 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="BookmarksViewController" customModule="MediaLibraryManager" customModuleProvider="target">
             <connections>
+                <outlet property="deleteButton" destination="hdq-sp-Ho8" id="K7G-Ux-tPZ"/>
+                <outlet property="editBookmarksButton" destination="W17-dd-3sp" id="Uc7-sz-cQ3"/>
                 <outlet property="labelBookmarks" destination="Rha-pm-rze" id="9qW-iq-ruu"/>
                 <outlet property="labelTotalBookmarks" destination="XSx-JL-lNx" id="oUU-eF-g03"/>
+                <outlet property="removeFilesFromButton" destination="BOx-LD-p9E" id="3uD-t5-BiQ"/>
                 <outlet property="statusLabel" destination="XSx-JL-lNx" id="kf5-90-Fx6"/>
                 <outlet property="tableView" destination="5P2-GO-NZU" id="otA-Tx-E0I"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -29,24 +32,24 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="XSx-JL-lNx">
-                    <rect key="frame" x="66" y="14" width="92" height="17"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="XSx-JL-lNx">
+                    <rect key="frame" x="18" y="14" width="200" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No bookmarks" id="fff-2K-p0v">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="No bookmarks" id="fff-2K-p0v">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="SQI-4G-PP2">
-                    <rect key="frame" x="20" y="43" width="196" height="543"/>
+                    <rect key="frame" x="20" y="92" width="196" height="494"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Z3i-A2-Zn4">
-                        <rect key="frame" x="0.0" y="0.0" width="196" height="543"/>
+                        <rect key="frame" x="0.0" y="0.0" width="196" height="494"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="5P2-GO-NZU">
-                                <rect key="frame" x="0.0" y="0.0" width="196" height="543"/>
+                                <rect key="frame" x="0.0" y="0.0" width="196" height="494"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
@@ -98,6 +101,28 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
+                <button verticalHuggingPriority="750" misplaced="YES" id="hdq-sp-Ho8">
+                    <rect key="frame" x="14" y="32" width="208" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Delete Bookmark" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W17-dd-3sp">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="deleteButtonAction:" target="-2" id="YBl-7B-8yo"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" misplaced="YES" id="BOx-LD-p9E">
+                    <rect key="frame" x="11" y="57" width="216" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Remove Files from Bookmark" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9GP-zD-dmx">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="removeFilesFromButtonAction:" target="-2" id="C9Z-kx-3xl"/>
+                    </connections>
+                </button>
             </subviews>
             <point key="canvasLocation" x="140" y="289.5"/>
         </customView>

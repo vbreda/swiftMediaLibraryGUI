@@ -41,6 +41,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 //        let openPanel : NSOpenPanel = NSOpenPanel()
 //        let userChoice = openPanel.runModal()
 //
+//		  openPanel.allowedFileTypes=["json"]
 //        switch userChoice {
 //        case .OK :
 //            let panelResult = openPanel.url
@@ -141,20 +142,57 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		// Prompt for a name for the bookmark
 		let newBookmarkName = getString(title: "New Bookmark Name:", question: "Please enter a name for your bookmark. You cannot use the same name as already existing bookmark.", defaultValue: "New Bookmark")
 		
-		if numItemsSelected == 1 {
-			let fileIndex = tableView.selectedRow
-			let file = filesInTable[fileIndex]
-			LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: [file])
-		} else {
-			let indexSetOfFiles = tableView.selectedRowIndexes
-			let indexes = Array(indexSetOfFiles)
-			var filesToSave : [MMFile] = []
-			for i in indexes {
-				filesToSave.append(filesInTable[i])
-			}
-			LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: filesToSave)
-		}
+		let allBookmarks = LibraryMainWindow.model.getBookmarkNames()
 		
+		// Check if the name will overwrite existing bookmark
+		if allBookmarks.contains(newBookmarkName) {
+			let canEdit : Bool = LibraryMainWindow.bookmarksVC.checkBookmarkIsEditable(bookmark: newBookmarkName)
+			if !canEdit {
+				// Bookmark is one of the permanent, cannot overwrite
+				LibraryMainWindow.bookmarksVC.alertUserOfForbidden(bookmark: newBookmarkName)
+			} else {
+				// Prompt user to convirm overwrite
+				let msg = NSAlert()
+				msg.addButton(withTitle: "Yes")
+				msg.addButton(withTitle: "Cancel")
+				msg.messageText = "Overwrite Bookmark"
+				msg.informativeText = "A bookmark with that name already exists. Are you sure you wish to overwrite these  the bookmark '\(newBookmarkName)?'"
+				
+				let response: NSApplication.ModalResponse = msg.runModal()
+				if (response == NSApplication.ModalResponse.alertFirstButtonReturn) {
+					if numItemsSelected == 1 {
+						let fileIndex = tableView.selectedRow
+						let file = filesInTable[fileIndex]
+						LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: [file])
+					} else {
+						let indexSetOfFiles = tableView.selectedRowIndexes
+						let indexes = Array(indexSetOfFiles)
+						var filesToSave : [MMFile] = []
+						for i in indexes {
+							filesToSave.append(filesInTable[i])
+						}
+						LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: filesToSave)
+					}
+				} else {
+					return
+				}
+			}
+		} else {
+			// New bookmark name, nothing overwritten, simply create it
+			if numItemsSelected == 1 {
+				let fileIndex = tableView.selectedRow
+				let file = filesInTable[fileIndex]
+				LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: [file])
+			} else {
+				let indexSetOfFiles = tableView.selectedRowIndexes
+				let indexes = Array(indexSetOfFiles)
+				var filesToSave : [MMFile] = []
+				for i in indexes {
+					filesToSave.append(filesInTable[i])
+				}
+				LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: filesToSave)
+			}
+		}
     }
 
 	/**
@@ -214,6 +252,50 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		tableDataDidChange()
     }
 	
+	/**
+	Finds the selected files, and removes these from the current bookmark
+	*/
+	func removeFilesFromTable(bookmark: String) {
+		
+		let numFiles = tableView.selectedRowIndexes.count
+		let msg = NSAlert()
+		msg.addButton(withTitle: "Yes")
+		msg.addButton(withTitle: "Cancel")
+		msg.messageText = "Delete Files from Bookmark"
+		if numFiles == 1 {
+			msg.informativeText = "Are you sure you wish to remove \(filesInTable[tableView.selectedRow].filename) from the bookmark '\(bookmark)?'"
+		} else {
+			msg.informativeText = "Are you sure you wish to remove \(numFiles) files from the bookmark '\(bookmark)?'"
+
+		}
+		
+		let response: NSApplication.ModalResponse = msg.runModal()
+		
+		if (response == NSApplication.ModalResponse.alertFirstButtonReturn) {
+			var filesToDelete : [MMFile] = []
+			var filesToKeep :[MMFile] = []
+			let indexSetOfFiles = tableView.selectedRowIndexes
+			let indexes = Array(indexSetOfFiles)
+			var n : Int = 0
+			while n < filesInTable.count {
+				if indexes.contains(n) {
+					// We don't want this file
+					filesToDelete.append(filesInTable[n])
+				} else {
+					// We do want this file
+					filesToKeep.append(filesInTable[n])
+				}
+				n += 1
+			}
+			LibraryMainWindow.model.addBookmarks(name: bookmark, files: filesToKeep)
+			changeFilesInTable(newFiles: filesToKeep)
+			tableDataDidChange()
+		} else {
+			return
+		}
+
+	}
+	
 	// Required function to conform to LibraryDelegate
 	func tableDataDidChange() {
 		tableView.reloadData()
@@ -237,7 +319,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		if filesInTable.count == 0 {
 			searchButton.isEnabled = false
 			exportFilesButton.isEnabled = false
-
+			LibraryMainWindow.bookmarksVC.toggleRemoveFilesButton(isOn: false)
 		} else {
 			searchButton.isEnabled = true
 			exportFilesButton.isEnabled = true
@@ -246,14 +328,17 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 				// no files selected
 				openViewerButton.isEnabled = false
 				addBookmarkButton.isEnabled = false
+				LibraryMainWindow.bookmarksVC.toggleRemoveFilesButton(isOn: false)
 			} else if numItemsSelected == 1 {
 				// 1 file selected
 				openViewerButton.isEnabled = true
 				addBookmarkButton.isEnabled = true
+				LibraryMainWindow.bookmarksVC.toggleRemoveFilesButton(isOn: true)
 			} else {
 				// more than one file selected
 				openViewerButton.isEnabled = false
 				addBookmarkButton.isEnabled = true
+				LibraryMainWindow.bookmarksVC.toggleRemoveFilesButton(isOn: true)
 			}
 		}
 	}
@@ -314,7 +399,6 @@ extension LibraryViewController : NSTableViewDelegate {
         if tableColumn == tableView.tableColumns[0] {
             text = String(row+1)
             cellIdentifier = CellIdentifiers.CellNumber
-            
         } else if tableColumn == tableView.tableColumns[1] {
             text = item.filename
             cellIdentifier = CellIdentifiers.CellName

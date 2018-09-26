@@ -32,19 +32,15 @@ public class LibraryModel {
 		}
 	}
 	
-	init() {
-		
-	}
+	init() { }
 	
 	// Alert delegate 1
 	func alertBookmarksDelegate() {
-//		print("bookmark delgate alerted -----------------------")
 		bookmarksDelegate?.tableDataDidChange()
 	}
 	
 	// Alert delegate 2
 	func alertLibraryDelegate() {
-//		print("library delgate alerted -********************-")
 		bookmarksDelegate?.tableDataDidChange()
 	}
 	
@@ -176,10 +172,20 @@ public class LibraryModel {
 	*/
 	func addBookmarks(name: String, files: [MMFile]) {
 		bookmarks.updateValue(files, forKey: name)
-		//print("Bookmarks count is now: \(numBookmarks)")
 		alertBookmarksDelegate()
 	}
 	
+	/**
+	Deletes a bookmark by its name/key
+	*/
+	func deleteBookmark(name: String) {
+//		print("num bookmarks is: \(bookmarks.count)")
+//		print("attempting to delete bookmark................")
+		bookmarks[name] = nil
+//		bookmarks.removeValue(forKey: name)
+//		print("num bookmarks is: \(bookmarks.count)")
+		alertBookmarksDelegate()
+	}
 	
 	/**
 	Creates the default bookmarks for newly imported media

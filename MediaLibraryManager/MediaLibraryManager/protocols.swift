@@ -33,6 +33,7 @@ protocol MMFile: CustomStringConvertible {
     var path: String {get set}
 	var creator: String {get set}
     var fullpath: String {get set}
+	var notes : String {get set}
 }
 
 ///
