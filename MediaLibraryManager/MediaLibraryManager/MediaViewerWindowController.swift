@@ -14,11 +14,11 @@ import Cocoa
 
 class MediaViewerWindowController: NSWindowController {
 
-	@IBOutlet var viewerWindow: NSWindow!
-	var fileToOpen: MMFile = File(filename: "MLM - Media Viewer")
-	
-	var currentViewController = NSViewController()
-	
+    @IBOutlet weak var customView: NSView!
+    @IBOutlet var viewerWindow: NSWindow!
+    
+    var fileToOpen: MMFile = File(filename: "MLM - Media Viewer")
+    
 	convenience init() {
 		self.init(windowNibName: NSNib.Name(rawValue: "MediaViewerWindowController"));
 	}
@@ -29,16 +29,12 @@ class MediaViewerWindowController: NSWindowController {
 	convenience init(file: MMFile) {
 		self.init(windowNibName: NSNib.Name(rawValue: "MediaViewerWindowController"));
 		fileToOpen = file
-		setCorrectController()
-		
 	}
 	
     override func windowDidLoad() {
         super.windowDidLoad()
 		viewerWindow.title = "Viewing \(fileToOpen.filename)"
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-		viewerWindow.contentViewController = currentViewController
-		
+		setCorrectController()
     }
 	
 	
@@ -48,18 +44,27 @@ class MediaViewerWindowController: NSWindowController {
 	func setCorrectController() {
                 switch (fileToOpen.type) {
                     case "document" :
-                        print("")
-//                        currentViewController = DocumentViewController()
+                        let documentView = DocumentViewController(file: fileToOpen)
+                        documentView.view.setFrameOrigin(NSPoint(x:0, y:0))
+                        documentView.view.setFrameSize(customView.frame.size)
+                        customView.addSubview(documentView.view)
+                       // documentView.textView.isEditable = true
+                    
                     case "image" :
-                        currentViewController = ImageViewController(file: fileToOpen)
+                        let imageView = ImageViewController(file: fileToOpen)
+                        imageView.view.setFrameOrigin(NSPoint(x:0, y:0))
+                        imageView.view.setFrameSize(customView.frame.size)
+                        customView.addSubview(imageView.view)
                     case "video" :
-                        print("")
-
-//                        currentViewController = VideoViewController()
+                        let videoView = VideoViewController(file: fileToOpen)
+                        videoView.view.setFrameOrigin(NSPoint(x:0, y:0))
+                        videoView.view.setFrameSize(customView.frame.size)
+                        customView.addSubview(videoView.view)
                     case "audio" :
-                        print("")
-
-//                        currentViewController = AudioViewController()
+                        let audioView = AudioViewController(file: fileToOpen)
+                        audioView.view.setFrameOrigin(NSPoint(x:0, y:0))
+                        audioView.view.setFrameSize(customView.frame.size)
+                        customView.addSubview(audioView.view)
                     default:
                         print("")
 

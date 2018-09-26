@@ -22,16 +22,14 @@ class ImageViewController: NSViewController {
     
     @IBOutlet weak var imageView: NSImageView!
     
-    func showImage() {
-        let directory : String = NSString(string: fullpath).expandingTildeInPath
-        print("showImage(): \(directory)")
-        imageView.image = NSImage(contentsOfFile: directory)
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         showImage()
     }
     
+    func showImage() {
+        let directory : String = NSString(string: fullpath).expandingTildeInPath
+        print("showImage(): \(directory)")
+        imageView.image = NSImage(contentsOfFile: directory)
+    }
 }

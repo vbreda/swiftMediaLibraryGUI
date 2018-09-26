@@ -44,18 +44,22 @@
 		2B22044721507FCA00FC9A98 /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22044421507FCA00FC9A98 /* protocols.swift */; };
 		2B88506F21571451007C39E6 /* jsonData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B88506E21571451007C39E6 /* jsonData.json */; };
 		2B88507221571D40007C39E6 /* LibraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B88507121571D40007C39E6 /* LibraryModel.swift */; };
-		2B88507621574692007C39E6 /* MediaViewerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B88507421574692007C39E6 /* MediaViewerWindowController.xib */; };
 		2BFB197621533AB30022D55D /* LibraryMainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB197421533AB30022D55D /* LibraryMainWindow.swift */; };
 		2BFB197721533AB30022D55D /* LibraryMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BFB197521533AB30022D55D /* LibraryMainWindow.xib */; };
 		2BFB197E21533E0D0022D55D /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB197C21533E0D0022D55D /* BookmarksViewController.swift */; };
 		2BFB197F21533E0D0022D55D /* BookmarksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BFB197D21533E0D0022D55D /* BookmarksViewController.xib */; };
 		2BFB1982215341C00022D55D /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB1980215341C00022D55D /* LibraryViewController.swift */; };
 		2BFB1983215341C00022D55D /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BFB1981215341C00022D55D /* LibraryViewController.xib */; };
-		6B94FD4F215B0F7800E43DB1 /* MediaViewerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B94FD4E215B0F7800E43DB1 /* MediaViewerWindowController.swift */; };
-		6B94FD52215B1AC700E43DB1 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B94FD50215B1AC700E43DB1 /* DocumentViewController.swift */; };
-		6B94FD53215B1AC700E43DB1 /* DocumentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B94FD51215B1AC700E43DB1 /* DocumentViewController.xib */; };
-		6BA3A1202159F97F004B4D3E /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA3A11E2159F97F004B4D3E /* ImageViewController.swift */; };
-		6BA3A1212159F97F004B4D3E /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BA3A11F2159F97F004B4D3E /* ImageViewController.xib */; };
+		6BF832CE215B93F3004CF374 /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BF832CC215B93F2004CF374 /* VideoViewController.xib */; };
+		6BF832CF215B93F3004CF374 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF832CD215B93F3004CF374 /* VideoViewController.swift */; };
+		6BF832D2215B9401004CF374 /* MediaViewerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF832D0215B9400004CF374 /* MediaViewerWindowController.swift */; };
+		6BF832D3215B9401004CF374 /* MediaViewerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BF832D1215B9400004CF374 /* MediaViewerWindowController.xib */; };
+		6BF832D6215B9417004CF374 /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BF832D4215B9416004CF374 /* ImageViewController.xib */; };
+		6BF832D7215B9417004CF374 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF832D5215B9416004CF374 /* ImageViewController.swift */; };
+		6BF832DC215B942F004CF374 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF832D8215B942E004CF374 /* DocumentViewController.swift */; };
+		6BF832DD215B942F004CF374 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF832D9215B942E004CF374 /* AudioViewController.swift */; };
+		6BF832DE215B942F004CF374 /* AudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BF832DA215B942E004CF374 /* AudioViewController.xib */; };
+		6BF832DF215B942F004CF374 /* DocumentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BF832DB215B942F004CF374 /* DocumentViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,18 +104,22 @@
 		2B22044421507FCA00FC9A98 /* protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocols.swift; sourceTree = "<group>"; };
 		2B88506E21571451007C39E6 /* jsonData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = jsonData.json; sourceTree = "<group>"; };
 		2B88507121571D40007C39E6 /* LibraryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryModel.swift; sourceTree = "<group>"; };
-		2B88507421574692007C39E6 /* MediaViewerWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaViewerWindowController.xib; sourceTree = "<group>"; };
 		2BFB197421533AB30022D55D /* LibraryMainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryMainWindow.swift; sourceTree = "<group>"; };
 		2BFB197521533AB30022D55D /* LibraryMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryMainWindow.xib; sourceTree = "<group>"; };
 		2BFB197C21533E0D0022D55D /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
 		2BFB197D21533E0D0022D55D /* BookmarksViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarksViewController.xib; sourceTree = "<group>"; };
 		2BFB1980215341C00022D55D /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		2BFB1981215341C00022D55D /* LibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
-		6B94FD4E215B0F7800E43DB1 /* MediaViewerWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerWindowController.swift; sourceTree = "<group>"; };
-		6B94FD50215B1AC700E43DB1 /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
-		6B94FD51215B1AC700E43DB1 /* DocumentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentViewController.xib; sourceTree = "<group>"; };
-		6BA3A11E2159F97F004B4D3E /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
-		6BA3A11F2159F97F004B4D3E /* ImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
+		6BF832CC215B93F2004CF374 /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
+		6BF832CD215B93F3004CF374 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		6BF832D0215B9400004CF374 /* MediaViewerWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewerWindowController.swift; sourceTree = "<group>"; };
+		6BF832D1215B9400004CF374 /* MediaViewerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaViewerWindowController.xib; sourceTree = "<group>"; };
+		6BF832D4215B9416004CF374 /* ImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
+		6BF832D5215B9416004CF374 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		6BF832D8215B942E004CF374 /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
+		6BF832D9215B942E004CF374 /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
+		6BF832DA215B942E004CF374 /* AudioViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioViewController.xib; sourceTree = "<group>"; };
+		6BF832DB215B942F004CF374 /* DocumentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,12 +193,16 @@
 				2BFB1980215341C00022D55D /* LibraryViewController.swift */,
 				2BFB1981215341C00022D55D /* LibraryViewController.xib */,
 				2B88507121571D40007C39E6 /* LibraryModel.swift */,
-				6B94FD4E215B0F7800E43DB1 /* MediaViewerWindowController.swift */,
-				2B88507421574692007C39E6 /* MediaViewerWindowController.xib */,
-				6BA3A11E2159F97F004B4D3E /* ImageViewController.swift */,
-				6BA3A11F2159F97F004B4D3E /* ImageViewController.xib */,
-				6B94FD50215B1AC700E43DB1 /* DocumentViewController.swift */,
-				6B94FD51215B1AC700E43DB1 /* DocumentViewController.xib */,
+				6BF832D0215B9400004CF374 /* MediaViewerWindowController.swift */,
+				6BF832D1215B9400004CF374 /* MediaViewerWindowController.xib */,
+				6BF832CD215B93F3004CF374 /* VideoViewController.swift */,
+				6BF832CC215B93F2004CF374 /* VideoViewController.xib */,
+				6BF832D5215B9416004CF374 /* ImageViewController.swift */,
+				6BF832D4215B9416004CF374 /* ImageViewController.xib */,
+				6BF832D9215B942E004CF374 /* AudioViewController.swift */,
+				6BF832DA215B942E004CF374 /* AudioViewController.xib */,
+				6BF832D8215B942E004CF374 /* DocumentViewController.swift */,
+				6BF832DB215B942F004CF374 /* DocumentViewController.xib */,
 			);
 			path = MediaLibraryManager;
 			sourceTree = "<group>";
@@ -323,13 +335,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BFB197F21533E0D0022D55D /* BookmarksViewController.xib in Resources */,
+				6BF832D6215B9417004CF374 /* ImageViewController.xib in Resources */,
+				6BF832CE215B93F3004CF374 /* VideoViewController.xib in Resources */,
 				2BFB1983215341C00022D55D /* LibraryViewController.xib in Resources */,
-				6B94FD53215B1AC700E43DB1 /* DocumentViewController.xib in Resources */,
-				6BA3A1212159F97F004B4D3E /* ImageViewController.xib in Resources */,
-				2B88507621574692007C39E6 /* MediaViewerWindowController.xib in Resources */,
 				2B2203ED21507F1800FC9A98 /* Assets.xcassets in Resources */,
 				2BFB197721533AB30022D55D /* LibraryMainWindow.xib in Resources */,
 				2B2203F021507F1800FC9A98 /* MainMenu.xib in Resources */,
+				6BF832DF215B942F004CF374 /* DocumentViewController.xib in Resources */,
+				6BF832DE215B942F004CF374 /* AudioViewController.xib in Resources */,
+				6BF832D3215B9401004CF374 /* MediaViewerWindowController.xib in Resources */,
 				2B88506F21571451007C39E6 /* jsonData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,19 +372,21 @@
 				2B22042921507F5B00FC9A98 /* File.swift in Sources */,
 				2B2203EB21507F1600FC9A98 /* AppDelegate.swift in Sources */,
 				2B22042021507F5B00FC9A98 /* FileTypes.swift in Sources */,
-				6BA3A1202159F97F004B4D3E /* ImageViewController.swift in Sources */,
 				2B22042321507F5B00FC9A98 /* FileImporter.swift in Sources */,
 				2BFB1982215341C00022D55D /* LibraryViewController.swift in Sources */,
 				2BFB197621533AB30022D55D /* LibraryMainWindow.swift in Sources */,
 				2B22042C21507F5B00FC9A98 /* FileExporter.swift in Sources */,
 				2BFB197E21533E0D0022D55D /* BookmarksViewController.swift in Sources */,
 				2B22043821507F5B00FC9A98 /* MediaLibraryTests.swift in Sources */,
+				6BF832DD215B942F004CF374 /* AudioViewController.swift in Sources */,
 				2B22044521507FCA00FC9A98 /* protocols.swift in Sources */,
+				6BF832D7215B9417004CF374 /* ImageViewController.swift in Sources */,
+				6BF832CF215B93F3004CF374 /* VideoViewController.swift in Sources */,
+				6BF832DC215B942F004CF374 /* DocumentViewController.swift in Sources */,
 				2B88507221571D40007C39E6 /* LibraryModel.swift in Sources */,
 				2B22043221507F5B00FC9A98 /* Library.swift in Sources */,
 				2B22042621507F5B00FC9A98 /* commands.swift in Sources */,
-				6B94FD4F215B0F7800E43DB1 /* MediaViewerWindowController.swift in Sources */,
-				6B94FD52215B1AC700E43DB1 /* DocumentViewController.swift in Sources */,
+				6BF832D2215B9401004CF374 /* MediaViewerWindowController.swift in Sources */,
 				2B22044121507F5B00FC9A98 /* Metadata.swift in Sources */,
 				2B22042F21507F5B00FC9A98 /* FileValidator.swift in Sources */,
 			);
