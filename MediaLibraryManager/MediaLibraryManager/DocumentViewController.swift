@@ -22,8 +22,10 @@ class DocumentViewController: NSViewController {
     @IBOutlet weak var documentView: NSScrollView!
     @IBOutlet var textView: NSTextView!
     @IBOutlet weak var pdfView: NSImageView!
+    @IBOutlet weak var failIndicator: NSProgressIndicator!
     
     override func viewDidLoad() {
+        failIndicator.isHidden = true
         super.viewDidLoad()
         showText()
     }
@@ -31,7 +33,6 @@ class DocumentViewController: NSViewController {
     func showText() {
         
         let filepath : String = NSString(string: fullpath).expandingTildeInPath
-        
         print("Printing filepath: \(filepath)")
 
         let separateExtension: [String] = fileToOpen.filename.split(separator: ".").map({String($0)})
@@ -48,6 +49,9 @@ class DocumentViewController: NSViewController {
             pdfView.image = NSImage(contentsOfFile: filepath)
         } else {
             textView.string = "SORRY, UNABLE TO RETRIEVE DATA. FILE MUST BE .txt OR .pdf";
+            failIndicator.isHidden = false
+            failIndicator.startAnimation(self)
+            
         }
     }
     

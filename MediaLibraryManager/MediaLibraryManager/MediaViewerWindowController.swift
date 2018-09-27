@@ -17,6 +17,7 @@ class MediaViewerWindowController: NSWindowController {
     @IBOutlet weak var customView: NSView!
     @IBOutlet var viewerWindow: NSWindow!
     
+    @IBOutlet weak var detailsView: NSTableView!
     var fileToOpen: MMFile = File(filename: "MLM - Media Viewer")
     var allFiles: [MMFile] = []
     
@@ -43,6 +44,8 @@ class MediaViewerWindowController: NSWindowController {
 	
     override func windowDidLoad() {
         super.windowDidLoad()
+        detailsView.delegate = self
+        detailsView.dataSource = self
 		viewerWindow.title = "Viewing \(fileToOpen.filename)"
 		setCorrectController()
     }
@@ -79,6 +82,7 @@ class MediaViewerWindowController: NSWindowController {
                         print("")
 
                 }
+        detailsView.reloadData()
 	}
 	
 	/**
@@ -92,3 +96,45 @@ class MediaViewerWindowController: NSWindowController {
 		}
 	}
 }
+
+
+extension MediaViewerWindowController : NSTableViewDataSource {
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return fileToOpen.metadata.count
+    }
+}
+
+extension MediaViewerWindowController : NSTableViewDelegate {
+
+    fileprivate enum CellIdentifiers {
+        static let KeywordCell = "CellKeywordID"
+        static let ValueCell = "CellValueID"
+    }
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+
+        var text: String = ""
+        var cellIdentifier: String = ""
+
+        let item = fileToOpen.metadata[row]
+
+        if tableColumn == detailsView.tableColumns[0] {
+            text = item.keyword
+            cellIdentifier = CellIdentifiers.KeywordCell
+        } else if tableColumn == detailsView.tableColumns[1] {
+            text = item.value
+            cellIdentifier = CellIdentifiers.ValueCell
+        }
+
+       if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
+            cell.textField?.stringValue = text
+            return cell
+        }
+        return nil
+    }
+
+//    func tableViewSelectionDidChange(_ notification: Notification) {
+//        updateStatus()
+//        manageButtons()
+//    }
+}
+
