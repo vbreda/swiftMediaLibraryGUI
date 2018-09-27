@@ -16,8 +16,9 @@ class MediaViewerWindowController: NSWindowController {
 
     @IBOutlet weak var customView: NSView!
     @IBOutlet var viewerWindow: NSWindow!
-    
+    @IBOutlet weak var editDetails: NSSegmentedControl!
     @IBOutlet weak var detailsView: NSTableView!
+    
     var fileToOpen: MMFile = File(filename: "MLM - Media Viewer")
     var allFiles: [MMFile] = []
     
@@ -50,7 +51,16 @@ class MediaViewerWindowController: NSWindowController {
 		setCorrectController()
     }
 	
-	
+    @IBAction func editDetailsAction(_ sender: Any) {
+        var commandInput : String = ""
+        if (editDetails.isSelected(forSegment: 0)) {
+            print("ADD")
+        } else {
+            commandInput = "del \(fileToOpen.metadata[0])"
+            print(commandInput)
+        }
+    }
+    
 	/**
 	Based upon the file type, set the current View Controller
 	*/
