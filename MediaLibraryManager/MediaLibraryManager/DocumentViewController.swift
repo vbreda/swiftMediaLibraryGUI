@@ -23,9 +23,11 @@ class DocumentViewController: NSViewController {
     @IBOutlet var textView: NSTextView!
     @IBOutlet weak var pdfView: NSImageView!
     @IBOutlet weak var failIndicator: NSProgressIndicator!
+    @IBOutlet weak var failMessage: NSTextField!
     
     override func viewDidLoad() {
         failIndicator.isHidden = true
+        failMessage.isHidden = true
         super.viewDidLoad()
         showText()
     }
@@ -48,10 +50,9 @@ class DocumentViewController: NSViewController {
         } else if (ext == "pdf") {
             pdfView.image = NSImage(contentsOfFile: filepath)
         } else {
-            textView.string = "SORRY, UNABLE TO RETRIEVE DATA. FILE MUST BE .txt OR .pdf";
             failIndicator.isHidden = false
             failIndicator.startAnimation(self)
-            
+            failMessage.isHidden = false
         }
     }
     

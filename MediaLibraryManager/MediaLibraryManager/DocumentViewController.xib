@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,6 +9,7 @@
             <connections>
                 <outlet property="documentView" destination="U5M-wa-fyX" id="X89-vB-rU3"/>
                 <outlet property="failIndicator" destination="7dB-E0-1oh" id="YCA-4B-46I"/>
+                <outlet property="failMessage" destination="Ge9-9c-ClU" id="yfD-uI-rS5"/>
                 <outlet property="pdfView" destination="o5A-Ne-X7E" id="Oo3-wL-Fuo"/>
                 <outlet property="textView" destination="5hu-ag-Ugo" id="Grs-pA-El8"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -24,15 +24,15 @@
                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5M-wa-fyX">
                     <rect key="frame" x="0.0" y="0.0" width="524" height="329"/>
                     <clipView key="contentView" drawsBackground="NO" id="2yc-EO-orD">
-                        <rect key="frame" x="1" y="1" width="522" height="327"/>
+                        <rect key="frame" x="1" y="1" width="507" height="327"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="5hu-ag-Ugo">
-                                <rect key="frame" x="0.0" y="-1" width="522" height="327"/>
+                                <rect key="frame" x="0.0" y="-1" width="507" height="327"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <size key="minSize" width="522" height="327"/>
+                                <size key="minSize" width="507" height="327"/>
                                 <size key="maxSize" width="524" height="10000000"/>
                                 <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             </textView>
@@ -43,7 +43,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="uEi-ZS-vVS">
-                        <rect key="frame" x="507" y="1" width="16" height="327"/>
+                        <rect key="frame" x="508" y="1" width="15" height="327"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
@@ -56,6 +56,15 @@
                     <rect key="frame" x="246" y="149" width="32" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </progressIndicator>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ge9-9c-ClU">
+                    <rect key="frame" x="114" y="114" width="297" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Unable to load preview. File must be .pdf or .txt. " id="ncY-fi-BHa">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
                 <constraint firstItem="U5M-wa-fyX" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="1SH-Az-vXU"/>
