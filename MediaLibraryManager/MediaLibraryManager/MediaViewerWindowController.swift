@@ -53,12 +53,19 @@ class MediaViewerWindowController: NSWindowController {
 	
     @IBAction func editDetailsAction(_ sender: Any) {
         var commandInput : String = ""
+        
         if (editDetails.isSelected(forSegment: 0)) {
             print("ADD")
         } else {
-            commandInput = "del \(fileToOpen.metadata[0])"
-            print(commandInput)
+            let row = detailsView.selectedRow
+            let selectedFile = LibraryViewController.rowSelection
+            commandInput = "del \(selectedFile) \(fileToOpen.metadata[row].keyword)"
+            LibraryMainWindow.model.runCommand(input: commandInput)
+            detailsView.reloadData()
         }
+        //TODO make it overwrite the file instead of just re-adding all the info
+        //commandInput = "save ~/346/media/jsonData"
+        LibraryMainWindow.model.runCommand(input: commandInput)
     }
     
 	/**

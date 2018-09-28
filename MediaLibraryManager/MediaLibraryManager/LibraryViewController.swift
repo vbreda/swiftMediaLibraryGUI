@@ -22,6 +22,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	@IBOutlet weak var searchButton: NSButton!
 	
 	var filesInTable : [MMFile] = []
+    static var rowSelection : Int = 0
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -74,6 +75,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		LibraryMainWindow.model.makeInitialBookmarks()
 		changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
 		tableDataDidChange()
+        LibraryMainWindow.model.runCommand(input: "list")
 	}
 	
 	/**
@@ -199,7 +201,9 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	Alternative to double clicking a file name
 	*/
 	@IBAction func openViewerButtonAction(_ sender: Any) {
-		guard tableView.selectedRow >= 0 else {
+        LibraryViewController.rowSelection = tableView.selectedRow
+        
+        guard LibraryViewController.rowSelection >= 0 else {
 			return
 		}
 		let numItemsSelected = tableView.selectedRowIndexes.count
