@@ -18,6 +18,8 @@ class MediaViewerWindowController: NSWindowController {
     @IBOutlet var viewerWindow: NSWindow!
     @IBOutlet weak var editDetails: NSSegmentedControl!
     @IBOutlet weak var detailsView: NSTableView!
+    @IBOutlet weak var notesView: NSTextField!
+    @IBOutlet weak var addNotes: NSButton!
     
     var fileToOpen: MMFile = File(filename: "MLM - Media Viewer")
     var allFiles: [MMFile] = []
@@ -48,6 +50,7 @@ class MediaViewerWindowController: NSWindowController {
         detailsView.delegate = self
         detailsView.dataSource = self
 		viewerWindow.title = "Viewing \(fileToOpen.filename)"
+        notesView.isEnabled = false
 		setCorrectController()
     }
 	
@@ -73,29 +76,35 @@ class MediaViewerWindowController: NSWindowController {
 //        LibraryMainWindow.model.runCommand(input: commandInput)
     }
     
-	/**
+    @IBAction func addNotesAction(_ sender: Any) {
+        
+    }
+    
+    
+    
+    /**
 	Based upon the file type, set the current View Controller
 	*/
 	func setCorrectController() {
-                switch (fileToOpen.type) {
-                    case "document" :
+                switch (fileToOpen.type.capitalized) {
+                    case "Document" :
                         let documentView = DocumentViewController(file: fileToOpen)
                         documentView.view.setFrameOrigin(NSPoint(x:0, y:0))
                         documentView.view.setFrameSize(customView.frame.size)
                         customView.addSubview(documentView.view)
                        // documentView.textView.isEditable = true
                     
-                    case "image" :
+                    case "Image" :
                         let imageView = ImageViewController(file: fileToOpen)
                         imageView.view.setFrameOrigin(NSPoint(x:0, y:0))
                         imageView.view.setFrameSize(customView.frame.size)
                         customView.addSubview(imageView.view)
-                    case "video" :
+                    case "Video" :
                         let videoView = VideoViewController(file: fileToOpen)
                         videoView.view.setFrameOrigin(NSPoint(x:0, y:0))
                         videoView.view.setFrameSize(customView.frame.size)
                         customView.addSubview(videoView.view)
-                    case "audio" :
+                    case "Audio" :
                         let audioView = AudioViewController(file: fileToOpen)
                         audioView.view.setFrameOrigin(NSPoint(x:0, y:0))
                         audioView.view.setFrameSize(customView.frame.size)
@@ -160,7 +169,7 @@ extension MediaViewerWindowController : NSTableViewDelegate {
         let item = fileToOpen.metadata[row]
 
         if tableColumn == detailsView.tableColumns[0] {
-            text = item.keyword
+            text = item.keyword.capitalized
             cellIdentifier = CellIdentifiers.KeywordCell
         } else if tableColumn == detailsView.tableColumns[1] {
             text = item.value
