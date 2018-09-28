@@ -53,19 +53,24 @@ class MediaViewerWindowController: NSWindowController {
 	
     @IBAction func editDetailsAction(_ sender: Any) {
         var commandInput : String = ""
+        let selectedFile = LibraryViewController.rowSelection
         
         if (editDetails.isSelected(forSegment: 0)) {
-            print("ADD")
+            let detailToAdd = getString(title: "Add New Detail to \(fileToOpen.filename):", question: "Please enter a new key-value information. You cannot use a keyword that already exists", defaultValue: "Ex: color purple")
+            if (detailToAdd != nil) {
+                commandInput = "add \(selectedFile) \(detailToAdd!)"
+                LibraryMainWindow.model.runCommand(input: commandInput)
+                detailsView.reloadData()
+            }
         } else {
             let row = detailsView.selectedRow
-            let selectedFile = LibraryViewController.rowSelection
             commandInput = "del \(selectedFile) \(fileToOpen.metadata[row].keyword)"
             LibraryMainWindow.model.runCommand(input: commandInput)
             detailsView.reloadData()
         }
         //TODO make it overwrite the file instead of just re-adding all the info
         //commandInput = "save ~/346/media/jsonData"
-        LibraryMainWindow.model.runCommand(input: commandInput)
+//        LibraryMainWindow.model.runCommand(input: commandInput)
     }
     
 	/**
@@ -112,6 +117,26 @@ class MediaViewerWindowController: NSWindowController {
 			setCorrectController()
 		}
 	}
+    
+    func getString(title: String, question: String, defaultValue: String) -> String? {
+        let msg = NSAlert()
+        msg.addButton(withTitle: "OK")      // 1st button
+        msg.addButton(withTitle: "Cancel")  // 2nd button
+        msg.messageText = title
+        msg.informativeText = question
+        
+        let txt = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
+        txt.placeholderString = defaultValue
+        
+        msg.accessoryView = txt
+        let response: NSApplication.ModalResponse = msg.runModal()
+        
+        if (response == NSApplication.ModalResponse.alertFirstButtonReturn) {
+            return txt.stringValue
+        } else {
+            return nil
+        }
+    }
 }
 
 
