@@ -29,7 +29,6 @@ class ImageViewController: NSViewController {
     
     func showImage() {
         let directory : String = NSString(string: fullpath).expandingTildeInPath
-        print("showImage(): \(directory)")
         imageView.image = NSImage(contentsOfFile: directory)
     }
 }
