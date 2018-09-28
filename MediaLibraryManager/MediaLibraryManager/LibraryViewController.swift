@@ -409,7 +409,7 @@ extension LibraryViewController : NSTableViewDelegate {
             text = item.filename
             cellIdentifier = CellIdentifiers.CellName
         } else if tableColumn == tableView.tableColumns[2] {
-            text = item.type
+            text = item.type.capitalized
             cellIdentifier = CellIdentifiers.CellType
         } else if tableColumn == tableView.tableColumns[3] {
             text = item.creator
