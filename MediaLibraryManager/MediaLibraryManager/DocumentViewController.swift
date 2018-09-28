@@ -35,7 +35,6 @@ class DocumentViewController: NSViewController {
     func showText() {
         
         let filepath : String = NSString(string: fullpath).expandingTildeInPath
-        print("Printing filepath: \(filepath)")
 
         let separateExtension: [String] = fileToOpen.filename.split(separator: ".").map({String($0)})
         let ext : String = separateExtension[1]
@@ -43,7 +42,6 @@ class DocumentViewController: NSViewController {
         if(ext == "txt") {
         do {
             let contents = try String(contentsOfFile: filepath)
-            print(contents)
             textView.string = contents;
             textView.isEditable = false ;
         } catch {}
