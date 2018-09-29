@@ -142,58 +142,59 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		let numItemsSelected = tableView.selectedRowIndexes.count
 		
 		// Prompt for a name for the bookmark
-		let newBookmarkName = getString(title: "New Bookmark Name:", question: "Please enter a name for your bookmark. You cannot use the same name as already existing bookmark.", defaultValue: "New Bookmark")
-		
-		let allBookmarks = LibraryMainWindow.model.getBookmarkNames()
-		
-		// Check if the name will overwrite existing bookmark
-		if allBookmarks.contains(newBookmarkName) {
-			let canEdit : Bool = LibraryMainWindow.bookmarksVC.checkBookmarkIsEditable(bookmark: newBookmarkName)
-			if !canEdit {
-				// Bookmark is one of the permanent, cannot overwrite
-				LibraryMainWindow.bookmarksVC.alertUserOfForbidden(bookmark: newBookmarkName)
-			} else {
-				// Prompt user to convirm overwrite
-				let msg = NSAlert()
-				msg.addButton(withTitle: "Yes")
-				msg.addButton(withTitle: "Cancel")
-				msg.messageText = "Overwrite Bookmark"
-				msg.informativeText = "A bookmark with that name already exists. Are you sure you wish to overwrite these  the bookmark '\(newBookmarkName)?'"
-				
-				let response: NSApplication.ModalResponse = msg.runModal()
-				if (response == NSApplication.ModalResponse.alertFirstButtonReturn) {
-					if numItemsSelected == 1 {
-						let fileIndex = tableView.selectedRow
-						let file = filesInTable[fileIndex]
-						LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: [file])
-					} else {
-						let indexSetOfFiles = tableView.selectedRowIndexes
-						let indexes = Array(indexSetOfFiles)
-						var filesToSave : [MMFile] = []
-						for i in indexes {
-							filesToSave.append(filesInTable[i])
-						}
-						LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: filesToSave)
-					}
-				} else {
-					return
-				}
-			}
-		} else {
-			// New bookmark name, nothing overwritten, simply create it
-			if numItemsSelected == 1 {
-				let fileIndex = tableView.selectedRow
-				let file = filesInTable[fileIndex]
-				LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: [file])
-			} else {
-				let indexSetOfFiles = tableView.selectedRowIndexes
-				let indexes = Array(indexSetOfFiles)
-				var filesToSave : [MMFile] = []
-				for i in indexes {
-					filesToSave.append(filesInTable[i])
-				}
-				LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: filesToSave)
-			}
+        if let newBookmarkName = getString(title: "New Bookmark Name:", question: "Please enter a name for your bookmark. You cannot use the same name as already existing bookmark.", defaultValue: "New Bookmark") {
+
+            let allBookmarks = LibraryMainWindow.model.getBookmarkNames()
+            
+            // Check if the name will overwrite existing bookmark
+            if allBookmarks.contains(newBookmarkName) {
+                let canEdit : Bool = LibraryMainWindow.bookmarksVC.checkBookmarkIsEditable(bookmark: newBookmarkName)
+                if !canEdit {
+                    // Bookmark is one of the permanent, cannot overwrite
+                    LibraryMainWindow.bookmarksVC.alertUserOfForbidden(bookmark: newBookmarkName)
+                } else {
+                    // Prompt user to convirm overwrite
+                    let msg = NSAlert()
+                    msg.addButton(withTitle: "Yes")
+                    msg.addButton(withTitle: "Cancel")
+                    msg.messageText = "Overwrite Bookmark"
+                    msg.informativeText = "A bookmark with that name already exists. Are you sure you wish to overwrite these  the bookmark '\(newBookmarkName)?'"
+                    
+                    let response: NSApplication.ModalResponse = msg.runModal()
+                    if (response == NSApplication.ModalResponse.alertFirstButtonReturn) {
+                        if numItemsSelected == 1 {
+                            let fileIndex = tableView.selectedRow
+                            let file = filesInTable[fileIndex]
+                            LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: [file])
+                        } else {
+                            let indexSetOfFiles = tableView.selectedRowIndexes
+                            let indexes = Array(indexSetOfFiles)
+                            var filesToSave : [MMFile] = []
+                            for i in indexes {
+                                filesToSave.append(filesInTable[i])
+                            }
+                            LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: filesToSave)
+                        }
+                    } else {
+                        return
+                    }
+                }
+            } else {
+                // New bookmark name, nothing overwritten, simply create it
+                if numItemsSelected == 1 {
+                    let fileIndex = tableView.selectedRow
+                    let file = filesInTable[fileIndex]
+                    LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: [file])
+                } else {
+                    let indexSetOfFiles = tableView.selectedRowIndexes
+                    let indexes = Array(indexSetOfFiles)
+                    var filesToSave : [MMFile] = []
+                    for i in indexes {
+                        filesToSave.append(filesInTable[i])
+                    }
+                    LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: filesToSave)
+                }
+            }
 		}
     }
 
@@ -207,13 +208,11 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 			return
 		}
 		let numItemsSelected = tableView.selectedRowIndexes.count
-		let item = filesInTable[tableView.selectedRow]
-		
+
 		// Open the file in MediaViewerWindow if only one selected
 		if numItemsSelected == 1 {
-			// Open the media viewer right away, only one file
-//            LibraryMainWindow.newViewerWindow(file: item)
-            LibraryMainWindow.newViewerWindow(file: item, files: filesInTable)
+            let index = tableView.selectedRow
+            LibraryMainWindow.newViewerWindow(index: index, files: filesInTable)
 
 		} else {
 			// TODO
@@ -221,9 +220,9 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	}
 	
 	/**
-	Prompt the user to enter some text e.g. the Book
+	Prompt the user to enter some text e.g. the Bookmarks new name
 	*/
-	func getString(title: String, question: String, defaultValue: String) -> String {
+	func getString(title: String, question: String, defaultValue: String) -> String? {
 		let msg = NSAlert()
 		msg.addButton(withTitle: "OK")      // 1st button
 		msg.addButton(withTitle: "Cancel")  // 2nd button
@@ -231,15 +230,17 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		msg.informativeText = question
 		
 		let txt = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
-		txt.stringValue = defaultValue
-		
+		txt.placeholderString = defaultValue
 		msg.accessoryView = txt
 		let response: NSApplication.ModalResponse = msg.runModal()
 		
 		if (response == NSApplication.ModalResponse.alertFirstButtonReturn) {
+            guard txt.stringValue.count >= 1 else {
+                return nil
+            }
 			return txt.stringValue
 		} else {
-			return ""
+			return nil
 		}
 	}
 	

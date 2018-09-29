@@ -47,9 +47,9 @@ class File: MMFile {
     private var _fFilename = String()
     private var _fPath = String()
     private var _fCreator = String()
+    private var _fNotes = String()
     
     var fullpath: String = ""
-	var notes: String = ""
     
 	init() {
 	}
@@ -132,6 +132,16 @@ class File: MMFile {
                     self._fCreator = m.value
                 }
             }
+        }
+    }
+    
+    // The notes associated with the file
+    var notes: String {
+        get {
+            return self._fNotes
+        }
+        set (newNotes) {
+            self._fNotes = newNotes
         }
     }
     

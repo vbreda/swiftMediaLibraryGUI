@@ -18,45 +18,50 @@ class MediaViewerWindowController: NSWindowController {
     @IBOutlet var viewerWindow: NSWindow!
     @IBOutlet weak var editDetails: NSSegmentedControl!
     @IBOutlet weak var detailsView: NSTableView!
-    @IBOutlet weak var notesView: NSTextField!
-    @IBOutlet weak var addNotes: NSButton!
+    
+    @IBOutlet var notesTextView: NSTextView!
+    @IBOutlet weak var editNotesButton: NSView!
+    @IBOutlet weak var saveNotesButton: NSButton!
+    
+    @IBOutlet weak var previousButton: NSButton!
+    @IBOutlet weak var nextButton: NSButton!
+    @IBOutlet weak var zoomInButton: NSButton!
+    @IBOutlet weak var zoomOutButton: NSButton!
+    
+    @IBOutlet weak var statusLabel: NSTextField!
     
     var fileToOpen: MMFile = File(filename: "MLM - Media Viewer")
     var allFiles: [MMFile] = []
+    var currentFileIndex : Int = -1
     
 	convenience init() {
 		self.init(windowNibName: NSNib.Name(rawValue: "MediaViewerWindowController"));
-	}
-
-	/**
-	Initialises the new controller with a specific file as the start point.
-	*/
-	convenience init(file: MMFile) {
-		self.init(windowNibName: NSNib.Name(rawValue: "MediaViewerWindowController"));
-		fileToOpen = file
 	}
     
     /**
      Initialises the new controller with a specific file as the start point.
      */
-    convenience init(file: MMFile, files: [MMFile]) {
+    convenience init(index: Int, files: [MMFile]) {
         self.init(windowNibName: NSNib.Name(rawValue: "MediaViewerWindowController"));
-        fileToOpen = file
         allFiles = files
+        currentFileIndex = index
+        fileToOpen = allFiles[currentFileIndex]
     }
 	
     override func windowDidLoad() {
         super.windowDidLoad()
         detailsView.delegate = self
         detailsView.dataSource = self
-		viewerWindow.title = "Viewing \(fileToOpen.filename)"
-        notesView.isEnabled = false
+		viewerWindow.title = "\(allFiles[currentFileIndex].filename)"
 		setCorrectController()
     }
 	
     @IBAction func editDetailsAction(_ sender: Any) {
         var commandInput : String = ""
-        let selectedFile = LibraryViewController.rowSelection
+        let selectedFile : Int = currentFileIndex
+        
+        // Set the last result set to be current bookmark - in case of it wasn't already
+        LibraryMainWindow.model.last = MMResultSet(allFiles)
         
         if (editDetails.isSelected(forSegment: 0)) {
             let detailToAdd = getString(title: "Add New Detail to \(fileToOpen.filename):", question: "Please enter a new key-value information. You cannot use a keyword that already exists", defaultValue: "Ex: color purple")
@@ -76,44 +81,60 @@ class MediaViewerWindowController: NSWindowController {
 //        LibraryMainWindow.model.runCommand(input: commandInput)
     }
     
-    @IBAction func addNotesAction(_ sender: Any) {
+    @IBAction func editNotesButtonAction(_ sender: Any) {
         
     }
     
+    @IBAction func saveNotesButtonAction(_ sender: Any) {
+    }
+    
+    @IBAction func previousButtonAction(_ sender: Any) {
+        
+    }
+    
+    @IBAction func nextButtonAction(_ sender: Any) {
+    }
+    
+    @IBAction func zoomInButtonAction(_ sender: Any) {
+    }
+    
+    @IBAction func zoomOutButtonAction(_ sender: Any) {
+    }
     
     
     /**
 	Based upon the file type, set the current View Controller
 	*/
 	func setCorrectController() {
-                switch (fileToOpen.type.capitalized) {
-                    case "Document" :
-                        let documentView = DocumentViewController(file: fileToOpen)
-                        documentView.view.setFrameOrigin(NSPoint(x:0, y:0))
-                        documentView.view.setFrameSize(customView.frame.size)
-                        customView.addSubview(documentView.view)
-                       // documentView.textView.isEditable = true
-                    
-                    case "Image" :
-                        let imageView = ImageViewController(file: fileToOpen)
-                        imageView.view.setFrameOrigin(NSPoint(x:0, y:0))
-                        imageView.view.setFrameSize(customView.frame.size)
-                        customView.addSubview(imageView.view)
-                    case "Video" :
-                        let videoView = VideoViewController(file: fileToOpen)
-                        videoView.view.setFrameOrigin(NSPoint(x:0, y:0))
-                        videoView.view.setFrameSize(customView.frame.size)
-                        customView.addSubview(videoView.view)
-                    case "Audio" :
-                        let audioView = AudioViewController(file: fileToOpen)
-                        audioView.view.setFrameOrigin(NSPoint(x:0, y:0))
-                        audioView.view.setFrameSize(customView.frame.size)
-                        customView.addSubview(audioView.view)
-                    default:
-                        print("")
+        switch (fileToOpen.type.capitalized) {
+            case "Document" :
+                let documentView = DocumentViewController(file: fileToOpen)
+                documentView.view.setFrameOrigin(NSPoint(x:0, y:0))
+                documentView.view.setFrameSize(customView.frame.size)
+                customView.addSubview(documentView.view)
+               // documentView.textView.isEditable = true
+            
+            case "Image" :
+                let imageView = ImageViewController(file: fileToOpen)
+                imageView.view.setFrameOrigin(NSPoint(x:0, y:0))
+                imageView.view.setFrameSize(customView.frame.size)
+                customView.addSubview(imageView.view)
+            case "Video" :
+                let videoView = VideoViewController(file: fileToOpen)
+                videoView.view.setFrameOrigin(NSPoint(x:0, y:0))
+                videoView.view.setFrameSize(customView.frame.size)
+                customView.addSubview(videoView.view)
+            case "Audio" :
+                let audioView = AudioViewController(file: fileToOpen)
+                audioView.view.setFrameOrigin(NSPoint(x:0, y:0))
+                audioView.view.setFrameSize(customView.frame.size)
+                customView.addSubview(audioView.view)
+            default:
+                print("")
 
-                }
-        detailsView.reloadData()
+        }
+        //detailsView.reloadData()
+        fileViewingDidChange()
 	}
 	
 	/**
@@ -127,6 +148,9 @@ class MediaViewerWindowController: NSWindowController {
 		}
 	}
     
+    /**
+     Prompt the user to enter some text e.g. the new metadata key pair
+     */
     func getString(title: String, question: String, defaultValue: String) -> String? {
         let msg = NSAlert()
         msg.addButton(withTitle: "OK")      // 1st button
@@ -146,6 +170,33 @@ class MediaViewerWindowController: NSWindowController {
             return nil
         }
     }
+    
+    /**
+     Disables and enables the buttons based upon whats selected being viewed
+     */
+    func manageButtons() {
+        
+    }
+    
+    
+    /**
+     Updates the label at bottom of table.
+     Shows the total items and those selected.
+     */
+    func updateStatus() {
+        var text = "Viewing item "
+        text += String(currentFileIndex)
+        text += " of "
+        text += String(allFiles.count)
+        statusLabel.stringValue = text
+    }
+    
+    func fileViewingDidChange() {
+        detailsView.reloadData()
+        notesTextView.string = "Testing!"
+        manageButtons()
+        updateStatus()
+    }
 }
 
 
@@ -161,12 +212,13 @@ extension MediaViewerWindowController : NSTableViewDelegate {
         static let KeywordCell = "CellKeywordID"
         static let ValueCell = "CellValueID"
     }
+    
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
         var text: String = ""
         var cellIdentifier: String = ""
 
-        let item = fileToOpen.metadata[row]
+        let item = allFiles[currentFileIndex].metadata[row]
 
         if tableColumn == detailsView.tableColumns[0] {
             text = item.keyword.capitalized

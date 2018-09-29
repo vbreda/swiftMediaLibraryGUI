@@ -37,8 +37,8 @@ class LibraryMainWindow: NSWindowController {
 		mainWindow.contentViewController = splitVC
     }
 	
-    static func newViewerWindow(file: MMFile, files: [MMFile]) {
-		let viewer = MediaViewerWindowController(file: file, files: files)
+    static func newViewerWindow(index: Int, files: [MMFile]) {
+        let viewer = MediaViewerWindowController(index: index, files: files)
 		viewerWindows.append(viewer)
 		viewer.showWindow(self)
 	}
