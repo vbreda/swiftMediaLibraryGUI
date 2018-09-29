@@ -140,6 +140,7 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 
 }
 
+//TODO
 extension NSTableView {
 	func reloadDataKeepingSelection() {
 		let selectedRowIndexes = self.selectedRowIndexes

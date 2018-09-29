@@ -24,6 +24,7 @@ public class LibraryModel {
 	
 	public var bookmarksDelegate: ModelBookmarksDelegate? = nil;
 	public var libraryDelegate: ModelLibraryDelegate? = nil;
+	public var viewerDelegate: ModelLibraryDelegate? = nil
 	
 	// Returns the number of current bookmarks
 	var numBookmarks : Int {
@@ -41,7 +42,8 @@ public class LibraryModel {
 	
 	// Alert delegate 2
 	func alertLibraryDelegate() {
-		bookmarksDelegate?.tableDataDidChange()
+		libraryDelegate?.tableDataDidChange()
+		viewerDelegate?.tableDataDidChange()
 	}
 	
 	func runCommand(input: String) {
@@ -90,9 +92,6 @@ public class LibraryModel {
 			case "quit":
 				command = QuitCommand()
 				break
-			case "test":
-				command = TestCommand()
-				break
 			default:
 				throw MMCliError.unknownCommand
 			}
@@ -139,9 +138,18 @@ public class LibraryModel {
 			print("Oops - a new error")
 		}
 	}
-    
+	
 	/*
-	Returns the current bookmarks
+	Adds notes to a particular file in the library.
+	*/
+	func addNotesToFile(notes: String, file: MMFile) {
+		library.addNotesToFile(notes: notes, file: file)
+		makeInitialBookmarks()
+		alertLibraryDelegate()
+	}
+	
+	/*
+	Returns the current bookmarks.
 	*/
 	func getBookmarks() -> [String: [MMFile]] {
 		return bookmarks
@@ -179,11 +187,7 @@ public class LibraryModel {
 	Deletes a bookmark by its name/key
 	*/
 	func deleteBookmark(name: String) {
-//		print("num bookmarks is: \(bookmarks.count)")
-//		print("attempting to delete bookmark................")
 		bookmarks[name] = nil
-//		bookmarks.removeValue(forKey: name)
-//		print("num bookmarks is: \(bookmarks.count)")
 		alertBookmarksDelegate()
 	}
 	

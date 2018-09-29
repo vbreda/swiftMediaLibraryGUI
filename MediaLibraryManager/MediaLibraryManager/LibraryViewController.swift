@@ -305,6 +305,9 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	
 	// Required function to conform to LibraryDelegate
 	func tableDataDidChange() {
+		if filesInTable.count == LibraryMainWindow.model.library.count {
+			changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
+		}
 		tableView.reloadData()
 		manageButtons()
 		updateStatus()
@@ -394,6 +397,7 @@ extension LibraryViewController : NSTableViewDelegate {
         static let CellName = "CellNameID"
         static let CellType = "CellTypeID"
         static let CellCreator = "CellCreatorID"
+		static let CellNotes = "CellNotesID"
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -415,7 +419,10 @@ extension LibraryViewController : NSTableViewDelegate {
         } else if tableColumn == tableView.tableColumns[3] {
             text = item.creator
             cellIdentifier = CellIdentifiers.CellType
-        }
+		} else if tableColumn == tableView.tableColumns[4] {
+			text = item.notes
+			cellIdentifier = CellIdentifiers.CellType
+		}
         
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text

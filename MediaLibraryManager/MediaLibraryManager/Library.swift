@@ -39,8 +39,16 @@ class Library : MMCollection {
     init() {
         
     }
-    
-    
+	
+	func addNotesToFile(notes: String, file: MMFile) {
+		var i: Int = 0
+		for f in files {
+			if f as! File == file as! File {
+				files[i].notes = notes
+			}
+			i += 1
+		}
+	}
     /**
      Adds a file's metadata to the media metadata collection.
      

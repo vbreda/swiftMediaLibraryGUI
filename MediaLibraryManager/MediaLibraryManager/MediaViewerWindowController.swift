@@ -12,7 +12,7 @@ import Cocoa
 //    
 //}
 
-class MediaViewerWindowController: NSWindowController {
+class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
 
     @IBOutlet weak var customView: NSView!
     @IBOutlet var viewerWindow: NSWindow!
@@ -33,6 +33,7 @@ class MediaViewerWindowController: NSWindowController {
     var fileToOpen: MMFile = File(filename: "MLM - Media Viewer")
     var allFiles: [MMFile] = []
     var currentFileIndex : Int = -1
+	var bookmark: String = ""
     
 	convenience init() {
 		self.init(windowNibName: NSNib.Name(rawValue: "MediaViewerWindowController"));
@@ -52,7 +53,8 @@ class MediaViewerWindowController: NSWindowController {
         super.windowDidLoad()
         detailsView.delegate = self
         detailsView.dataSource = self
-		viewerWindow.title = "\(allFiles[currentFileIndex].filename)"
+		LibraryMainWindow.model.viewerDelegate = self
+		notesTextView.isEditable = false
 		setCorrectController()
     }
 	
@@ -82,72 +84,85 @@ class MediaViewerWindowController: NSWindowController {
     }
     
     @IBAction func editNotesButtonAction(_ sender: Any) {
-        
+		notesTextView.isEditable = true
     }
     
     @IBAction func saveNotesButtonAction(_ sender: Any) {
+		let text = notesTextView.string
+		LibraryMainWindow.model.library.addNotesToFile(notes: text, file: allFiles[currentFileIndex])
+		notesTextView.isEditable = false
     }
     
     @IBAction func previousButtonAction(_ sender: Any) {
-        
+		guard currentFileIndex >= 1 else {
+			return
+		}
+		currentFileIndex -= 1
+		setCorrectController()
+		fileViewingDidChange()
     }
     
     @IBAction func nextButtonAction(_ sender: Any) {
+		guard currentFileIndex < allFiles.count else {
+			return
+		}
+		currentFileIndex += 1
+		setCorrectController()
+		fileViewingDidChange()
     }
     
     @IBAction func zoomInButtonAction(_ sender: Any) {
+		print("zoom in +")
     }
     
     @IBAction func zoomOutButtonAction(_ sender: Any) {
+		print("zoom out -")
     }
-    
-    
+	
+	/*
+	Delegate method called everytime notes added or other changes to real library files.
+	*/
+	func tableDataDidChange() {
+		
+	}
     /**
 	Based upon the file type, set the current View Controller
 	*/
 	func setCorrectController() {
+		fileToOpen = allFiles[currentFileIndex]
         switch (fileToOpen.type.capitalized) {
             case "Document" :
                 let documentView = DocumentViewController(file: fileToOpen)
                 documentView.view.setFrameOrigin(NSPoint(x:0, y:0))
                 documentView.view.setFrameSize(customView.frame.size)
+				self.customView.subviews.removeAll()
                 customView.addSubview(documentView.view)
-               // documentView.textView.isEditable = true
-            
             case "Image" :
                 let imageView = ImageViewController(file: fileToOpen)
                 imageView.view.setFrameOrigin(NSPoint(x:0, y:0))
                 imageView.view.setFrameSize(customView.frame.size)
+				self.customView.subviews.removeAll()
                 customView.addSubview(imageView.view)
             case "Video" :
                 let videoView = VideoViewController(file: fileToOpen)
                 videoView.view.setFrameOrigin(NSPoint(x:0, y:0))
                 videoView.view.setFrameSize(customView.frame.size)
+				self.customView.subviews.removeAll()
                 customView.addSubview(videoView.view)
             case "Audio" :
                 let audioView = AudioViewController(file: fileToOpen)
                 audioView.view.setFrameOrigin(NSPoint(x:0, y:0))
                 audioView.view.setFrameSize(customView.frame.size)
+				self.customView.subviews.removeAll()
                 customView.addSubview(audioView.view)
             default:
                 print("")
 
         }
-        //detailsView.reloadData()
+		viewerWindow.title = "\(fileToOpen.filename)"
         fileViewingDidChange()
 	}
 	
-	/**
-	Reset the file being show. If it is different type, reset the type of view controller too
-	*/
-	func updateCurrentViewController(file: MMFile) {
-		let oldFileType = self.fileToOpen.type
-		self.fileToOpen = file
-		if oldFileType != fileToOpen.type {
-			setCorrectController()
-		}
-	}
-    
     /**
      Prompt the user to enter some text e.g. the new metadata key pair
      */
@@ -175,7 +190,24 @@ class MediaViewerWindowController: NSWindowController {
      Disables and enables the buttons based upon whats selected being viewed
      */
     func manageButtons() {
-        
+		if currentFileIndex == 0 {
+			previousButton.isEnabled = false
+		} else {
+			previousButton.isEnabled = true
+		}
+		
+		if currentFileIndex == (allFiles.count-1) {
+			nextButton.isEnabled = false
+		} else {
+			nextButton.isEnabled = true
+		}
+		if allFiles[currentFileIndex].type == "audio" {
+			zoomInButton.isEnabled = false
+			zoomOutButton.isEnabled = false
+		} else {
+			zoomInButton.isEnabled = true
+			zoomOutButton.isEnabled = true
+		}
     }
     
     
@@ -185,7 +217,7 @@ class MediaViewerWindowController: NSWindowController {
      */
     func updateStatus() {
         var text = "Viewing item "
-        text += String(currentFileIndex)
+        text += String(currentFileIndex+1)
         text += " of "
         text += String(allFiles.count)
         statusLabel.stringValue = text
@@ -193,7 +225,7 @@ class MediaViewerWindowController: NSWindowController {
     
     func fileViewingDidChange() {
         detailsView.reloadData()
-        notesTextView.string = "Testing!"
+        notesTextView.string = allFiles[currentFileIndex].notes
         manageButtons()
         updateStatus()
     }
