@@ -42,7 +42,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 //        let openPanel : NSOpenPanel = NSOpenPanel()
 //        let userChoice = openPanel.runModal()
 //
-//		  openPanel.allowedFileTypes=["json"]
+//		openPanel.allowedFileTypes=["json"]
 //        switch userChoice {
 //        case .OK :
 //            let panelResult = openPanel.url
@@ -64,7 +64,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 //        default:
 //            print("> An open panel will never return anything other than OK or cancel")
 //        }
-//
+////
 		let filename : String = "~/346/media/jsonData.json"
 		var commandInput: String = ""
 
@@ -305,9 +305,6 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	
 	// Required function to conform to LibraryDelegate
 	func tableDataDidChange() {
-		if filesInTable.count == LibraryMainWindow.model.library.count {
-			changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
-		}
 		tableView.reloadData()
 		manageButtons()
 		updateStatus()

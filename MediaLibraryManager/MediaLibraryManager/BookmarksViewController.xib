@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,27 +23,31 @@
             <rect key="frame" x="0.0" y="0.0" width="236" height="649"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Rha-pm-rze">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rha-pm-rze">
                     <rect key="frame" x="71" y="607" width="95" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="t3a-sW-rNS"/>
+                    </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Bookmarks" id="Lfc-UJ-KXZ">
                         <font key="font" metaFont="system" size="18"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="XSx-JL-lNx">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XSx-JL-lNx">
                     <rect key="frame" x="18" y="14" width="200" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="17" id="NJT-Yk-hip"/>
+                        <constraint firstAttribute="width" constant="196" id="zdD-n9-fgu"/>
+                    </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="No bookmarks" id="fff-2K-p0v">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="SQI-4G-PP2">
+                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQI-4G-PP2">
                     <rect key="frame" x="20" y="92" width="196" height="494"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Z3i-A2-Zn4">
                         <rect key="frame" x="0.0" y="0.0" width="196" height="494"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,9 +76,8 @@
                                                 <rect key="frame" x="1" y="1" width="193" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="Fmu-g1-AJR">
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Fmu-g1-AJR">
                                                         <rect key="frame" x="0.0" y="0.0" width="193" height="17"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Dxv-QX-l2S">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -83,6 +85,11 @@
                                                         </textFieldCell>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="Fmu-g1-AJR" firstAttribute="leading" secondItem="Z8M-cv-x24" secondAttribute="leading" constant="2" id="XFi-Mg-pgG"/>
+                                                    <constraint firstItem="Fmu-g1-AJR" firstAttribute="centerX" secondItem="Z8M-cv-x24" secondAttribute="centerX" id="Z8g-tg-kFw"/>
+                                                    <constraint firstItem="Fmu-g1-AJR" firstAttribute="centerY" secondItem="Z8M-cv-x24" secondAttribute="centerY" id="zXY-w6-MQg"/>
+                                                </constraints>
                                                 <connections>
                                                     <outlet property="textField" destination="Fmu-g1-AJR" id="gAI-pU-TBs"/>
                                                 </connections>
@@ -102,9 +109,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <button verticalHuggingPriority="750" id="hdq-sp-Ho8">
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hdq-sp-Ho8">
                     <rect key="frame" x="14" y="32" width="208" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="YnK-Tq-n0T"/>
+                        <constraint firstAttribute="width" constant="196" id="eiB-PK-pHa"/>
+                    </constraints>
                     <buttonCell key="cell" type="push" title="Delete Bookmark" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W17-dd-3sp">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -113,9 +123,12 @@
                         <action selector="deleteButtonAction:" target="-2" id="YBl-7B-8yo"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" id="BOx-LD-p9E">
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BOx-LD-p9E">
                     <rect key="frame" x="11" y="57" width="216" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="204" id="JqA-xK-jVD"/>
+                        <constraint firstAttribute="height" constant="21" id="lsA-Xg-tuO"/>
+                    </constraints>
                     <buttonCell key="cell" type="push" title="Remove Files from Bookmark" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9GP-zD-dmx">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -125,6 +138,22 @@
                     </connections>
                 </button>
             </subviews>
+            <constraints>
+                <constraint firstItem="XSx-JL-lNx" firstAttribute="top" secondItem="hdq-sp-Ho8" secondAttribute="bottom" constant="8" id="4Wp-55-l8N"/>
+                <constraint firstItem="XSx-JL-lNx" firstAttribute="top" secondItem="hdq-sp-Ho8" secondAttribute="bottom" constant="8" id="HcE-xU-QBV"/>
+                <constraint firstAttribute="trailing" secondItem="Rha-pm-rze" secondAttribute="trailing" constant="72" id="Of1-Ac-EaJ"/>
+                <constraint firstItem="SQI-4G-PP2" firstAttribute="top" secondItem="Rha-pm-rze" secondAttribute="bottom" constant="21" id="Zvn-4e-0ld"/>
+                <constraint firstItem="SQI-4G-PP2" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="Zzt-Cv-scM"/>
+                <constraint firstItem="Rha-pm-rze" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="73" id="aK0-XE-dqx"/>
+                <constraint firstAttribute="trailing" secondItem="SQI-4G-PP2" secondAttribute="trailing" constant="20" id="bq6-D3-79w"/>
+                <constraint firstAttribute="bottom" secondItem="XSx-JL-lNx" secondAttribute="bottom" constant="14" id="dg1-ZR-sRb"/>
+                <constraint firstItem="BOx-LD-p9E" firstAttribute="top" secondItem="SQI-4G-PP2" secondAttribute="bottom" constant="7" id="dpI-N8-17u"/>
+                <constraint firstItem="hdq-sp-Ho8" firstAttribute="leading" secondItem="SQI-4G-PP2" secondAttribute="leading" id="hkb-EA-G68"/>
+                <constraint firstItem="BOx-LD-p9E" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="17" id="t8v-6H-Co4"/>
+                <constraint firstItem="hdq-sp-Ho8" firstAttribute="leading" secondItem="XSx-JL-lNx" secondAttribute="leading" id="y4S-cM-2b5"/>
+                <constraint firstItem="hdq-sp-Ho8" firstAttribute="top" secondItem="BOx-LD-p9E" secondAttribute="bottom" constant="4" id="ysN-yN-pnc"/>
+                <constraint firstItem="Rha-pm-rze" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="ztv-8V-THX"/>
+            </constraints>
             <point key="canvasLocation" x="140" y="289.5"/>
         </customView>
     </objects>
