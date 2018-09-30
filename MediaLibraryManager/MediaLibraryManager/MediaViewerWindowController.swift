@@ -8,10 +8,9 @@
 
 import Cocoa
 
-//public protocol MediaViewerDelegate {
-//    
-//}
+/**
 
+*/
 class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
 
     @IBOutlet weak var customView: NSView!
@@ -262,7 +261,6 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
 		}
     }
     
-    
     /**
      Updates the label at bottom of table.
      Shows the total items and those selected.
@@ -274,7 +272,12 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
         text += String(allFiles.count)
         statusLabel.stringValue = text
     }
-    
+	
+	/**
+	Helper function that is called when ever the file within the Custom View changes.
+	Calls the other helped methods to ensure everything is updated.
+	Including, the buttons, the label, the metadata and the notes.
+	*/
     func fileViewingDidChange() {
         detailsView.reloadData()
         notesTextView.string = allFiles[currentFileIndex].notes
@@ -284,24 +287,45 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
 }
 
 /**
-Extension the the NSTableViewDataSource that allows us to define the number of rows in our table.
+Extension that confirms to the NSTableViewDataSource.
+Allows us to define the number of rows in our table.
 */
 extension MediaViewerWindowController : NSTableViewDataSource {
+	
     func numberOfRows(in tableView: NSTableView) -> Int {
         return fileToOpen.metadata.count
     }
+	
 }
 
 /**
-Extension the the NSTableViewDelegate that allows the table data to be filled.
+Extension that confirms to the NSWindowDelegate.
+Allows us to define the number of rows in our table.
+*/
+extension MediaViewerWindowController : NSWindowDelegate {
+
+	func windowDidResize(_ notification: Notification) {
+		setCorrectController()
+	}
+}
+
+/**
+Extension that conforms to the NSTableViewDelegate.
+Allows the table data to be filled.
 */
 extension MediaViewerWindowController : NSTableViewDelegate {
 
+	/**
+	Enum to store the Cell Identifiers of the table.
+	*/
     fileprivate enum CellIdentifiers {
         static let KeywordCell = "CellKeywordID"
         static let ValueCell = "CellValueID"
     }
-    
+	
+	/**
+	Called when the table needs to reload data.
+	*/
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
         var text: String = ""
@@ -324,9 +348,11 @@ extension MediaViewerWindowController : NSTableViewDelegate {
         return nil
     }
 
-//    func tableViewSelectionDidChange(_ notification: Notification) {
-//        updateStatus()
-//        manageButtons()
-//    }
+	/**
+	In built delegate method that is called whenever the selection within the table changes.
+	*/
+    func tableViewSelectionDidChange(_ notification: Notification) {
+
+    }
 }
 
