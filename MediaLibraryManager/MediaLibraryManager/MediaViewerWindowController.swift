@@ -34,14 +34,18 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
     var allFiles: [MMFile] = []
     var currentFileIndex : Int = -1
 	var bookmark: String = ""
-    
+	
+	/**
+	Convenience initialiser that loads the NIB file.
+	*/
 	convenience init() {
 		self.init(windowNibName: NSNib.Name(rawValue: "MediaViewerWindowController"));
 	}
     
     /**
-     Initialises the new controller with a specific file as the start point.
-     */
+	Convenience initialiser that loads the NIB file.
+	Initialises the new controller with a specific file as the start point.
+	*/
     convenience init(index: Int, files: [MMFile]) {
         self.init(windowNibName: NSNib.Name(rawValue: "MediaViewerWindowController"));
         allFiles = files
@@ -49,6 +53,11 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
         fileToOpen = allFiles[currentFileIndex]
     }
 	
+	/**
+	Called when the Window loaded successfully.
+	Sets the delegates, and disables some buttons.
+	Also sets the Custom View to the correct controller by calling helper method.
+	*/
     override func windowDidLoad() {
         super.windowDidLoad()
         detailsView.delegate = self
@@ -70,17 +79,29 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
             if (detailToAdd != nil) {
                 commandInput = "add \(selectedFile) \(detailToAdd!)"
                 LibraryMainWindow.model.runCommand(input: commandInput)
-                detailsView.reloadData()
             }
         } else {
             let row = detailsView.selectedRow
-            commandInput = "del \(selectedFile) \(fileToOpen.metadata[row].keyword)"
-            LibraryMainWindow.model.runCommand(input: commandInput)
-            detailsView.reloadData()
+			
+			// Check that its allowed
+			let key = fileToOpen.metadata[row].keyword
+			do {
+				let isAllowed = try FileValidator.safeToDelete(key: key, typeOfFile: fileToOpen.type)
+				if isAllowed {
+					commandInput = "del \(selectedFile) \(key)"
+					LibraryMainWindow.model.runCommand(input: commandInput)
+				}
+			} catch {
+				print(" Can't do that!!! Deleting required metadata")
+				alertUserOfFailure(methodThatFailed: "Deleting Metadata", maintext: "Cannot delete a required metadata keypair for the file type.")
+			}
         }
+		fileViewingDidChange()
+		
         //TODO make it overwrite the file instead of just re-adding all the info
         //commandInput = "save ~/346/media/jsonData"
 //        LibraryMainWindow.model.runCommand(input: commandInput)
+		
     }
     
     @IBAction func editNotesButtonAction(_ sender: Any) {
@@ -125,6 +146,7 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
 	func tableDataDidChange() {
 		
 	}
+	
     /**
 	Based upon the file type, set the current View Controller
 	*/
@@ -163,9 +185,15 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
         fileViewingDidChange()
 	}
 	
-    /**
-     Prompt the user to enter some text e.g. the new metadata key pair
-     */
+	/**
+	Prompt the user to enter some text e.g. the new metadata key pair.
+	- parameter title: the title of the Alert prompt.
+	- parameter question: the full text question to inform user.
+	- parameter defaultValue: the placeholder string to put in the text field.
+	- returns: String?: the metadata keypair entered by the user or nil.
+	
+	@author Marc Fearby on Stack Overflow, + minor changes by Vivian.
+	*/
     func getString(title: String, question: String, defaultValue: String) -> String? {
         let msg = NSAlert()
         msg.addButton(withTitle: "OK")      // 1st button
@@ -180,12 +208,36 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
         let response: NSApplication.ModalResponse = msg.runModal()
         
         if (response == NSApplication.ModalResponse.alertFirstButtonReturn) {
+			guard txt.stringValue.count >= 3 else {
+				alertUserOfFailure(methodThatFailed: "Adding Metadata", maintext: "Please enter a key followed by a space and then your value. Extra spaces will be ignored.")
+				return nil
+			}
+			let parts = txt.stringValue.split(separator: " ").map({String($0)})
+			guard parts.count >= 2 else {
+				alertUserOfFailure(methodThatFailed: "Adding Metadata", maintext: "Please enter a key followed by a space and then your value. Extra spaces will be ignored.")
+				return nil
+			}
             return txt.stringValue
         } else {
             return nil
         }
     }
-    
+	
+	/**
+	Prompts the user with an alert to warn them their metadata deletion failed
+	- parameter bookmark:  the name of the bookmark to check.
+	*/
+	func alertUserOfFailure(methodThatFailed: String, maintext: String) {
+		let msg = NSAlert()
+		msg.addButton(withTitle: "OK")
+		var title = "Error: "
+		title += methodThatFailed
+		title += " Failure."
+		msg.messageText = title
+		msg.informativeText = maintext
+		let _: NSApplication.ModalResponse = msg.runModal()
+		return
+	}
     /**
      Disables and enables the buttons based upon whats selected being viewed
      */
@@ -231,13 +283,18 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
     }
 }
 
-
+/**
+Extension the the NSTableViewDataSource that allows us to define the number of rows in our table.
+*/
 extension MediaViewerWindowController : NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         return fileToOpen.metadata.count
     }
 }
 
+/**
+Extension the the NSTableViewDelegate that allows the table data to be filled.
+*/
 extension MediaViewerWindowController : NSTableViewDelegate {
 
     fileprivate enum CellIdentifiers {
