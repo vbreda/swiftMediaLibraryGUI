@@ -8,6 +8,9 @@
 
 import Cocoa
 
+/**
+View Controller that handles the bookmarks side bar.
+*/
 class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	
 	@IBOutlet weak var labelBookmarks: NSTextField!
@@ -16,8 +19,13 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	@IBOutlet weak var deleteButton: NSButton!
 	@IBOutlet weak var removeFilesFromButton: NSButton!
 	
+	// Variable that allows the bookmakrs table font to be larger than standard.
 	var fontSize = (NSFont.systemFontSize(for: NSControl.ControlSize.regular) + 2)
 	
+	/**
+	Called when the view loaded successfully.
+	Sets the delegates, and disables some buttons.
+	*/
 	override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.delegate = self
@@ -29,8 +37,9 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 		removeFilesFromButton.isEnabled = false
 	}
 	
-	/*
-	Allows the user to rename the bookmark
+	/**
+	Allows the user to delete a bookmark.
+	The button is only enabled when there are bookmarks to delete.
 	*/
 	@IBAction func deleteButtonAction(_ sender: Any) {
 		let bookmark = LibraryMainWindow.model.getBookmarkNames()[tableView.selectedRow]
@@ -54,8 +63,8 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 		}
 	}
 	
-	/*
-	Removes specific files from this bookmark.
+	/**
+	Removes specific files from bookmark that is currently open.
 	*/
 	@IBAction func removeFilesFromButtonAction(_ sender: Any) {
 		let bookmark = LibraryMainWindow.model.getBookmarkNames()[tableView.selectedRow]
@@ -67,15 +76,25 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 		}
 	}
 	
-	/*
+	/**
 	Toggles whether the button needs to be enabled or disabled, based upon the selections in LibraryVC.
+	- paramater isOn: whether the button should be enabled or not.
 	*/
 	func toggleRemoveFilesButton(isOn: Bool) {
-		removeFilesFromButton.isEnabled = isOn
+		let bookmark = LibraryMainWindow.model.getBookmarkNames()[tableView.selectedRow]
+		let canEdit : Bool = checkBookmarkIsEditable(bookmark: bookmark)
+		if !canEdit {
+			removeFilesFromButton.isEnabled = false
+		} else if isOn {
+			removeFilesFromButton.isEnabled = true
+		} else {
+			removeFilesFromButton.isEnabled = false
+		}
 	}
 	
-	/*
+	/**
 	Prompts the user with an alert to warn them they cannot do that.
+	- parameter bookmark:  the name of the bookmark to check.
 	*/
 	func alertUserOfForbidden(bookmark: String) {
 		let msg = NSAlert()
@@ -86,8 +105,9 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 		return
 	}
 	
-	/*
-	Check action is allowed on this bookmark
+	/**
+	Check action is allowed on this bookmark.
+	- parameter bookmark:  the name of the bookmark to check.
 	*/
 	func checkBookmarkIsEditable(bookmark: String) -> Bool {
 		if bookmark == "All" ||  bookmark == "Images" ||  bookmark == "Audio" ||  bookmark == "Documents" ||  bookmark == "Videos" {
@@ -98,7 +118,8 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	}
 
 	/*
-	Delegate method
+	Delegate method.
+	Called whenevere the Model has a change in its bookmarks.
 	*/
 	func tableDataDidChange() {
 		tableView.reloadData()
@@ -108,6 +129,7 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	/*
 	Updates the label at bottom of table.
 	Shows the total items and those selected.
+	Also adjusts the delete button depending on the current bookmark.
 	*/
 	func updateStatus() {
 		let text: String
@@ -115,13 +137,23 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 			deleteButton.isEnabled = false
 			text = "No bookmarks"
 		} else {
-			deleteButton.isEnabled = true
+			
+			let bookmark = LibraryMainWindow.model.getBookmarkNames()[tableView.selectedRow]
+			let canEdit : Bool = checkBookmarkIsEditable(bookmark: bookmark)
+			if !canEdit {
+				deleteButton.isEnabled = false
+			} else {
+				deleteButton.isEnabled = true
+			}
 			text = "\(LibraryMainWindow.model.numBookmarks) bookmarks"
 		}
 		statusLabel.stringValue = text
 	}
 }
 
+/**
+Extension the the NSTableViewDataSource that allows us to define the number of rows in our table.
+*/
 extension BookmarksViewController : NSTableViewDataSource {
 	
 	func numberOfRows(in tableView: NSTableView) -> Int {
@@ -129,6 +161,9 @@ extension BookmarksViewController : NSTableViewDataSource {
 	}
 }
 
+/**
+Extension the the NSTableViewDelegate that allows the table data to be filled.
+*/
 extension BookmarksViewController : NSTableViewDelegate {
 	
 	fileprivate enum CellIdentifiers {
@@ -160,23 +195,14 @@ extension BookmarksViewController : NSTableViewDelegate {
 	
 	/**
 	When a new bookmark is selected, open it!
+	Built in method from the Table View delegate.
 	*/
 	func tableViewSelectionDidChange(_ notification: Notification) {
-
 		let bookmark = LibraryMainWindow.model.getBookmarkNames()[tableView.selectedRow]
 		let files = LibraryMainWindow.model.getBookmarkValues(key: bookmark)
-		
-		if files.count == 1 {
-			// Open the media viewer right away, only one file
-			print("single clicked: \(bookmark)")
-			LibraryMainWindow.libraryVC.changeFilesInTable(newFiles: files)
-			LibraryMainWindow.libraryVC.tableDataDidChange()
-		} else {
-			// update LibraryViewController tableView
-			print("single clicked should open: \(bookmark)")
-			LibraryMainWindow.libraryVC.changeFilesInTable(newFiles: files)
-			LibraryMainWindow.libraryVC.tableDataDidChange()
-		}
+		LibraryMainWindow.libraryVC.changeFilesInTable(newFiles: files)
+		LibraryMainWindow.libraryVC.tableDataDidChange()
+		updateStatus()
 	}
 	
 }
