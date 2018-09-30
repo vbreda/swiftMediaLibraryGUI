@@ -24,6 +24,10 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	var filesInTable : [MMFile] = []
     static var rowSelection : Int = 0
 	
+	/**
+	Called when the view loaded successfully.
+	Sets the delegates, and disables some buttons.
+	*/
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.delegate = self
@@ -36,46 +40,50 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		exportFilesButton.isEnabled = false
 	}
 	
+	/**
+	Prompts the user with an NSOpenPanel to choose a .json file.
+	Calles the import command and populates the table.
+	*/
     @IBAction func importFilesButtonAction(_ sender: Any) {
 		
 		//TODO put the open panel back!
-//        let openPanel : NSOpenPanel = NSOpenPanel()
-//        let userChoice = openPanel.runModal()
-//
-//		openPanel.allowedFileTypes=["json"]
-//        switch userChoice {
-//        case .OK :
-//            let panelResult = openPanel.url
-//            if let panelResult = panelResult {
-//
-//                let filename : String = panelResult.absoluteString
-//                var commandInput: String = ""
-//
-//                commandInput += "load "
-//                commandInput += filename
-//
-//                LibraryMainWindow.model.runCommand(input: commandInput)
-//				LibraryMainWindow.model.makeInitialBookmarks()
-//				changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
-//				tableDataDidChange()
-//            }
-//        case .cancel :
-//            print("> user cancelled importing files")
-//        default:
-//            print("> An open panel will never return anything other than OK or cancel")
-//        }
-////
-		let filename : String = "~/346/media/jsonData.json"
-		var commandInput: String = ""
+        let openPanel : NSOpenPanel = NSOpenPanel()
+		openPanel.allowedFileTypes = ["json", "JSON"]
+        let userChoice = openPanel.runModal()
 
-		commandInput += "load "
-		commandInput += filename
+        switch userChoice {
+        case .OK :
+            let panelResult = openPanel.url
+            if let panelResult = panelResult {
 
-		LibraryMainWindow.model.runCommand(input: commandInput)
-		LibraryMainWindow.model.makeInitialBookmarks()
-		changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
-		tableDataDidChange()
-        LibraryMainWindow.model.runCommand(input: "list")
+                let filename : String = panelResult.absoluteString
+                var commandInput: String = ""
+
+                commandInput += "load "
+                commandInput += filename
+
+                LibraryMainWindow.model.runCommand(input: commandInput)
+				LibraryMainWindow.model.makeInitialBookmarks()
+				changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
+				tableDataDidChange()
+            }
+        case .cancel :
+            print("> user cancelled importing files")
+        default:
+            print("> An open panel will never return anything other than OK or cancel")
+        }
+//
+//		let filename : String = "~/346/media/jsonData.json"
+//		var commandInput: String = ""
+//
+//		commandInput += "load "
+//		commandInput += filename
+//
+//		LibraryMainWindow.model.runCommand(input: commandInput)
+//		LibraryMainWindow.model.makeInitialBookmarks()
+//		changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
+//		tableDataDidChange()
+//        LibraryMainWindow.model.runCommand(input: "list")
 	}
 	
 	/**
@@ -326,7 +334,6 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		if filesInTable.count == 0 {
 			searchButton.isEnabled = false
 			exportFilesButton.isEnabled = false
-			LibraryMainWindow.bookmarksVC.toggleRemoveFilesButton(isOn: false)
 		} else {
 			searchButton.isEnabled = true
 			exportFilesButton.isEnabled = true
@@ -377,7 +384,9 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	}
 }
 
-
+/**
+Extension the the NSTableViewDataSource that allows us to define the number of rows in our table.
+*/
 extension LibraryViewController : NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -385,7 +394,9 @@ extension LibraryViewController : NSTableViewDataSource {
     }
 }
 
-
+/**
+Extension the the NSTableViewDelegate that allows the table data to be filled.
+*/
 extension LibraryViewController : NSTableViewDelegate {
     
     fileprivate enum CellIdentifiers {
