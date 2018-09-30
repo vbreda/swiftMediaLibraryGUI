@@ -8,14 +8,28 @@
 
 import Foundation
 
+/**
+Protocol that alerts the BookmarksViewController.
+Whenever the Bookmarks change within the Model.
+*/
 public protocol ModelBookmarksDelegate {
 	func tableDataDidChange()
 }
 
+/**
+Protocol that alerts the LibraryViewController.
+Whenever the Files change within the Model's library.
+*/
 public protocol ModelLibraryDelegate {
 	func tableDataDidChange()
 }
 
+/**
+Library Model - the base of the MVC pattern.
+Similar to the main.swift of asgn1.
+Creates an instance of the Library and handles the bookmarks.
+Handles all commands for intereacting with the library.
+*/
 public class LibraryModel {
 	
 	var library : Library = Library()
@@ -35,17 +49,29 @@ public class LibraryModel {
 	
 	init() { }
 	
-	// Alert delegate 1
+	/**
+	Alert delegate 1.
+	Called whenever the bookmarks are edited.
+	*/
 	func alertBookmarksDelegate() {
 		bookmarksDelegate?.tableDataDidChange()
 	}
 	
-	// Alert delegate 2
+	/**
+	Alert delegate 2 + 3.
+	Called whenever the library's files may be edited.
+	*/
 	func alertLibraryDelegate() {
 		libraryDelegate?.tableDataDidChange()
 		viewerDelegate?.tableDataDidChange()
 	}
 	
+	/**
+	Handles all input commands as per the asgn1 terminal prompt.
+	Takes input as a string and calls the right command through a switch case.
+
+	- parameter input: the keyword and needed parameters to call the command, as a String.
+	*/
 	func runCommand(input: String) {
 		
 		var parts = input.split(separator: " ").map({String($0)})
@@ -104,8 +130,6 @@ public class LibraryModel {
 				results.show()
 				last = results
 			}
-			
-		
 		} catch MMCliError.unknownCommand {
 			print("Command \"\(commandString)\" not found -- see \"help\" for list.")
 		} catch MMCliError.invalidParameters {
@@ -135,12 +159,14 @@ public class LibraryModel {
 		} catch MMCliError.duplicateMetadataKey {
 			print("Attempting to add duplicate metadata. Try 'set' instead.")
 		} catch {
-			print("Oops - a new error")
+			print("Oops - a new error. Shouldn't ever be called.")
 		}
 	}
 	
-	/*
+	/**
 	Adds notes to a particular file in the library.
+	- parameter notes: the String of notes to add.
+	- parameter file: the MMFile to add the notes to.
 	*/
 	func addNotesToFile(notes: String, file: MMFile) {
 		library.addNotesToFile(notes: notes, file: file)
@@ -148,15 +174,17 @@ public class LibraryModel {
 		alertLibraryDelegate()
 	}
 	
-	/*
-	Returns the current bookmarks.
+	/**
+	Returns all of the currently loaded bookmarks.
+	- returns: [String: [MMFile]]: the dictionary of bookmark names and associated files.
 	*/
 	func getBookmarks() -> [String: [MMFile]] {
 		return bookmarks
 	}
 	
-	/*
-	Returns the current bookmark names only
+	/**
+	Returns the current bookmark names only, as Strings.
+	- returns: [String]: the currently loaded bookmark names.
 	*/
 	func getBookmarkNames() -> [String] {
 		let keys : [String] = Array(bookmarks.keys)
@@ -164,8 +192,10 @@ public class LibraryModel {
 		return sortedArray
 	}
 	
-	/*
-	Returns the file list of a bookmark given the bookmark name.
+	/**
+	Returns the files associated with a bookmark, given the bookmark name.
+	- parameter key: the name of the bookmark.
+	- returns: [MMFile]: the files for that bookmark.
 	*/
 	func getBookmarkValues(key: String) -> [MMFile] {
 		if let files : [MMFile] = bookmarks[key] {
@@ -176,7 +206,9 @@ public class LibraryModel {
 	}
 	
 	/**
-	Adds a new bookmark to the bookmarks dictionary
+	Adds a new bookmark to the bookmarks dictionary.
+	- parameter name: the name of the new bookmark.
+	- parameter files: the files to go in that bookmark.
 	*/
 	func addBookmarks(name: String, files: [MMFile]) {
 		bookmarks.updateValue(files, forKey: name)
@@ -184,7 +216,8 @@ public class LibraryModel {
 	}
 	
 	/**
-	Deletes a bookmark by its name/key
+	Deletes a bookmark by its name/key.
+	- parameter name: the bookmark name (key) to delete in the boomarks dictionary.
 	*/
 	func deleteBookmark(name: String) {
 		bookmarks[name] = nil
@@ -192,11 +225,10 @@ public class LibraryModel {
 	}
 	
 	/**
-	Creates the default bookmarks for newly imported media
+	Creates the default bookmarks for newly imported media.
+	e.g. All media and the 4 specific types.
 	*/
 	func makeInitialBookmarks() {
-		// Create bookmark for ALL, images, documents, audios, videos.
-		
 		let b1 = "All"
 		let b1Files = callListCommand(term: "")
 		addBookmarks(name: b1, files: b1Files)
@@ -221,8 +253,9 @@ public class LibraryModel {
 	}
 	
 	/**
-	Call the list commmand on a search term.
-	Return the files found if
+	Call the list commmand on a search term and returns the results.
+	- parameter term: the term to search for.
+	- returns: [MMFile]: the files found for the search term.
 	*/
 	func callListCommand(term: String) -> [MMFile] {
 		
@@ -235,7 +268,7 @@ public class LibraryModel {
 		do {
 			try files = LibraryMainWindow.model.last.getAll()
 		} catch {
-			print("well oops - what happened here? ---------------")
+			print("well oops - this should never be called.")
 		}
 		return files
 	}

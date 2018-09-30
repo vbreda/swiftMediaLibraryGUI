@@ -26,6 +26,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rha-pm-rze">
                     <rect key="frame" x="71" y="607" width="95" height="22"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="91" id="cFa-Kq-cNT"/>
                         <constraint firstAttribute="height" constant="22" id="t3a-sW-rNS"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Bookmarks" id="Lfc-UJ-KXZ">
@@ -37,6 +38,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XSx-JL-lNx">
                     <rect key="frame" x="18" y="14" width="200" height="17"/>
                     <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="196" id="MZ8-z1-cCX"/>
                         <constraint firstAttribute="height" constant="17" id="NJT-Yk-hip"/>
                         <constraint firstAttribute="width" constant="196" id="zdD-n9-fgu"/>
                     </constraints>
@@ -100,6 +102,9 @@
                             </tableView>
                         </subviews>
                     </clipView>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="196" id="QSf-R0-Jkw"/>
+                    </constraints>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="WWY-kU-Ybs">
                         <rect key="frame" x="1" y="340" width="154" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -112,6 +117,7 @@
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hdq-sp-Ho8">
                     <rect key="frame" x="14" y="32" width="208" height="32"/>
                     <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="196" id="9Ok-9c-boy"/>
                         <constraint firstAttribute="height" constant="21" id="YnK-Tq-n0T"/>
                         <constraint firstAttribute="width" constant="196" id="eiB-PK-pHa"/>
                     </constraints>
@@ -127,6 +133,7 @@
                     <rect key="frame" x="11" y="57" width="216" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="204" id="JqA-xK-jVD"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="204" id="M1F-DM-xd2"/>
                         <constraint firstAttribute="height" constant="21" id="lsA-Xg-tuO"/>
                     </constraints>
                     <buttonCell key="cell" type="push" title="Remove Files from Bookmark" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9GP-zD-dmx">

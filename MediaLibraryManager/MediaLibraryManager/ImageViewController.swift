@@ -8,20 +8,31 @@
 
 import Cocoa
 
+/**
+The View Controller for our Image media.
+Sets up and displays the media.
+*/
 class ImageViewController: NSViewController {
     
     var fileToOpen : MMFile = File(filename: "default")
     var fullpath : String = ""
     
-    convenience init(file: MMFile) {
-        self.init()
-        fileToOpen = file
-        fullpath = file.path+"/"+file.filename
-    }
-    
-    
     @IBOutlet weak var imageView: NSImageView!
-    
+	
+	/**
+	Initialises the View Controller with a specific file as the start point.
+	Sets the fullpath.
+	*/
+	convenience init(file: MMFile) {
+		self.init()
+		fileToOpen = file
+		fullpath = file.path+"/"+file.filename
+	}
+	
+	/**
+	Called when the view loaded successfully.
+	Shows the media file.
+	*/
     override func viewDidLoad() {
         super.viewDidLoad()
         showImage()

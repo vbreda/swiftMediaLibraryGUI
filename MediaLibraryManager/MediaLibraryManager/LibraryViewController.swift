@@ -46,48 +46,48 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	*/
     @IBAction func importFilesButtonAction(_ sender: Any) {
 		
-		//TODO put the open panel back!
-        let openPanel : NSOpenPanel = NSOpenPanel()
-		openPanel.allowedFileTypes = ["json", "JSON"]
-        let userChoice = openPanel.runModal()
-
-        switch userChoice {
-        case .OK :
-            let panelResult = openPanel.url
-            if let panelResult = panelResult {
-
-                let filename : String = panelResult.absoluteString
-                var commandInput: String = ""
-
-                commandInput += "load "
-                commandInput += filename
-
-                LibraryMainWindow.model.runCommand(input: commandInput)
-				LibraryMainWindow.model.makeInitialBookmarks()
-				changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
-				tableDataDidChange()
-            }
-        case .cancel :
-            print("> user cancelled importing files")
-        default:
-            print("> An open panel will never return anything other than OK or cancel")
-        }
+//        let openPanel : NSOpenPanel = NSOpenPanel()
+//		openPanel.allowedFileTypes = ["json", "JSON"]
+//        let userChoice = openPanel.runModal()
 //
-//		let filename : String = "~/346/media/jsonData.json"
-//		var commandInput: String = ""
+//        switch userChoice {
+//        case .OK :
+//            let panelResult = openPanel.url
+//            if let panelResult = panelResult {
 //
-//		commandInput += "load "
-//		commandInput += filename
+//                let filename : String = panelResult.absoluteString
+//                var commandInput: String = ""
 //
-//		LibraryMainWindow.model.runCommand(input: commandInput)
-//		LibraryMainWindow.model.makeInitialBookmarks()
-//		changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
-//		tableDataDidChange()
-//        LibraryMainWindow.model.runCommand(input: "list")
+//                commandInput += "load "
+//                commandInput += filename
+//
+//                LibraryMainWindow.model.runCommand(input: commandInput)
+//				LibraryMainWindow.model.makeInitialBookmarks()
+//				changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
+//				tableDataDidChange()
+//            }
+//        case .cancel :
+//            print("> user cancelled importing files")
+//        default:
+//            print("> An open panel will never return anything other than OK or cancel")
+//        }
+//
+		let filename : String = "~/346/media/jsonData.json"
+		var commandInput: String = ""
+
+		commandInput += "load "
+		commandInput += filename
+
+		LibraryMainWindow.model.runCommand(input: commandInput)
+		LibraryMainWindow.model.makeInitialBookmarks()
+		changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
+		tableDataDidChange()
+        LibraryMainWindow.model.runCommand(input: "list")
 	}
 	
 	/**
-	Exports the selected files (or all) and saves as a .json
+	Exports the selected files (or all) and saves as a .json file.
+	Uses the path as specified by the Save panel.
 	*/
 	@IBAction func exportFIlesButtonAction(_ sender: Any) {
 		
@@ -121,8 +121,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 			let filename = savePanel.nameFieldStringValue
 			
 			if let panelResult = panelResult {
-
-				// Success place specified so save!
+				// Successful place specified so save!
 				commandInput += "save-search "
 				commandInput += panelResult
 				commandInput += "/"
@@ -130,19 +129,17 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 				
 				LibraryMainWindow.model.last = MMResultSet(filesToSave)
 				LibraryMainWindow.model.runCommand(input: commandInput)
-				
 			}
 		case .cancel :
 			print("> user cancelled exporting files")
 		default:
 			print("> An open panel will never return anything other than OK or cancel")
 		}
-
 	}
 	
 	/**
-	Adds a new bookmark based on the user's currrent selection.
-	Prompts for bookmark name via NSAlert with NSTextField.
+	Adds a new bookmark based on the user's currrent file selection.
+	Prompts for bookmark name via NSAlert with an NSTextField.
 	*/
     @IBAction func addBookmarkButtonAction(_ sender: Any) {
 		
@@ -166,7 +163,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
                     msg.addButton(withTitle: "Yes")
                     msg.addButton(withTitle: "Cancel")
                     msg.messageText = "Overwrite Bookmark"
-                    msg.informativeText = "A bookmark with that name already exists. Are you sure you wish to overwrite these  the bookmark '\(newBookmarkName)?'"
+                    msg.informativeText = "A bookmark with that name already exists. Are you sure you wish to overwrite the bookmark '\(newBookmarkName)?'"
                     
                     let response: NSApplication.ModalResponse = msg.runModal()
                     if (response == NSApplication.ModalResponse.alertFirstButtonReturn) {
@@ -184,6 +181,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
                             LibraryMainWindow.model.addBookmarks(name: newBookmarkName, files: filesToSave)
                         }
                     } else {
+						// User did not chose Cancel, so do nothing.
                         return
                     }
                 }
@@ -207,11 +205,11 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
     }
 
 	/**
-	Alternative to double clicking a file name
+	Alternative to double clicking a file name.
+	Opens the Media Viewer Window
 	*/
 	@IBAction func openViewerButtonAction(_ sender: Any) {
         LibraryViewController.rowSelection = tableView.selectedRow
-        
         guard LibraryViewController.rowSelection >= 0 else {
 			return
 		}
@@ -221,14 +219,19 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		if numItemsSelected == 1 {
             let index = tableView.selectedRow
             LibraryMainWindow.newViewerWindow(index: index, files: filesInTable)
-
 		} else {
-			// TODO
+			return
 		}	
 	}
 	
 	/**
-	Prompt the user to enter some text e.g. the Bookmarks new name
+	Prompt the user to enter some text e.g. the Bookmarks new name.
+	- parameter title: the title of the Alert prompt.
+	- parameter question: the full text question to inform user.
+	- parameter defaultValue: the placeholder string to put in the text field.
+	- returns: String?: the text entered by the user or nil.
+	
+	@author Marc Fearby on Stack Overflow, + minor changes by Nikolah.
 	*/
 	func getString(title: String, question: String, defaultValue: String) -> String? {
 		let msg = NSAlert()
@@ -268,7 +271,8 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
     }
 	
 	/**
-	Finds the selected files, and removes these from the current bookmark
+	Finds the selected files, and removes these from the current bookmark.
+	- parameter bookmark: the name of the bookmark to delete from.
 	*/
 	func removeFilesFromTable(bookmark: String) {
 		
@@ -312,13 +316,21 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	}
 	
 	// Required function to conform to LibraryDelegate
+	/**
+	Delegate method. Called whenever the Model's library changes.
+	Reload the table data, also updates the buttons and the status label.
+	*/
 	func tableDataDidChange() {
 		tableView.reloadData()
 		manageButtons()
 		updateStatus()
 	}
 	
-	// Updates the data field of filesInTable
+	/**
+	Updates the variable that is the files in the table.
+	Allows a new set of files to be displayed.
+	- parameter newFiles: the new files to be displayed.
+	*/
 	func changeFilesInTable(newFiles: [MMFile]) {
 		filesInTable = newFiles
 	}
@@ -377,7 +389,9 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	}
 	
 	/**
-	Respond to double clickings a file
+	Respond to double clickings a file.
+	The same as choosing 'open media' button from the window.
+	Simply a shortcut that calls the aove button's action.
 	*/
 	@objc func tableViewDoubleClick(_ sender:AnyObject) {
 		openViewerButtonAction(self)
@@ -385,7 +399,8 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 }
 
 /**
-Extension the the NSTableViewDataSource that allows us to define the number of rows in our table.
+Extension that confirms to the NSTableViewDataSource.
+Allows us to define the number of rows in our table.
 */
 extension LibraryViewController : NSTableViewDataSource {
     
@@ -395,10 +410,14 @@ extension LibraryViewController : NSTableViewDataSource {
 }
 
 /**
-Extension the the NSTableViewDelegate that allows the table data to be filled.
+Extension that conforms to the NSTableViewDelegate.
+Allows the table data to be filled.
 */
 extension LibraryViewController : NSTableViewDelegate {
-    
+	
+	/**
+	Enum to store the Cell Identifiers of the table.
+	*/
     fileprivate enum CellIdentifiers {
         
         static let CellNumber = "CellNumberID"
@@ -407,7 +426,10 @@ extension LibraryViewController : NSTableViewDelegate {
         static let CellCreator = "CellCreatorID"
 		static let CellNotes = "CellNotesID"
     }
-    
+	
+	/**
+	Called when the table needs to reload data.
+	*/
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
         var text: String = ""
@@ -438,7 +460,11 @@ extension LibraryViewController : NSTableViewDelegate {
         }
         return nil
     }
-    
+	
+	/**
+	In built delegate method that is called whenever the selection within the table changes.
+	Updates the buttons and status to reflect the new changes
+	*/
     func tableViewSelectionDidChange(_ notification: Notification) {
         updateStatus()
 		manageButtons()

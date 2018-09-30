@@ -152,7 +152,8 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 }
 
 /**
-Extension the the NSTableViewDataSource that allows us to define the number of rows in our table.
+Extension that confirms to the NSTableViewDataSource.
+Allows us to define the number of rows in our table.
 */
 extension BookmarksViewController : NSTableViewDataSource {
 	
@@ -162,14 +163,21 @@ extension BookmarksViewController : NSTableViewDataSource {
 }
 
 /**
-Extension the the NSTableViewDelegate that allows the table data to be filled.
+Extension that conforms to the NSTableViewDelegate.
+Allows the table data to be filled.
 */
 extension BookmarksViewController : NSTableViewDelegate {
 	
+	/**
+	Enum to store the Cell Identifiers of the table.
+	*/
 	fileprivate enum CellIdentifiers {
 		static let CellNumber = "CellBookmark"
 	}
 	
+	/**
+	Called when the table needs to reload data.
+	*/
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		
 		let cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CellBookmark"), owner: self) as! NSTableCellView
@@ -194,8 +202,8 @@ extension BookmarksViewController : NSTableViewDelegate {
 	}
 	
 	/**
-	When a new bookmark is selected, open it!
-	Built in method from the Table View delegate.
+	In built delegate method that is called whenever the selection within the table changes.
+	When a new bookmark is selected, we open it!
 	*/
 	func tableViewSelectionDidChange(_ notification: Notification) {
 		let bookmark = LibraryMainWindow.model.getBookmarkNames()[tableView.selectedRow]
