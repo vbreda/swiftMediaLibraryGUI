@@ -19,9 +19,6 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	@IBOutlet weak var deleteButton: NSButton!
 	@IBOutlet weak var removeFilesFromButton: NSButton!
 	
-	// Variable that allows the bookmakrs table font to be larger than standard.
-	var fontSize = (NSFont.systemFontSize(for: NSControl.ControlSize.regular) + 2)
-	
 	/**
 	Called when the view loaded successfully.
 	Sets the delegates, and disables some buttons.
@@ -183,9 +180,6 @@ extension BookmarksViewController : NSTableViewDelegate {
 		let cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CellBookmark"), owner: self) as! NSTableCellView
 		let textField = cellView.textField!
 		textField.textColor = NSColor.black
-		
-		let fontDescriptor = textField.font!.fontDescriptor
-		textField.font = NSFont(descriptor: fontDescriptor, size: self.fontSize)
 		
 		let item = LibraryMainWindow.model.getBookmarkNames()[row]
 		textField.stringValue = item

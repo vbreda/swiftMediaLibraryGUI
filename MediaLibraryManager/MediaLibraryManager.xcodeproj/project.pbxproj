@@ -193,16 +193,9 @@
 				2BFB1980215341C00022D55D /* LibraryViewController.swift */,
 				2BFB1981215341C00022D55D /* LibraryViewController.xib */,
 				2B88507121571D40007C39E6 /* LibraryModel.swift */,
+				2B247D7821607B87007DB7B6 /* Custom View Controllers */,
 				6BF832D0215B9400004CF374 /* MediaViewerWindowController.swift */,
 				6BF832D1215B9400004CF374 /* MediaViewerWindowController.xib */,
-				6BF832CD215B93F3004CF374 /* VideoViewController.swift */,
-				6BF832CC215B93F2004CF374 /* VideoViewController.xib */,
-				6BF832D5215B9416004CF374 /* ImageViewController.swift */,
-				6BF832D4215B9416004CF374 /* ImageViewController.xib */,
-				6BF832D9215B942E004CF374 /* AudioViewController.swift */,
-				6BF832DA215B942E004CF374 /* AudioViewController.xib */,
-				6BF832D8215B942E004CF374 /* DocumentViewController.swift */,
-				6BF832DB215B942F004CF374 /* DocumentViewController.xib */,
 			);
 			path = MediaLibraryManager;
 			sourceTree = "<group>";
@@ -223,6 +216,21 @@
 				2B22040821507F1800FC9A98 /* Info.plist */,
 			);
 			path = MediaLibraryManagerUITests;
+			sourceTree = "<group>";
+		};
+		2B247D7821607B87007DB7B6 /* Custom View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6BF832CD215B93F3004CF374 /* VideoViewController.swift */,
+				6BF832CC215B93F2004CF374 /* VideoViewController.xib */,
+				6BF832D5215B9416004CF374 /* ImageViewController.swift */,
+				6BF832D4215B9416004CF374 /* ImageViewController.xib */,
+				6BF832D9215B942E004CF374 /* AudioViewController.swift */,
+				6BF832DA215B942E004CF374 /* AudioViewController.xib */,
+				6BF832D8215B942E004CF374 /* DocumentViewController.swift */,
+				6BF832DB215B942F004CF374 /* DocumentViewController.xib */,
+			);
+			path = "Custom View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

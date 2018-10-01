@@ -9,7 +9,8 @@
 import Cocoa
 
 /**
-
+Window for the viewing of media content.
+Has a custom view that changes view controllers depending upon file type.
 */
 class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
 
