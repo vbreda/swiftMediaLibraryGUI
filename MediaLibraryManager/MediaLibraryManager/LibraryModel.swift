@@ -39,7 +39,7 @@ public class LibraryModel {
 	public var bookmarksDelegate: ModelBookmarksDelegate? = nil;
 	public var libraryDelegate: ModelLibraryDelegate? = nil;
 	public var viewerDelegate: ModelLibraryDelegate? = nil
-	
+
 	// Returns the number of current bookmarks
 	var numBookmarks : Int {
 		get {
@@ -229,23 +229,23 @@ public class LibraryModel {
 	e.g. All media and the 4 specific types.
 	*/
 	func makeInitialBookmarks() {
-		let b1 = "All"
+		let b1 = "1. All"
 		let b1Files = callListCommand(term: "")
 		addBookmarks(name: b1, files: b1Files)
 		
-		let b2 = "Images"
+		let b2 = "2. Images"
 		let b2Files = callListCommand(term: "image")
 		addBookmarks(name: b2, files: b2Files)
 		
-		let b3 = "Videos"
+		let b3 = "3. Videos"
 		let b3Files = callListCommand(term: "video")
 		addBookmarks(name: b3, files: b3Files)
 		
-		let b4 = "Documents"
+		let b4 = "5. Documents"
 		let b4Files = callListCommand(term: "document")
 		addBookmarks(name: b4, files: b4Files)
 		
-		let b5 = "Audio"
+		let b5 = "4. Audio"
 		let b5Files = callListCommand(term: "audio")
 		addBookmarks(name: b5, files: b5Files)
 		

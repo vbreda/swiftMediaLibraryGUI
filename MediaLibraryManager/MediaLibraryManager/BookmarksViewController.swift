@@ -107,7 +107,7 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	- parameter bookmark:  the name of the bookmark to check.
 	*/
 	func checkBookmarkIsEditable(bookmark: String) -> Bool {
-		if bookmark == "All" ||  bookmark == "Images" ||  bookmark == "Audio" ||  bookmark == "Documents" ||  bookmark == "Videos" {
+		if bookmark == "1. All" ||  bookmark ==  "2. Images" ||  bookmark == "4. Audio" ||  bookmark == "5. Documents" ||  bookmark == "3. Videos" {
 			return false
 		} else {
 			return true
@@ -121,6 +121,9 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	func tableDataDidChange() {
 		tableView.reloadData()
 		updateStatus()
+		if LibraryMainWindow.model.numBookmarks == 5 {
+			tableView.reloadData()
+		}
 	}
 	
 	/*
