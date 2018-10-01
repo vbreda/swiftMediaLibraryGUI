@@ -307,7 +307,9 @@ class ListCommand : MMCommand {
 			
 			// Check that results were found, else throw.
 			guard listresults.count > 0 else {
-				throw MMCliError.dataDoesntExist
+				self.results = MMResultSet(listresults)
+				return
+				//throw MMCliError.dataDoesntExist
 			}
 			
 			self.results = MMResultSet(listresults)

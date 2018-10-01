@@ -264,8 +264,11 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
         let commandInput = "list \(searchTerm)"
         LibraryMainWindow.model.runCommand(input: commandInput)
 		do {
-			changeFilesInTable(newFiles: try LibraryMainWindow.model.last.getAll())
-		} catch { }
+			let results = try LibraryMainWindow.model.last.getAll()
+			changeFilesInTable(newFiles: results)
+		} catch {
+			print("catched in search")
+		}
 		
 		tableDataDidChange()
     }
@@ -344,7 +347,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		let numItemsSelected = tableView.selectedRowIndexes.count
 
 		if filesInTable.count == 0 {
-			searchButton.isEnabled = false
+//			searchButton.isEnabled = false
 			exportFilesButton.isEnabled = false
 		} else {
 			searchButton.isEnabled = true
