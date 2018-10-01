@@ -79,9 +79,9 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Fmu-g1-AJR">
-                                                        <rect key="frame" x="0.0" y="-4" width="193" height="25"/>
+                                                        <rect key="frame" x="0.0" y="-1" width="193" height="19"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Dxv-QX-l2S">
-                                                            <font key="font" size="15" name="OpenSans-Light"/>
+                                                            <font key="font" metaFont="system" size="15"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
