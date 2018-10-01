@@ -44,6 +44,7 @@
 		2B22044721507FCA00FC9A98 /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B22044421507FCA00FC9A98 /* protocols.swift */; };
 		2B88506F21571451007C39E6 /* jsonData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B88506E21571451007C39E6 /* jsonData.json */; };
 		2B88507221571D40007C39E6 /* LibraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B88507121571D40007C39E6 /* LibraryModel.swift */; };
+		2BD4BA0D2162C97100D3C090 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2BD4BA0C2162C97100D3C090 /* Credits.rtf */; };
 		2BFB197621533AB30022D55D /* LibraryMainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB197421533AB30022D55D /* LibraryMainWindow.swift */; };
 		2BFB197721533AB30022D55D /* LibraryMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BFB197521533AB30022D55D /* LibraryMainWindow.xib */; };
 		2BFB197E21533E0D0022D55D /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB197C21533E0D0022D55D /* BookmarksViewController.swift */; };
@@ -104,6 +105,7 @@
 		2B22044421507FCA00FC9A98 /* protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocols.swift; sourceTree = "<group>"; };
 		2B88506E21571451007C39E6 /* jsonData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = jsonData.json; sourceTree = "<group>"; };
 		2B88507121571D40007C39E6 /* LibraryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryModel.swift; sourceTree = "<group>"; };
+		2BD4BA0C2162C97100D3C090 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Credits.rtf; path = MediaLibraryManager/Credits.rtf; sourceTree = "<group>"; };
 		2BFB197421533AB30022D55D /* LibraryMainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryMainWindow.swift; sourceTree = "<group>"; };
 		2BFB197521533AB30022D55D /* LibraryMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryMainWindow.xib; sourceTree = "<group>"; };
 		2BFB197C21533E0D0022D55D /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 		2B2203DE21507F1500FC9A98 = {
 			isa = PBXGroup;
 			children = (
+				2BD4BA0C2162C97100D3C090 /* Credits.rtf */,
 				2B2203E921507F1600FC9A98 /* MediaLibraryManager */,
 				2B2203FA21507F1800FC9A98 /* MediaLibraryManagerTests */,
 				2B22040521507F1800FC9A98 /* MediaLibraryManagerUITests */,
@@ -297,7 +300,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "Nikolah Pearce";
+				ORGANIZATIONNAME = "Nikolah Pearce & Vivian Breda";
 				TargetAttributes = {
 					2B2203E621507F1600FC9A98 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -349,6 +352,7 @@
 				2B2203ED21507F1800FC9A98 /* Assets.xcassets in Resources */,
 				2BFB197721533AB30022D55D /* LibraryMainWindow.xib in Resources */,
 				2B2203F021507F1800FC9A98 /* MainMenu.xib in Resources */,
+				2BD4BA0D2162C97100D3C090 /* Credits.rtf in Resources */,
 				6BF832DF215B942F004CF374 /* DocumentViewController.xib in Resources */,
 				6BF832DE215B942F004CF374 /* AudioViewController.xib in Resources */,
 				6BF832D3215B9401004CF374 /* MediaViewerWindowController.xib in Resources */,

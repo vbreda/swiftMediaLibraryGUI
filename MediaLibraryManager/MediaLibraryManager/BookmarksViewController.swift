@@ -3,7 +3,7 @@
 //  MediaLibraryManager
 //
 //  Created by Nikolah Pearce on 20/09/18.
-//  Copyright © 2018 Nikolah Pearce. All rights reserved.
+//  Copyright © 2018 Nikolah Pearce and Vivian Breda. All rights reserved.
 //
 
 import Cocoa
