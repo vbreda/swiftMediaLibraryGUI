@@ -629,8 +629,8 @@ class TestCommand : MMCommand {
     
     func execute() throws {
         
-        let tester: MediaLibraryTests = MediaLibraryTests()
-        tester.runAllTests()
-        
+//        let tester: MediaLibraryTests = MediaLibraryTests()
+//        tester.runAllTests()
+		
     }
 }

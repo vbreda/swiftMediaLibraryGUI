@@ -27,10 +27,12 @@ class FileValidator {
 	private var type: String = ""
 	private var filename: String = ""
 	private var path: String = ""
+	private var notes: String = ""
+	
 	private var creator: String?
 	private var res: String?
 	private var runtime: String?
-	
+
 	private var mdata: [Metadata] = []
 	private var keys: [String] = []
 	private var validatedFile: MMFile? = nil
@@ -51,7 +53,7 @@ class FileValidator {
 		type = media.type
 		filename = getFilename(fullpath: media.fullpath)
 		path = getPath(fullpath: media.fullpath)
-		
+		notes = media.notes
 		
 		// Loop through to fill the required values.
 		for (key, value) in media.metadata {
@@ -143,16 +145,16 @@ class FileValidator {
 	func createFile() throws -> MMFile? {
 		switch(type) {
 		case FileValidator.types[0] :
-			validatedFile = Image(metadata: mdata, filename: filename, path: path, creator: creator!, resolution: res!)
+			validatedFile = Image(metadata: mdata, filename: filename, path: path, creator: creator!, resolution: res!, notes: notes)
 			break
 		case FileValidator.types[1]:
-			validatedFile = Document(metadata: mdata, filename: filename, path: path, creator: creator!)
+			validatedFile = Document(metadata: mdata, filename: filename, path: path, creator: creator!, notes: notes)
 			break
 		case FileValidator.types[2]:
-			validatedFile = Video(metadata: mdata, filename: filename, path: path, creator: creator!, resolution: res!, runtime: runtime!)
+			validatedFile = Video(metadata: mdata, filename: filename, path: path, creator: creator!, resolution: res!, runtime: runtime!, notes: notes)
 			break
 		case FileValidator.types[3]:
-			validatedFile = Audio(metadata: mdata, filename: filename, path: path, creator: creator!, runtime: runtime!)
+			validatedFile = Audio(metadata: mdata, filename: filename, path: path, creator: creator!, runtime: runtime!, notes: notes)
 			break
 		default:
 			throw MMCliError.invalidType

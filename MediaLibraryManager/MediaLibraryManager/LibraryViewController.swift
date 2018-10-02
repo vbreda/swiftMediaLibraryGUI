@@ -287,19 +287,16 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		switch checkButton.state {
 		case .on:
 			// Search the entire library
-			print("on")
 			let commandInput = "list \(searchTerm)"
 			LibraryMainWindow.model.runCommand(input: commandInput)
 			do {
 				let results = try LibraryMainWindow.model.last.getAll()
 				changeFilesInTable(newFiles: results)
 			} catch {
-				print("catched in search LIST")
 			}
 			
 		case .off:
 			// Only search the currrent bookmark
-			print("off")
 			let commandInput = "search-table \(searchTerm)"
 			LibraryMainWindow.model.loadFilesFromTable(files: filesInTable)
 			LibraryMainWindow.model.runCommand(input: commandInput)
@@ -307,10 +304,9 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 				let results = try LibraryMainWindow.model.last.getAll()
 				changeFilesInTable(newFiles: results)
 			} catch {
-				print("catched in search SEARCH TABLE")
 			}
 		case .mixed:
-			print("mixed")
+			print("")
 		default: break
 		}
 

@@ -74,10 +74,28 @@ class File: MMFile {
         self._fPath = path
         self._fCreator = creator
 		self._fNotes = ""
-		
-		// Add some helpful details to the metadata
 		addAdditionalMetadata()
     }
+	
+	/**
+	Designated initialiser
+	
+	The properties of the file.
+	
+	- parameter metadata: all the metadata of a file.
+	- parameter filename: the name of the file.
+	- parameter path: the File's path.
+	- parameter creator: the File's creator.
+	- parameter notes: the notes to load file with.
+	*/
+	init(metadata: [MMMetadata], filename: String, path: String, creator: String, notes: String) {
+		self._fMetadata = metadata
+		self._fFilename = filename
+		self._fPath = path
+		self._fCreator = creator
+		self._fNotes = notes
+		addAdditionalMetadata()
+	}
 	
 	/**
 	Adds some additional metadata to the file.

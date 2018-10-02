@@ -27,7 +27,9 @@ class FileExporter: MMFileExport {
             for m in f.metadata {
                 mdata.updateValue(m.value, forKey: m.keyword)
             }
-            let filetoAdd = Media(fullpath: "\(f.path)/\(f.filename)", type: f.type, metadata: mdata)
+			//let filetoAdd = Media(fullpath: "\(f.path)/\(f.filename)", type: f.type, metadata: mdata)
+			let filetoAdd = Media(fullpath: "\(f.path)/\(f.filename)", type: f.type, notes: f.notes, metadata: mdata)
+
             expFiles.append(filetoAdd)
         }
         

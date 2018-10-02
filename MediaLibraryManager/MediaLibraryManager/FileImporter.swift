@@ -14,8 +14,14 @@ import Foundation
 struct Media : Codable {
 	let fullpath: String
 	let type: String
+	let notes: String
 	let metadata: [String: String]
 }
+//struct Media : Codable {
+//	let fullpath: String
+//	let type: String
+//	let metadata: [String: String]
+//}
 
 /**
   Reads media in from JSON files.

@@ -37,10 +37,25 @@ class Image : File {
      - parameter creator: The creator of the Image file.
      - parameter resolution: The resolution of the Image file.
      */
-    init(metadata: [MMMetadata], filename: String, path: String, creator: String, resolution: String) {
+	init(metadata: [MMMetadata], filename: String, path: String, creator: String, resolution: String) {
         self.originalResolution = resolution
         super.init(metadata: metadata, filename: filename, path: path, creator: creator)
     }
+	
+	/**
+	Designated initialiser
+	
+	- parameter metadata: All the metadata associated with the Image file.
+	- parameter filename: The name of the Image file.
+	- parameter path: The path to the Image file.
+	- parameter creator: The creator of the Image file.
+	- parameter resolution: The resolution of the Image file.
+	- parameter notes: the notes about the file.
+	*/
+	init(metadata: [MMMetadata], filename: String, path: String, creator: String, resolution: String, notes: String) {
+		self.originalResolution = resolution
+		super.init(metadata: metadata, filename: filename, path: path, creator: creator, notes: notes)
+	}
     
 }
 
@@ -93,6 +108,23 @@ class Video : File {
         self.originalRuntime = runtime
         super.init(metadata: metadata, filename: filename, path: path, creator: creator)
     }
+	
+	/**
+	Designated initialiser
+	
+	- parameter metadata: All the metadata associated with the Video file.
+	- parameter filename: The name of the Video file.
+	- parameter path: The path to the Video file.
+	- parameter creator: The creator of the Video file.
+	- parameter resolution: The resolution of the Video file.
+	- parameter runtime: The runtime of the Video file.
+	- parameter notes: the notes about the file.
+	*/
+	init(metadata: [MMMetadata], filename: String, path: String, creator: String, resolution: String, runtime: String, notes: String) {
+		self.originalResolution = resolution
+		self.originalRuntime = runtime
+		super.init(metadata: metadata, filename: filename, path: path, creator: creator, notes: notes)
+	}
 }
 
 /**
@@ -128,6 +160,21 @@ class Audio : File {
         self.originalRuntime = runtime
         super.init(metadata: metadata, filename: filename, path: path, creator: creator)
     }
+	
+	/**
+	Designated initialiser
+	
+	- parameter metadata: All the metadata associated with the Audio file.
+	- parameter filename: The name of the Audio file.
+	- parameter path: The path to the Audio file.
+	- parameter creator: The creator of the Audio file.
+	- parameter runtime: The runtime of the Audio file.
+	- parameter notes: the notes about the file.
+	*/
+	init(metadata: [MMMetadata], filename: String, path: String, creator: String, runtime: String, notes: String) {
+		self.originalRuntime = runtime
+		super.init(metadata: metadata, filename: filename, path: path, creator: creator, notes: notes)
+	}
     
 }
 
