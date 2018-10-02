@@ -40,6 +40,21 @@ class Library : MMCollection {
         
     }
 	
+	/**
+	Helper method for creating a new temporary library off a set of files.
+	- parameter newFiles: the files to load into the new library
+	*/
+	func loadNewFiles(newFiles: [MMFile]) {
+		for f in newFiles {
+			add(file: f)
+		}
+	}
+	
+	/**
+	Method for adding notes to a particular file.
+	- parameter notes: the notes to add.
+	- parameter file: the f
+	*/
 	func addNotesToFile(notes: String, file: MMFile) {
 		var i: Int = 0
 		for f in files {

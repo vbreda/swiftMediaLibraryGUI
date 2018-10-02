@@ -255,21 +255,50 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		}
 	}
 	
+	@IBOutlet weak var checkButton: NSButtonCell!
+	
 	/**
 	Actions that occurs when user clicks the search button
 	*/
     @IBAction func searchButtonAction(_ sender: Any) {
         
         let searchTerm : String = searchTextField.stringValue
-        let commandInput = "list \(searchTerm)"
-        LibraryMainWindow.model.runCommand(input: commandInput)
-		do {
-			let results = try LibraryMainWindow.model.last.getAll()
-			changeFilesInTable(newFiles: results)
-		} catch {
-			print("catched in search")
-		}
 		
+		// Update the files in table in case two searches are done in a row
+		let bookmark = LibraryMainWindow.bookmarksVC.getCurrentBookmark()
+		let allFiles = LibraryMainWindow.model.getBookmarkValues(key: bookmark)
+		changeFilesInTable(newFiles: allFiles)
+		
+		switch checkButton.state {
+		case .on:
+			// Search the entire library
+			print("on")
+			let commandInput = "list \(searchTerm)"
+			LibraryMainWindow.model.runCommand(input: commandInput)
+			do {
+				let results = try LibraryMainWindow.model.last.getAll()
+				changeFilesInTable(newFiles: results)
+			} catch {
+				print("catched in search LIST")
+			}
+			
+		case .off:
+			// Only search the currrent bookmark
+			print("off")
+			let commandInput = "search-table \(searchTerm)"
+			LibraryMainWindow.model.loadFilesFromTable(files: filesInTable)
+			LibraryMainWindow.model.runCommand(input: commandInput)
+			do {
+				let results = try LibraryMainWindow.model.last.getAll()
+				changeFilesInTable(newFiles: results)
+			} catch {
+				print("catched in search SEARCH TABLE")
+			}
+		case .mixed:
+			print("mixed")
+		default: break
+		}
+
 		tableDataDidChange()
     }
 	

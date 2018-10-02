@@ -35,6 +35,7 @@ public class LibraryModel {
 	var library : Library = Library()
 	var last = MMResultSet()
 	var bookmarks : [String: [MMFile]] = [:]
+	var filesFromTable : [MMFile] = []
 	
 	public var bookmarksDelegate: ModelBookmarksDelegate? = nil;
 	public var libraryDelegate: ModelLibraryDelegate? = nil;
@@ -94,6 +95,11 @@ public class LibraryModel {
 			case "list":
 				command = ListCommand(keyword: parts, library: library)
 				//alertLibraryDelegate()
+				break
+			case "search-table":
+				let newLibrary = Library()
+				newLibrary.loadNewFiles(newFiles: filesFromTable)
+				command = ListCommand(keyword: parts, library: newLibrary)
 				break
 			case "add":
 				command = AddCommand(data: parts, library: library, lastsearch: try last.getAll())
@@ -161,6 +167,15 @@ public class LibraryModel {
 		} catch {
 			print("Oops - a new error. Shouldn't ever be called.")
 		}
+	}
+	
+	/**
+	Takes files and make a reference in this model.
+	Assists with searching only particular bookmark
+	- parameter files: the new files to reference.
+	*/
+	func loadFilesFromTable(files: [MMFile]) {
+		self.filesFromTable = files
 	}
 	
 	/**

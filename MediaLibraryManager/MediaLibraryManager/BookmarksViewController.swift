@@ -114,6 +114,14 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 		}
 	}
 
+	/**
+	Returns the name of the currently selected bookmark.
+	- returns: String : the bookmark currently selected.
+	*/
+	func getCurrentBookmark() -> String {
+		return LibraryMainWindow.model.getBookmarkNames()[tableView.selectedRow]
+	}
+	
 	/*
 	Delegate method.
 	Called whenevere the Model has a change in its bookmarks.

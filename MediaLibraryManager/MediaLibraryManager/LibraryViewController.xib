@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="LibraryViewController" customModule="MediaLibraryManager" customModuleProvider="target">
             <connections>
                 <outlet property="addBookmarkButton" destination="ycT-Z0-gEe" id="CHG-q2-aKB"/>
+                <outlet property="checkButton" destination="Bw3-Xa-dyA" id="pj0-2V-bO5"/>
                 <outlet property="exportFilesButton" destination="Fkj-Hb-gU0" id="Oj0-kf-aa5"/>
                 <outlet property="importFilesButton" destination="zwg-e6-kMc" id="QEP-3p-5NT"/>
                 <outlet property="openViewerButton" destination="0V1-lD-W4W" id="wRg-St-3fc"/>
@@ -277,19 +278,16 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H92-Fv-ADX">
-                    <rect key="frame" x="459" y="578" width="157" height="31"/>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sd9-TU-gfe">
+                    <rect key="frame" x="386" y="587" width="124" height="18"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="2Br-xx-sd1"/>
-                        <constraint firstAttribute="width" constant="145" id="ad6-aH-BVx"/>
+                        <constraint firstAttribute="height" constant="14" id="ONX-4I-Xaz"/>
+                        <constraint firstAttribute="width" constant="120" id="oD6-cb-guH"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Search" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mQx-mv-W9A">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                    <buttonCell key="cell" type="check" title="Search Entire Library" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Bw3-Xa-dyA">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system" size="10"/>
                     </buttonCell>
-                    <connections>
-                        <action selector="searchButtonAction:" target="-2" id="6bn-Ti-PMX"/>
-                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0V1-lD-W4W">
                     <rect key="frame" x="14" y="579" width="157" height="31"/>
@@ -333,25 +331,42 @@
                         <action selector="exportFIlesButtonAction:" target="-2" id="osL-sB-FDa"/>
                     </connections>
                 </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H92-Fv-ADX">
+                    <rect key="frame" x="510" y="579" width="108" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="96" id="8Q2-fZ-AZF"/>
+                        <constraint firstAttribute="height" constant="20" id="YE4-iZ-lhd"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Search" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mQx-mv-W9A">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="searchButtonAction:" target="-2" id="6bn-Ti-PMX"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
+                <constraint firstItem="H92-Fv-ADX" firstAttribute="leading" secondItem="sd9-TU-gfe" secondAttribute="trailing" constant="8" id="080-5B-hzg"/>
                 <constraint firstAttribute="trailing" secondItem="Nu6-5E-9J7" secondAttribute="trailing" constant="20" id="1Je-Zc-OzE"/>
+                <constraint firstAttribute="trailing" secondItem="H92-Fv-ADX" secondAttribute="trailing" constant="18" id="1iE-Jr-RNk"/>
                 <constraint firstItem="Fkj-Hb-gU0" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="3DV-SB-jMt"/>
+                <constraint firstItem="H92-Fv-ADX" firstAttribute="top" secondItem="Nu6-5E-9J7" secondAttribute="bottom" constant="6" id="4To-AD-YUA"/>
                 <constraint firstAttribute="bottom" secondItem="psE-rb-llv" secondAttribute="bottom" constant="14" id="6vn-fK-ddZ"/>
                 <constraint firstItem="0V1-lD-W4W" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="7c4-0e-ey8"/>
+                <constraint firstItem="sd9-TU-gfe" firstAttribute="top" secondItem="Nu6-5E-9J7" secondAttribute="bottom" constant="9" id="9SS-sF-NE5"/>
+                <constraint firstItem="RiC-UL-a3v" firstAttribute="top" secondItem="sd9-TU-gfe" secondAttribute="bottom" constant="16" id="Ewn-0w-HeU"/>
                 <constraint firstAttribute="trailing" secondItem="RiC-UL-a3v" secondAttribute="trailing" constant="20" id="J1G-6G-c2Y"/>
                 <constraint firstItem="ycT-Z0-gEe" firstAttribute="top" secondItem="Fkj-Hb-gU0" secondAttribute="bottom" constant="8" id="LVu-Qr-u44"/>
+                <constraint firstItem="RiC-UL-a3v" firstAttribute="top" secondItem="H92-Fv-ADX" secondAttribute="bottom" constant="13" id="LXO-6O-cpK"/>
                 <constraint firstItem="zwg-e6-kMc" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="O9r-Z1-knz"/>
                 <constraint firstItem="Fkj-Hb-gU0" firstAttribute="leading" secondItem="zwg-e6-kMc" secondAttribute="trailing" constant="6" id="Q8c-qC-BPh"/>
                 <constraint firstItem="0V1-lD-W4W" firstAttribute="top" secondItem="zwg-e6-kMc" secondAttribute="bottom" constant="8" id="SZt-9h-bee"/>
-                <constraint firstItem="RiC-UL-a3v" firstAttribute="top" secondItem="H92-Fv-ADX" secondAttribute="bottom" constant="12" id="TpN-zN-bWx"/>
-                <constraint firstItem="H92-Fv-ADX" firstAttribute="top" secondItem="Nu6-5E-9J7" secondAttribute="bottom" constant="7" id="Ysr-hk-Nqo"/>
                 <constraint firstItem="RiC-UL-a3v" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="Zoc-SB-Lhi"/>
                 <constraint firstItem="Nu6-5E-9J7" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="c50-6U-E5V"/>
                 <constraint firstItem="ycT-Z0-gEe" firstAttribute="top" secondItem="Fkj-Hb-gU0" secondAttribute="bottom" constant="8" id="dfW-Gv-4gw"/>
                 <constraint firstItem="psE-rb-llv" firstAttribute="top" secondItem="RiC-UL-a3v" secondAttribute="bottom" constant="8" id="fpL-QU-rr7"/>
                 <constraint firstItem="ycT-Z0-gEe" firstAttribute="leading" secondItem="0V1-lD-W4W" secondAttribute="trailing" constant="6" id="iPK-NV-sTv"/>
-                <constraint firstAttribute="trailing" secondItem="H92-Fv-ADX" secondAttribute="trailing" constant="20" id="izg-sK-ABX"/>
                 <constraint firstItem="zwg-e6-kMc" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="k0G-39-oFe"/>
                 <constraint firstItem="Fkj-Hb-gU0" firstAttribute="leading" secondItem="zwg-e6-kMc" secondAttribute="trailing" constant="6" id="mb3-3R-4NF"/>
                 <constraint firstItem="psE-rb-llv" firstAttribute="centerX" secondItem="RiC-UL-a3v" secondAttribute="centerX" id="pe7-Ue-FfS"/>
