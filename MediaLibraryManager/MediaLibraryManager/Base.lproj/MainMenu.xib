@@ -25,13 +25,6 @@
                                     <action selector="orderFrontStandardAboutPanel:" target="-1" id="6Bl-aq-Kyq"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="ckT-s9-51b"/>
-                            <menuItem title="Preferences…" keyEquivalent="," id="yiU-Aa-ixK"/>
-                            <menuItem isSeparatorItem="YES" id="UTR-np-k7s"/>
-                            <menuItem title="Services" id="7st-Yf-2Of">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Services" systemMenu="services" id="s28-Ez-ZZA"/>
-                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="gEt-og-Tut"/>
                             <menuItem title="Hide Application" keyEquivalent="h" id="LET-gL-FJX">
                                 <connections>
@@ -102,50 +95,17 @@
                                     <action selector="redo:" target="-1" id="oIA-Rs-6OD"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="WRV-NI-Exz"/>
-                            <menuItem title="Edit Notes" id="Jr2-80-Rqd">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Save Notes" id="VBN-hR-QkJ">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Add Metadata" id="9aK-Fc-t28">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Remove Metadata" id="dCO-LP-wED">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="xSB-Ee-AaM"/>
-                            <menuItem title="Cut" keyEquivalent="x" id="uRl-iY-unG">
-                                <connections>
-                                    <action selector="cut:" target="-1" id="YJe-68-I9s"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Copy" keyEquivalent="c" id="x3v-GG-iWU">
-                                <connections>
-                                    <action selector="copy:" target="-1" id="G1f-GL-Joy"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Paste" keyEquivalent="v" id="gVA-U4-sdL">
-                                <connections>
-                                    <action selector="paste:" target="-1" id="UvS-8e-Qdg"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Delete" id="pa3-QI-u2k">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="delete:" target="-1" id="0Mk-Ml-PaM"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Select All" keyEquivalent="a" id="Ruw-6m-B2m">
                                 <connections>
                                     <action selector="selectAll:" target="-1" id="VNm-Mi-diN"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="uyl-h8-XO2"/>
-                            <menuItem title="Search..." tag="1" keyEquivalent="f" id="Xz5-n4-O0W">
+                            <menuItem title="Search..." tag="1" id="Xz5-n4-O0W">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="performFindPanelAction:" target="-1" id="cD7-Qs-BN4"/>
+                                    <action selector="searchButtonAction:" target="-1" id="ru3-ri-7wr"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -168,6 +128,9 @@
                                     <action selector="deleteButtonAction:" target="-1" id="7uT-pM-eYx"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Remove Files from Bookmark" id="g3Z-tV-nMT">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="hw2-qa-G91"/>
                             <menuItem title="Return to All Media" id="OBX-tW-rQu">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -175,9 +138,9 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Viewer" id="H8h-7b-M4v">
+                <menuItem title="Media Viewer" id="H8h-7b-M4v">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Viewer" id="HyV-fh-RgO">
+                    <menu key="submenu" title="Media Viewer" id="HyV-fh-RgO">
                         <items>
                             <menuItem title="Previous" id="byz-22-sLu">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -192,30 +155,39 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="L0L-PV-asP"/>
-                            <menuItem title="Zoom" id="ZFY-hb-Uoa">
+                            <menuItem title="Edit Notes" id="Jr2-80-Rqd">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Zoom" id="zRw-XQ-vFE">
-                                    <items>
-                                        <menuItem title="Zoom In" id="fv0-fr-Xj1">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="zoomInButtonAction:" target="-1" id="DQc-1U-XR1"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Zoom Out" id="EFO-9U-1RS">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="zoomOutButtonAction:" target="-1" id="re8-9E-kTU"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
+                                <connections>
+                                    <action selector="editNotesButtonAction:" target="-1" id="GpV-uX-j4o"/>
+                                </connections>
                             </menuItem>
-                            <menuItem title="Minimise Viewer" id="V3d-xt-tzu">
+                            <menuItem title="Save Notes" id="2fa-TU-4me">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="saveNotesButtonAction:" target="-1" id="axL-uo-ZIy"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Add Metadata" id="x8Z-wS-0Pi">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="addMetadataShortcut:" target="-1" id="rq1-h5-crI"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Remove Metadata" id="nVf-rB-qls">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem title="Close Viewer" id="PVz-eO-nWD">
+                            <menuItem isSeparatorItem="YES" id="whc-mL-vzI"/>
+                            <menuItem title="Zoom In" id="fv0-fr-Xj1">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="zoomInButtonAction:" target="-1" id="DQc-1U-XR1"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Zoom Out" id="EFO-9U-1RS">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="zoomOutButtonAction:" target="-1" id="re8-9E-kTU"/>
+                                </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="hB3-LF-h0Y"/>
                             <menuItem title="Enter Full Screen" keyEquivalent="f" id="4J7-dP-txa">

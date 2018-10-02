@@ -67,6 +67,18 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
 		setCorrectController()
     }
 	
+	@IBAction func addMetadataShortcut(_ sender: Any) {
+		var commandInput : String = ""
+		let selectedFile : Int = currentFileIndex
+		LibraryMainWindow.model.last = MMResultSet(allFiles)
+		
+		let detailToAdd = getString(title: "Add New Detail to \(fileToOpen.filename):", question: "Please enter a new key-value information. You cannot use a keyword that already exists", defaultValue: "Ex: color purple")
+		if (detailToAdd != nil) {
+			commandInput = "add \(selectedFile) \(detailToAdd!)"
+			LibraryMainWindow.model.runCommand(input: commandInput)
+		}
+	}
+	
     @IBAction func editDetailsAction(_ sender: Any) {
         var commandInput : String = ""
         let selectedFile : Int = currentFileIndex
@@ -75,14 +87,12 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
         LibraryMainWindow.model.last = MMResultSet(allFiles)
         
         if (editDetails.isSelected(forSegment: 0)) {
-            let detailToAdd = getString(title: "Add New Detail to \(fileToOpen.filename):", question: "Please enter a new key-value information. You cannot use a keyword that already exists", defaultValue: "Ex: color purple")
-            if (detailToAdd != nil) {
-                commandInput = "add \(selectedFile) \(detailToAdd!)"
-                LibraryMainWindow.model.runCommand(input: commandInput)
-            }
-        } else {
+			addMetadataShortcut(self)
+        } else if (editDetails.isSelected(forSegment: 1)) {
             let row = detailsView.selectedRow
-			
+			guard row >= 0 && row < fileToOpen.metadata.count else {
+				return
+			}
 			// Check that its allowed
 			let key = fileToOpen.metadata[row].keyword
 			do {
