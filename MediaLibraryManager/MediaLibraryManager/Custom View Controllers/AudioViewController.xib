@@ -7,6 +7,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AudioViewController" customModule="MediaLibraryManager" customModuleProvider="target">
             <connections>
+                <outlet property="testButton" destination="biY-fn-Lbl" id="f7E-1q-YBt"/>
+                <outlet property="testButtonAction" destination="biY-fn-Lbl" id="cGJ-uu-N0i"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -26,6 +28,17 @@
                             <action selector="play:" target="-2" id="cKa-9o-SYs"/>
                         </connections>
                     </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="biY-fn-Lbl">
+                    <rect key="frame" x="22" y="230" width="66" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Test" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0M6-zA-IZG">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="testButtonAction:" target="-2" id="ZrE-0N-3SF"/>
+                    </connections>
                 </button>
             </subviews>
         </customView>

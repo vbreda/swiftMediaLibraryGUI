@@ -83,9 +83,9 @@ class MMResultSet {
         guard self.results.count > 0 else{
             return
         }
-        for (i,file) in self.results.enumerated() {
-            //print("\t\(i): \(file)")
-        }
+//        for (i,file) in self.results.enumerated() {
+//            print("\t\(i): \(file)")
+//        }
     }
     
     func get(index: Int) throws -> MMFile{

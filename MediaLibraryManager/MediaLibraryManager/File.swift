@@ -119,7 +119,7 @@ class File: MMFile {
 
 		if !keys.contains(str2) {
 			var fullpath : String = path
-			fullpath += filename
+			fullpath += "/\(filename)"
 			let m2: MMMetadata = Metadata(keyword: str2, value: fullpath)
 			self._fMetadata.append(m2)
 		}

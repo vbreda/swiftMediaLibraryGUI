@@ -77,6 +77,7 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
 			commandInput = "add \(selectedFile) \(detailToAdd!)"
 			LibraryMainWindow.model.runCommand(input: commandInput)
 		}
+        fileViewingDidChange()
 	}
 	
     @IBAction func editDetailsAction(_ sender: Any) {
