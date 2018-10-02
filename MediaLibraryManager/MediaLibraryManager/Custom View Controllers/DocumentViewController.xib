@@ -52,13 +52,11 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="IPI-Ce-aQw"/>
                 </imageView>
-                <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="7dB-E0-1oh">
+                <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="7dB-E0-1oh">
                     <rect key="frame" x="246" y="149" width="32" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </progressIndicator>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ge9-9c-ClU">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ge9-9c-ClU">
                     <rect key="frame" x="114" y="114" width="297" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Unable to load preview. File must be .pdf or .txt. " id="ncY-fi-BHa">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -69,8 +67,13 @@
             <constraints>
                 <constraint firstItem="U5M-wa-fyX" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="1SH-Az-vXU"/>
                 <constraint firstItem="U5M-wa-fyX" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="3ST-zl-ltz"/>
+                <constraint firstItem="7dB-E0-1oh" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="W7A-Bi-yeb"/>
                 <constraint firstAttribute="trailing" secondItem="U5M-wa-fyX" secondAttribute="trailing" id="b8p-H5-WIG"/>
+                <constraint firstItem="Ge9-9c-ClU" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="fIC-tu-F06"/>
+                <constraint firstItem="7dB-E0-1oh" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="qZn-TD-FVq"/>
+                <constraint firstItem="7dB-E0-1oh" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="qj5-qW-i8s"/>
                 <constraint firstAttribute="bottom" secondItem="U5M-wa-fyX" secondAttribute="bottom" id="rRL-fc-jWN"/>
+                <constraint firstItem="Ge9-9c-ClU" firstAttribute="top" secondItem="7dB-E0-1oh" secondAttribute="bottom" constant="18" id="uvr-Aa-0rf"/>
             </constraints>
             <point key="canvasLocation" x="153" y="188.5"/>
         </customView>
