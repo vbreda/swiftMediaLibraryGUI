@@ -148,39 +148,30 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
 	}
 	
     /**
-	Based upon the file type, set the current View Controller
+	Based upon the file type, set the current View Controller.
+	The default creates an image controller, but this will never be called as all file types are validated.
 	*/
 	func setCorrectController() {
 		fileToOpen = allFiles[currentFileIndex]
+		self.customView.subviews.removeAll()
+		var myView : NSViewController
         switch (fileToOpen.type.capitalized) {
             case "Document" :
-                let documentView = DocumentViewController(file: fileToOpen)
-                documentView.view.setFrameOrigin(NSPoint(x:0, y:0))
-                documentView.view.setFrameSize(customView.frame.size)
-				self.customView.subviews.removeAll()
-                customView.addSubview(documentView.view)
-            case "Image" :
-                let imageView = ImageViewController(file: fileToOpen)
-                imageView.view.setFrameOrigin(NSPoint(x:0, y:0))
-                imageView.view.setFrameSize(customView.frame.size)
-				self.customView.subviews.removeAll()
-                customView.addSubview(imageView.view)
+                myView = DocumentViewController(file: fileToOpen)
+			case "Image" :
+                myView = ImageViewController(file: fileToOpen)
             case "Video" :
-                let videoView = VideoViewController(file: fileToOpen)
-                videoView.view.setFrameOrigin(NSPoint(x:0, y:0))
-                videoView.view.setFrameSize(customView.frame.size)
-				self.customView.subviews.removeAll()
-                customView.addSubview(videoView.view)
+                myView = VideoViewController(file: fileToOpen)
             case "Audio" :
-                let audioView = AudioViewController(file: fileToOpen)
-                audioView.view.setFrameOrigin(NSPoint(x:0, y:0))
-                audioView.view.setFrameSize(customView.frame.size)
-				self.customView.subviews.removeAll()
-                customView.addSubview(audioView.view)
+                myView = AudioViewController(file: fileToOpen)
             default:
+				myView = ImageViewController(file: fileToOpen)
                 print("")
-
         }
+		myView.view.setFrameOrigin(NSPoint(x:0, y:0))
+		myView.view.setFrameSize(customView.frame.size)
+		customView.addSubview(myView.view)
+
 		viewerWindow.title = "\(fileToOpen.filename)"
         fileViewingDidChange()
 	}
