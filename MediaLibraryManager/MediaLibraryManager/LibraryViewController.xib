@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="LibraryViewController" customModule="MediaLibraryManager" customModuleProvider="target">
             <connections>
                 <outlet property="addBookmarkButton" destination="ycT-Z0-gEe" id="CHG-q2-aKB"/>
+                <outlet property="checkButton" destination="sd9-TU-gfe" id="Qg6-3w-LPC"/>
                 <outlet property="exportFilesButton" destination="Fkj-Hb-gU0" id="Oj0-kf-aa5"/>
                 <outlet property="importFilesButton" destination="zwg-e6-kMc" id="QEP-3p-5NT"/>
                 <outlet property="openViewerButton" destination="0V1-lD-W4W" id="wRg-St-3fc"/>

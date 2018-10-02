@@ -270,7 +270,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		}
 	}
 	
-	@IBOutlet weak var checkButton: NSButtonCell!
+	@IBOutlet weak var checkButton: NSButton!
 	
 	/**
 	Actions that occurs when user clicks the search button
