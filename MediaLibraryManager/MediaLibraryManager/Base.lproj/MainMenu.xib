@@ -15,47 +15,49 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
-                <menuItem title="MediaLibraryManager" id="1Xt-HY-uBw">
+                <menuItem title="MediaLibraryManager" id="XoG-ab-PRg">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="MediaLibraryManager" systemMenu="apple" id="uQy-DD-JDr">
+                    <menu key="submenu" title="MediaLibraryManager" id="cat-gb-hHd">
                         <items>
-                            <menuItem title="About MediaLibraryManager" id="5kV-Vb-QxS">
+                            <menuItem title="About Application" id="s6g-QT-RPb">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
+                                    <action selector="orderFrontStandardAboutPanel:" target="-1" id="6Bl-aq-Kyq"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                            <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
-                            <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                            <menuItem title="Hide MediaLibraryManager" keyEquivalent="h" id="Olw-nP-bQN">
+                            <menuItem isSeparatorItem="YES" id="ckT-s9-51b"/>
+                            <menuItem title="Preferences…" keyEquivalent="," id="yiU-Aa-ixK"/>
+                            <menuItem isSeparatorItem="YES" id="UTR-np-k7s"/>
+                            <menuItem title="Services" id="7st-Yf-2Of">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Services" systemMenu="services" id="s28-Ez-ZZA"/>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="gEt-og-Tut"/>
+                            <menuItem title="Hide Application" keyEquivalent="h" id="LET-gL-FJX">
                                 <connections>
-                                    <action selector="hide:" target="-1" id="PnN-Uc-m68"/>
+                                    <action selector="hide:" target="-1" id="eRW-Ke-YLF"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
+                            <menuItem title="Hide Others" keyEquivalent="h" id="GeU-eQ-nPY">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
-                                    <action selector="hideOtherApplications:" target="-1" id="VT4-aY-XCT"/>
+                                    <action selector="hideOtherApplications:" target="-1" id="eR4-ld-ITC"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Show All" id="Kd2-mp-pUS">
+                            <menuItem title="Show All" id="mqa-jl-kke">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="unhideAllApplications:" target="-1" id="Dhg-Le-xox"/>
+                                    <action selector="unhideAllApplications:" target="-1" id="Fbh-NU-Zru"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                            <menuItem title="Quit MediaLibraryManager" keyEquivalent="q" id="4sb-4s-VLi">
+                            <menuItem isSeparatorItem="YES" id="88A-v1-deE"/>
+                            <menuItem title="Quit Application" keyEquivalent="q" id="FiM-Mi-cwD">
                                 <connections>
-                                    <action selector="terminate:" target="-1" id="Te7-pn-YzF"/>
+                                    <action selector="terminate:" target="-1" id="QXE-zG-7o1"/>
                                 </connections>
                             </menuItem>
                         </items>
                     </menu>
-                    <connections>
-                        <action selector="menuMediaLibraryManager:" target="-1" id="fsE-9r-ou5"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="File" id="dMs-cI-mzQ">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -63,36 +65,18 @@
                         <items>
                             <menuItem title="Import…" keyEquivalent="o" id="IAo-SY-fd9">
                                 <connections>
-                                    <action selector="openDocument:" target="-1" id="bVn-NM-KNZ"/>
+                                    <action selector="importFilesButtonAction:" target="-1" id="wb8-Wn-ymU"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Import Recent" id="tXI-mr-wws">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Import Recent" systemMenu="recentDocuments" id="oas-Oc-fiZ">
-                                    <items>
-                                        <menuItem title="Clear Menu" id="vNY-rz-j42">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="clearRecentDocuments:" target="-1" id="Daa-9d-B3U"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
+                            <menuItem title="Export..." keyEquivalent="s" id="pxx-59-PXV">
+                                <connections>
+                                    <action selector="exportFIlesButtonAction:" target="-1" id="dp0-RN-XL9"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
                                 <connections>
                                     <action selector="performClose:" target="-1" id="HmO-Ls-i7Q"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Export..." keyEquivalent="s" id="pxx-59-PXV">
-                                <connections>
-                                    <action selector="saveDocument:" target="-1" id="teZ-XB-qJY"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Export As..." keyEquivalent="S" id="Bw7-FT-i3A">
-                                <connections>
-                                    <action selector="saveDocumentAs:" target="-1" id="mDf-zr-I0C"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="aJh-i4-bef"/>
@@ -173,19 +157,21 @@
                         <items>
                             <menuItem title="Add Bookmark" id="OLK-dK-GzI">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="addBookmarkButtonAction:" target="-1" id="a0h-qj-BtG"/>
+                                </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="ZYP-EL-0rk"/>
-                            <menuItem title="Remove Files from Bookmark" id="bab-63-g7O">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
                             <menuItem title="Delete Bookmark" id="KeQ-JW-WQ3">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="deleteButtonAction:" target="-1" id="7uT-pM-eYx"/>
+                                </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="hw2-qa-G91"/>
                             <menuItem title="Return to All Media" id="OBX-tW-rQu">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="dpw-dZ-8Gj"/>
                         </items>
                     </menu>
                 </menuItem>
@@ -195,9 +181,15 @@
                         <items>
                             <menuItem title="Previous" id="byz-22-sLu">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="previousButtonAction:" target="-1" id="IUw-OQ-fly"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Next" id="GpA-vs-eiI">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="nextButtonAction:" target="-1" id="oaS-Yr-a6R"/>
+                                </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="L0L-PV-asP"/>
                             <menuItem title="Zoom" id="ZFY-hb-Uoa">
@@ -206,9 +198,15 @@
                                     <items>
                                         <menuItem title="Zoom In" id="fv0-fr-Xj1">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="zoomInButtonAction:" target="-1" id="DQc-1U-XR1"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="Zoom Out" id="EFO-9U-1RS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="zoomOutButtonAction:" target="-1" id="re8-9E-kTU"/>
+                                            </connections>
                                         </menuItem>
                                     </items>
                                 </menu>
@@ -235,6 +233,9 @@
                         <items>
                             <menuItem title="Open Viewer " id="dbo-cO-uwx">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openViewerButtonAction:" target="-1" id="Wr0-7X-3rp"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Minimize" keyEquivalent="m" id="OY7-WF-poV">
                                 <connections>
@@ -248,31 +249,10 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
-                            <menuItem title="Show Library" id="1BU-PO-AbI">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
                             <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="arrangeInFront:" target="-1" id="DRN-fu-gQh"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="Help" id="wpr-3q-Mcd">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
-                        <items>
-                            <menuItem title="MediaLibraryManager Help" keyEquivalent="?" id="FKE-Sm-Kum">
-                                <connections>
-                                    <action selector="showHelp:" target="-1" id="y7X-2Q-9no"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="About MediaLibraryManager" id="pr3-8v-Vzy">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="orderFrontStandardAboutPanel:" target="-1" id="d5e-zd-5qb"/>
                                 </connections>
                             </menuItem>
                         </items>
