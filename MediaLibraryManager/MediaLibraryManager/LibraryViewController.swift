@@ -41,6 +41,21 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	}
 	
 	/**
+	Helper function to reload the previous saved data upon opening the applicaiton.
+	- paramter filename: the name of the file the state is save in
+	*/
+	func loadAtStart(filename: String) {
+		var commandInput: String = ""
+		commandInput += "load "
+		commandInput += filename
+		
+		LibraryMainWindow.model.runCommand(input: commandInput)
+		LibraryMainWindow.model.makeInitialBookmarks()
+		changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
+		tableDataDidChange()
+	}
+	
+	/**
 	Prompts the user with an NSOpenPanel to choose a .json file.
 	Calles the import command and populates the table.
 	*/

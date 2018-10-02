@@ -84,7 +84,7 @@ class MMResultSet {
             return
         }
         for (i,file) in self.results.enumerated() {
-            print("\t\(i): \(file)")
+            //print("\t\(i): \(file)")
         }
     }
     

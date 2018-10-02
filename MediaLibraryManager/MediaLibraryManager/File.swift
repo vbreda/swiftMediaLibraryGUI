@@ -73,24 +73,47 @@ class File: MMFile {
         self._fFilename = filename
         self._fPath = path
         self._fCreator = creator
+		self._fNotes = ""
 		
-
-		let m: MMMetadata = Metadata(keyword: "filename", value: filename)
-		var fullpath : String = ""
-		fullpath += path
-		fullpath += filename
-		let m2: MMMetadata = Metadata(keyword: "fullpath", value: fullpath)
-		self._fMetadata.append(m)
-		self._fMetadata.append(m2)
-		
-		// Potential to add without the file extension.
-		let fileWithoutExtension: [String] = filename.split(separator: ".").map({String($0)})
-		let m3: MMMetadata = Metadata(keyword: "name", value: fileWithoutExtension[0])
-		self._fMetadata.append(m3)
-
-        fullpath = "\(path)\(filename)"
+		// Add some helpful details to the metadata
+		addAdditionalMetadata()
     }
-    
+	
+	/**
+	Adds some additional metadata to the file.
+	Allows more of the state to be written to disk when closed.
+	*/
+	func addAdditionalMetadata() {
+		
+		var keys : [String] = []
+		for md in self._fMetadata {
+			keys.append(md.keyword)
+		}
+		
+		let str1 = "filename"
+		let str2 = "fullpath"
+		let str4 = "name"
+		
+		if !keys.contains(str1) {
+			let m: MMMetadata = Metadata(keyword: str1, value: filename)
+			self._fMetadata.append(m)
+		}
+
+		if !keys.contains(str2) {
+			var fullpath : String = path
+			fullpath += filename
+			let m2: MMMetadata = Metadata(keyword: str2, value: fullpath)
+			self._fMetadata.append(m2)
+		}
+		
+		if !keys.contains(str4) {
+			let fileWithoutExtension: [String] = filename.split(separator: ".").map({String($0)})
+			let m4: MMMetadata = Metadata(keyword: str4, value: fileWithoutExtension[0])
+			self._fMetadata.append(m4)
+		}
+		
+		//fullpath = "\(path)\(filename)"
+	}
     // The collection of the file's metadata.
     var metadata: [MMMetadata] {
         get {
@@ -153,18 +176,5 @@ class File: MMFile {
     var description: String {
         return "\(filename)"
     }
-	
-	/**
-	Returns the notes associated with the file.
-	*/
-	func getNotes() -> String {
-		return notes
-	}
-	
-	/**
-	Sets the notes variable for this file
-	*/
-	func setNotes(notes: String) {
-		self.notes = notes
-	}
+
 }
