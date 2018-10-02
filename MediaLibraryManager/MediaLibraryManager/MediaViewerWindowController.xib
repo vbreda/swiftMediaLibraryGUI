@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -31,7 +32,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="879" height="591"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="879" height="591"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -166,6 +167,7 @@
                         <buttonCell key="cell" type="push" title="Previous" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eeY-pe-Zmm">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent"></string>
                         </buttonCell>
                         <connections>
                             <action selector="previousButtonAction:" target="-2" id="rh3-7W-kTI"/>
@@ -180,6 +182,7 @@
                         <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="N7x-pV-1U1">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent"></string>
                         </buttonCell>
                         <connections>
                             <action selector="nextButtonAction:" target="-2" id="cm9-AW-XnA"/>
@@ -263,6 +266,8 @@
                         <buttonCell key="cell" type="push" title="Save Notes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nqI-nb-ajf">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent">s</string>
+                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                         </buttonCell>
                         <connections>
                             <action selector="saveNotesButtonAction:" target="-2" id="wmX-1b-1qd"/>
@@ -293,14 +298,15 @@
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfl-zy-mgR">
                         <rect key="frame" x="508" y="52" width="344" height="206"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="RGS-sT-jQh">
-                            <rect key="frame" x="1" y="1" width="327" height="204"/>
+                            <rect key="frame" x="1" y="1" width="342" height="204"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="e39-Ae-lsp">
-                                    <rect key="frame" x="0.0" y="0.0" width="327" height="204"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="204"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <size key="minSize" width="327" height="204"/>
+                                    <size key="minSize" width="342" height="204"/>
                                     <size key="maxSize" width="344" height="10000000"/>
                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 </textView>
@@ -311,7 +317,7 @@
                             <constraint firstAttribute="width" constant="344" id="o11-B5-zvo"/>
                         </constraints>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="eLh-tI-efT">
-                            <rect key="frame" x="328" y="1" width="15" height="204"/>
+                            <rect key="frame" x="327" y="1" width="16" height="204"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
