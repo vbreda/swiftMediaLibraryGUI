@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Quartz
 
 /**
 The View Controller for our Document media.
@@ -19,7 +20,7 @@ class DocumentViewController: NSViewController {
 	
     @IBOutlet weak var documentView: NSScrollView!
     @IBOutlet var textView: NSTextView!
-    @IBOutlet weak var pdfView: NSImageView!
+    @IBOutlet weak var pdfView: PDFView!
     @IBOutlet weak var failIndicator: NSProgressIndicator!
     @IBOutlet weak var failMessage: NSTextField!
 	
@@ -57,7 +58,14 @@ class DocumentViewController: NSViewController {
 				textView.isEditable = false ;
 			} catch {}
         } else if (ext == "pdf") {
-            pdfView.image = NSImage(contentsOfFile: filepath)
+            //pdfView.image = NSImage(contentsOfFile: filepath)
+                let url = URL(fileURLWithPath: filepath)
+                if let pdfDocument = PDFDocument(url: url) {
+                    pdfView.displayMode = .singlePageContinuous
+                    pdfView.autoScales = true
+                    // pdfView.displayDirection = .horizontal
+                    pdfView.document = pdfDocument
+            }
         } else {
             failIndicator.isHidden = false
             failIndicator.startAnimation(self)
