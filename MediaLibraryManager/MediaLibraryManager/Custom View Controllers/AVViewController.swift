@@ -14,14 +14,14 @@ import AVKit;
 The View Controller for our Video media.
 Sets up and displays the media.
 */
-class VideoViewController: NSViewController {
+class AVViewController: NSViewController {
 
     var fileToOpen : MMFile = File(filename: "default")
     var fullpath : String = ""
     var playView = AVPlayer();
     
-    @IBOutlet weak var videoView: AVPlayerView!
-	
+    @IBOutlet weak var avView: AVPlayerView!
+    
 	/**
 	Initialises the View Controller with a specific file as the start point.
 	Sets the fullpath.
@@ -38,18 +38,18 @@ class VideoViewController: NSViewController {
 	*/
     override func viewDidLoad() {
         super.viewDidLoad()
-        showVideo()
+        showAV()
     }
 	
 	/**
 	Sets up the necessary components to display the video.
 	Leaves it at ready to play (when user chooses
 */
-    func showVideo() {
+    func showAV() {
         let filepath : String = NSString(string: fullpath).expandingTildeInPath
         let fileURL = NSURL(fileURLWithPath: filepath)
         print("Printing filepath: \(filepath)")
         playView = AVPlayer(url: fileURL as URL)
-        videoView.player = playView
+        avView.player = playView
     }
 }
