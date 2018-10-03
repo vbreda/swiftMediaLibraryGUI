@@ -86,18 +86,6 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
         default:
             print("> An open panel will never return anything other than OK or cancel")
         }
-//
-//        let filename : String = "~/346/media/jsonData.json"
-//        var commandInput: String = ""
-//
-//        commandInput += "load "
-//        commandInput += filename
-//
-//        LibraryMainWindow.model.runCommand(input: commandInput)
-//        LibraryMainWindow.model.makeInitialBookmarks()
-//        changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
-//        tableDataDidChange()
-//        LibraryMainWindow.model.runCommand(input: "list")
 	}
 	
 	/**

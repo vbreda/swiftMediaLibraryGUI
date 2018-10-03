@@ -78,6 +78,9 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	- paramater isOn: whether the button should be enabled or not.
 	*/
 	func toggleRemoveFilesButton(isOn: Bool) {
+		guard LibraryMainWindow.model.getBookmarkNames().count > 0 else {
+			return
+		}
 		let bookmark = LibraryMainWindow.model.getBookmarkNames()[tableView.selectedRow]
 		let canEdit : Bool = checkBookmarkIsEditable(bookmark: bookmark)
 		if !canEdit {
