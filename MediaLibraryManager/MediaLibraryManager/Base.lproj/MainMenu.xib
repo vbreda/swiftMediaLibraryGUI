@@ -176,19 +176,6 @@
                             <menuItem title="Remove Metadata" id="nVf-rB-qls">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="whc-mL-vzI"/>
-                            <menuItem title="Zoom In" id="fv0-fr-Xj1">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="zoomInButtonAction:" target="-1" id="DQc-1U-XR1"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Zoom Out" id="EFO-9U-1RS">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="zoomOutButtonAction:" target="-1" id="re8-9E-kTU"/>
-                                </connections>
-                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="hB3-LF-h0Y"/>
                             <menuItem title="Enter Full Screen" keyEquivalent="f" id="4J7-dP-txa">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>

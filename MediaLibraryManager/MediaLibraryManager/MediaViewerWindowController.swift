@@ -25,8 +25,7 @@ class MediaViewerWindowController: NSWindowController {
     
     @IBOutlet weak var previousButton: NSButton!
     @IBOutlet weak var nextButton: NSButton!
-    @IBOutlet weak var zoomInButton: NSButton!
-    @IBOutlet weak var zoomOutButton: NSButton!
+    
     
     @IBOutlet weak var statusLabel: NSTextField!
     
@@ -274,13 +273,6 @@ class MediaViewerWindowController: NSWindowController {
 			nextButton.isEnabled = false
 		} else {
 			nextButton.isEnabled = true
-		}
-		if allFiles[currentFileIndex].type == "audio" {
-			zoomInButton.isEnabled = false
-			zoomOutButton.isEnabled = false
-		} else {
-			zoomInButton.isEnabled = true
-			zoomOutButton.isEnabled = true
 		}
     }
     
