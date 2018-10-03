@@ -3,7 +3,7 @@
 //  MediaLibraryManager
 //
 //  Created by Nikolah Pearce on 23/09/18.
-//  Copyright © 2018 Nikolah Pearce  and Vivian Breda. All rights reserved.
+//  Copyright © 2018 Nikolah Pearce and Vivian Breda. All rights reserved.
 //
 
 import Cocoa
@@ -30,7 +30,6 @@ class MediaViewerWindowController: NSWindowController {
     
     @IBOutlet weak var statusLabel: NSTextField!
     
-    var audioViewController : AudioViewController = AudioViewController()
     var fileToOpen: MMFile = File(filename: "MLM - Media Viewer")
     var allFiles: [MMFile] = []
     var currentFileIndex : Int = -1
@@ -65,27 +64,6 @@ class MediaViewerWindowController: NSWindowController {
         detailsView.dataSource = self
 		notesTextView.isEditable = false
 		setCorrectController()
-    }
-	
-    /**
-    Action for the audio buttons within the audio view controller.
-    Uses the First responder to be called from this window.
-    Plays the audio.
-    */
-    @IBAction func playButtonWithinViewer(_ sender: NSButton) {
-        print("playing!!!")
-        //audioViewController.callAudioShow()
-        audioViewController.soundPlayer.play()
-    }
-    
-    /**
-     Action for the audio buttons within the audio view controller.
-     Uses the First responder to be called from this window.
-     Pauses the audio.
-     */
-    @IBAction func stopButtonWithinViewer(_ sender: NSButton) {
-        print("STOpping!!!")
-        audioViewController.soundPlayer.pause()
     }
     
     /**
@@ -215,12 +193,8 @@ class MediaViewerWindowController: NSWindowController {
                 myView = DocumentViewController(file: fileToOpen)
 			case "Image" :
                 myView = ImageViewController(file: fileToOpen)
-            case "Video" :
-                myView = VideoViewController(file: fileToOpen)
-            case "Audio" :
-                //myView = AudioViewController(file: fileToOpen)
-                audioViewController = AudioViewController(file: fileToOpen)
-                myView = audioViewController
+            case "Video", "Audio" :
+                myView = AVViewController(file: fileToOpen)
             default:
 				myView = ImageViewController(file: fileToOpen)
                 print("")

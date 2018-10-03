@@ -8,7 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="VideoViewController" customModule="MediaLibraryManager" customModuleProvider="target">
             <connections>
-                <outlet property="videoView" destination="US8-QA-YnU" id="W3N-0F-a9F"/>
+                <outlet property="avView" destination="US8-QA-YnU" id="Vkr-uG-ciQ"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
