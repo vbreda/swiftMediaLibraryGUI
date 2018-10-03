@@ -12,8 +12,8 @@ import Cocoa
 Window for the viewing of media content.
 Has a custom view that changes view controllers depending upon file type.
 */
-class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
-
+class MediaViewerWindowController: NSWindowController {
+    
     @IBOutlet weak var customView: NSView!
     @IBOutlet var viewerWindow: NSWindow!
     @IBOutlet weak var editDetails: NSSegmentedControl!
@@ -30,6 +30,7 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
     
     @IBOutlet weak var statusLabel: NSTextField!
     
+    var audioViewController : AudioViewController = AudioViewController()
     var fileToOpen: MMFile = File(filename: "MLM - Media Viewer")
     var allFiles: [MMFile] = []
     var currentFileIndex : Int = -1
@@ -62,11 +63,36 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
         super.windowDidLoad()
         detailsView.delegate = self
         detailsView.dataSource = self
-		LibraryMainWindow.model.viewerDelegate = self
 		notesTextView.isEditable = false
 		setCorrectController()
     }
 	
+    /**
+    Action for the audio buttons within the audio view controller.
+    Uses the First responder to be called from this window.
+    Plays the audio.
+    */
+    @IBAction func playButtonWithinViewer(_ sender: NSButton) {
+        print("playing!!!")
+        //audioViewController.callAudioShow()
+        audioViewController.soundPlayer.play()
+    }
+    
+    /**
+     Action for the audio buttons within the audio view controller.
+     Uses the First responder to be called from this window.
+     Pauses the audio.
+     */
+    @IBAction func stopButtonWithinViewer(_ sender: NSButton) {
+        print("STOpping!!!")
+        audioViewController.soundPlayer.pause()
+    }
+    
+    /**
+    Helper method to add a metadata keypari.
+    Allows the menu item to use the +- buttons.
+    Adds a new metadata keypair to the open file.
+    */
 	@IBAction func addMetadataShortcut(_ sender: Any) {
 		var commandInput : String = ""
 		let selectedFile : Int = currentFileIndex
@@ -80,6 +106,12 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
         fileViewingDidChange()
 	}
 	
+    /**
+    Handles adding and deleting metadata from a file.
+    Utilises + - buttons to control add / delete respectively.
+    Prompts the user with a text field when needed.
+    Also alerts the user with any errors caused by their actions e.g. entering invalid metadata or deleting a required metadata.
+     */
     @IBAction func editDetailsAction(_ sender: Any) {
         var commandInput : String = ""
         let selectedFile : Int = currentFileIndex
@@ -108,23 +140,31 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
 			}
         }
 		fileViewingDidChange()
-		
-        //TODO make it overwrite the file instead of just re-adding all the info
-        //commandInput = "save ~/346/media/jsonData"
-//        LibraryMainWindow.model.runCommand(input: commandInput)
-		
     }
     
+    /**
+     Button action for allowing the notes text field to be editable.
+     Changes the is editable attribute of the notes.
+    */
     @IBAction func editNotesButtonAction(_ sender: Any) {
 		notesTextView.isEditable = true
     }
     
+    /**
+     Button action for allowing the notes text to be saved to the file.
+     Also changes the is editable attribute of the notes to be false.
+     */
     @IBAction func saveNotesButtonAction(_ sender: Any) {
 		let text = notesTextView.string
 		LibraryMainWindow.model.library.addNotesToFile(notes: text, file: allFiles[currentFileIndex])
 		notesTextView.isEditable = false
     }
     
+    /**
+     Button action for moving to the previous media.
+     Changes the file index that is being viewed.
+     Reloads the custom view in case file type changed.
+     */
     @IBAction func previousButtonAction(_ sender: Any) {
 		guard currentFileIndex >= 1 else {
 			return
@@ -134,6 +174,11 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
 		fileViewingDidChange()
     }
     
+    /**
+     Button action for moving to the next media.
+     Changes the file index that is being viewed.
+     Reloads the custom view in case file type changed.
+     */
     @IBAction func nextButtonAction(_ sender: Any) {
 		guard currentFileIndex < allFiles.count else {
 			return
@@ -143,20 +188,19 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
 		fileViewingDidChange()
     }
     
+    /**
+     Zoom in button for zooming the media in.
+     */
     @IBAction func zoomInButtonAction(_ sender: Any) {
 		print("zoom in +")
     }
     
+    /**
+     Zoom out button for zooming the media out.
+     */
     @IBAction func zoomOutButtonAction(_ sender: Any) {
 		print("zoom out -")
     }
-	
-	/*
-	Delegate method called everytime notes added or other changes to real library files.
-	*/
-	func tableDataDidChange() {
-		
-	}
 	
     /**
 	Based upon the file type, set the current View Controller.
@@ -174,7 +218,9 @@ class MediaViewerWindowController: NSWindowController, ModelLibraryDelegate {
             case "Video" :
                 myView = VideoViewController(file: fileToOpen)
             case "Audio" :
-                myView = AudioViewController(file: fileToOpen)
+                //myView = AudioViewController(file: fileToOpen)
+                audioViewController = AudioViewController(file: fileToOpen)
+                myView = audioViewController
             default:
 				myView = ImageViewController(file: fileToOpen)
                 print("")

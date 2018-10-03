@@ -39,7 +39,6 @@ public class LibraryModel {
 	
 	public var bookmarksDelegate: ModelBookmarksDelegate? = nil;
 	public var libraryDelegate: ModelLibraryDelegate? = nil;
-	public var viewerDelegate: ModelLibraryDelegate? = nil
 
 	// Returns the number of current bookmarks
 	var numBookmarks : Int {
@@ -64,7 +63,6 @@ public class LibraryModel {
 	*/
 	func alertLibraryDelegate() {
 		libraryDelegate?.tableDataDidChange()
-		viewerDelegate?.tableDataDidChange()
 	}
 	
 	/**

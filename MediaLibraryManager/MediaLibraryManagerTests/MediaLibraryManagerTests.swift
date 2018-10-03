@@ -11,9 +11,13 @@ import XCTest
 
 class MediaLibraryManagerTests: XCTestCase {
     
+    //var mainWindow = LibraryMainWindow()
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        print("setting up")
+    
     }
     
     override func tearDown() {
@@ -22,8 +26,13 @@ class MediaLibraryManagerTests: XCTestCase {
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+//        let libraryFiles = LibraryMainWindow.model.library.all()
+//        assert(libraryFiles.count == 0, "There should be no files in library yet.")
+//        
+//        LibraryMainWindow.libraryVC.importFilesButton()
+//        let libraryFiles2 = LibraryMainWindow.model.library.all()
+//        assert(libraryFiles2.count == 14, "There should be no files in library yet.")
     }
     
     func testPerformanceExample() {

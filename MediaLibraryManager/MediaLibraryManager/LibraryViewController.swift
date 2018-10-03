@@ -61,43 +61,43 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	*/
     @IBAction func importFilesButtonAction(_ sender: Any) {
 		
-//        let openPanel : NSOpenPanel = NSOpenPanel()
-//		openPanel.allowedFileTypes = ["json", "JSON"]
-//        let userChoice = openPanel.runModal()
-//
-//        switch userChoice {
-//        case .OK :
-//            let panelResult = openPanel.url
-//            if let panelResult = panelResult {
-//
-//                let filename : String = panelResult.absoluteString
-//                var commandInput: String = ""
-//
-//                commandInput += "load "
-//                commandInput += filename
-//
-//                LibraryMainWindow.model.runCommand(input: commandInput)
-//				LibraryMainWindow.model.makeInitialBookmarks()
-//				changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
-//				tableDataDidChange()
-//            }
-//        case .cancel :
-//            print("> user cancelled importing files")
-//        default:
-//            print("> An open panel will never return anything other than OK or cancel")
-//        }
-//
-		let filename : String = "~/346/media/jsonData.json"
-		var commandInput: String = ""
+        let openPanel : NSOpenPanel = NSOpenPanel()
+        openPanel.allowedFileTypes = ["json", "JSON"]
+        let userChoice = openPanel.runModal()
 
-		commandInput += "load "
-		commandInput += filename
+        switch userChoice {
+        case .OK :
+            let panelResult = openPanel.url
+            if let panelResult = panelResult {
 
-		LibraryMainWindow.model.runCommand(input: commandInput)
-		LibraryMainWindow.model.makeInitialBookmarks()
-		changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
-		tableDataDidChange()
-        LibraryMainWindow.model.runCommand(input: "list")
+                let filename : String = panelResult.absoluteString
+                var commandInput: String = ""
+
+                commandInput += "load "
+                commandInput += filename
+
+                LibraryMainWindow.model.runCommand(input: commandInput)
+                LibraryMainWindow.model.makeInitialBookmarks()
+                changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
+                tableDataDidChange()
+            }
+        case .cancel :
+            print("> user cancelled importing files")
+        default:
+            print("> An open panel will never return anything other than OK or cancel")
+        }
+//
+//        let filename : String = "~/346/media/jsonData.json"
+//        var commandInput: String = ""
+//
+//        commandInput += "load "
+//        commandInput += filename
+//
+//        LibraryMainWindow.model.runCommand(input: commandInput)
+//        LibraryMainWindow.model.makeInitialBookmarks()
+//        changeFilesInTable(newFiles: LibraryMainWindow.model.library.all())
+//        tableDataDidChange()
+//        LibraryMainWindow.model.runCommand(input: "list")
 	}
 	
 	/**

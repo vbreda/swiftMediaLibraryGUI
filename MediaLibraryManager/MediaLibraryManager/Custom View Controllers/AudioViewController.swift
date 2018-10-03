@@ -36,17 +36,21 @@ class AudioViewController: NSViewController {
 	*/
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		do {
-			let filepath : String = NSString(string: fullpath).expandingTildeInPath
-			print("Filepath: \(filepath)")
-			let fileURL = NSURL(fileURLWithPath: filepath)
-			soundPlayer = try AVAudioPlayer(contentsOf: fileURL as URL)
-			print("Am I an audio?")
-			soundPlayer.prepareToPlay()
-			
-		} catch {
-		}
+        callAudioShow()
 	}
+    
+    func callAudioShow() {
+        do {
+            let filepath : String = NSString(string: fullpath).expandingTildeInPath
+            print("Filepath: \(filepath)")
+            let fileURL = NSURL(fileURLWithPath: filepath)
+            soundPlayer = try AVAudioPlayer(contentsOf: fileURL as URL)
+            print("Am I an audio?")
+            soundPlayer.prepareToPlay()
+            
+        } catch {
+        }
+    }
 	
     @IBAction func play(_ sender: NSButton) {
             print("playing")
