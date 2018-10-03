@@ -62,7 +62,6 @@ class DocumentViewController: NSViewController {
             pdfView.isHidden = false
             let url = URL(fileURLWithPath: filepath)
             if let pdfDocument = PDFDocument(url: url) {
-                pdfView.displayMode = .singlePageContinuous
                 pdfView.autoScales = true
                 pdfView.document = pdfDocument
             }
