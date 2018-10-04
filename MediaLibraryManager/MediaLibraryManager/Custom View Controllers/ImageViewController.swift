@@ -38,6 +38,9 @@ class ImageViewController: NSViewController {
         showImage()
     }
     
+    /**
+    Show the image via the image view.
+    */
     func showImage() {
         let directory : String = NSString(string: fullpath).expandingTildeInPath
         imageView.image = NSImage(contentsOfFile: directory)

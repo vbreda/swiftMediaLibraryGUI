@@ -136,7 +136,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		case .cancel :
 			print("> user cancelled exporting files")
 		default:
-			print("> An open panel will never return anything other than OK or cancel")
+			print("> A save panel will never return anything other than OK or cancel")
 		}
 	}
 	

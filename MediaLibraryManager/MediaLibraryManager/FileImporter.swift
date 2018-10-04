@@ -56,8 +56,6 @@ class FileImporter : MMFileImport {
 			//print(workingDirectory)
 			filePath = workingDirectory.appendingPathComponent(filename)
 		}
-		//print("filename: \(filename)")
-		//print("FILE PATH: \(filePath)")
 
 		// Decodes the json data into array of Media structs.
 		let decoder = JSONDecoder()
@@ -85,15 +83,15 @@ class FileImporter : MMFileImport {
 		let numErrors = errors.count
 		if numErrors > 0 {
 			if numErrors == 1 {
-				print("> \(errors.count) file not loaded")
+//                print("> \(errors.count) file not loaded")
 			} else {
-				print("> \(errors.count) files not loaded")
+//                print("> \(errors.count) files not loaded")
 			}
-			var i: Int = 1
-			for e in errors {
-				print("\t\(i): \(e)")
-				i += 1
-			}
+//            var i: Int = 1
+//            for e in errors {
+////                print("\t\(i): \(e)")
+//                i += 1
+//            }
 		}
 		
 		return filesValidated

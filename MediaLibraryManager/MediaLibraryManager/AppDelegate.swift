@@ -26,9 +26,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		// Look for any previously saved library state
 		let working = FileManager.default.currentDirectoryPath
 		let fullStringPath = "\(working)/\(saveStateIn)"
-//        print("")
-//        print("\(fullStringPath)")
-//        print("")
 		let fileDoesExist = FileManager.default.fileExists(atPath: fullStringPath)
 		if fileDoesExist {
 			// State exists, ask the user if they want to use it

@@ -120,7 +120,6 @@ class MediaViewerWindowController: NSWindowController {
 					LibraryMainWindow.model.runCommand(input: commandInput)
 				}
 			} catch {
-				print(" Can't do that!!! Deleting required metadata")
 				alertUserOfFailure(methodThatFailed: "Deleting Metadata", maintext: "Cannot delete a required metadata keypair for the file type.")
 			}
         }
@@ -174,20 +173,6 @@ class MediaViewerWindowController: NSWindowController {
 		fileViewingDidChange()
     }
     
-    /**
-     Zoom in button for zooming the media in.
-     */
-    @IBAction func zoomInButtonAction(_ sender: Any) {
-		print("zoom in +")
-    }
-    
-    /**
-     Zoom out button for zooming the media out.
-     */
-    @IBAction func zoomOutButtonAction(_ sender: Any) {
-		print("zoom out -")
-    }
-	
     /**
 	Based upon the file type, set the current View Controller.
 	The default creates an image controller, but this will never be called as all file types are validated.

@@ -115,7 +115,6 @@ public class LibraryModel {
 				command = SaveSearchCommand(data: parts, lastsearch: try last.getAll())
 				break
 			case "save":
-				print("")
 				command = SaveCommand(data: parts, library: library)
 			case "help":
 				command = HelpCommand()

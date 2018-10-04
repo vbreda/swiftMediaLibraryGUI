@@ -44,11 +44,11 @@ class AVViewController: NSViewController {
 	/**
 	Sets up the necessary components to display the video.
 	Leaves it at ready to play (when user chooses
-*/
+     */
     func showAV() {
         let filepath : String = NSString(string: fullpath).expandingTildeInPath
         let fileURL = NSURL(fileURLWithPath: filepath)
-        print("Printing filepath: \(filepath)")
+//        print("Printing filepath: \(filepath)")
         playView = AVPlayer(url: fileURL as URL)
         avView.player = playView
     }

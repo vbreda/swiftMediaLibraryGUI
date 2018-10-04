@@ -46,6 +46,10 @@ class DocumentViewController: NSViewController {
         showText()
     }
     
+    /**
+    Shows the text from the document via the document view.
+    If the extension is .docx, instead we show an erro and loading sign.
+    */
     func showText() {
         
         let filepath : String = NSString(string: fullpath).expandingTildeInPath

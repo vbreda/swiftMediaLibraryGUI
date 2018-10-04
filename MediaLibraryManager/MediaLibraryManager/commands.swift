@@ -275,7 +275,7 @@ class ListCommand : MMCommand {
         if (keywords.count == 0) {
             let allFiles = library.all()
             self.results = MMResultSet(allFiles)
-            print(library.description)
+//            print(library.description)
             
         // Lists all the files that have the given term ("list <term>").
 		} else {
