@@ -74,7 +74,7 @@ class MediaViewerWindowController: NSWindowController {
     }
     
     /**
-    Helper method to add a metadata keypari.
+    Helper method to add a metadata keypair.
     Allows the menu item to use the +- buttons.
     Adds a new metadata keypair to the open file.
     */
@@ -101,7 +101,7 @@ class MediaViewerWindowController: NSWindowController {
         var commandInput : String = ""
         let selectedFile : Int = currentFileIndex
         
-        // Set the last result set to be current bookmark - in case of it wasn't already
+        // Set the last result set to be current bookmark - in case it wasn't already
         LibraryMainWindow.model.last = MMResultSet(allFiles)
         
         if (editDetails.isSelected(forSegment: 0)) {
@@ -111,7 +111,7 @@ class MediaViewerWindowController: NSWindowController {
 			guard row >= 0 && row < fileToOpen.metadata.count else {
 				return
 			}
-			// Check that its allowed
+			// Check that it's allowed
 			let key = fileToOpen.metadata[row].keyword
 			do {
 				let isAllowed = try FileValidator.safeToDelete(key: key, typeOfFile: fileToOpen.type)

@@ -75,7 +75,7 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	
 	/**
 	Toggles whether the button needs to be enabled or disabled, based upon the selections in LibraryVC.
-	- paramater isOn: whether the button should be enabled or not.
+	- parameter isOn: whether the button should be enabled or not.
 	*/
 	func toggleRemoveFilesButton(isOn: Bool) {
 		guard LibraryMainWindow.model.getBookmarkNames().count > 0 else {
@@ -94,7 +94,7 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	
 	/**
 	Prompts the user with an alert to warn them they cannot do that.
-	- parameter bookmark:  the name of the bookmark to check.
+	- parameter bookmark: the name of the bookmark to check.
 	*/
 	func alertUserOfForbidden(bookmark: String) {
 		let msg = NSAlert()
@@ -107,7 +107,7 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	
 	/**
 	Check action is allowed on this bookmark.
-	- parameter bookmark:  the name of the bookmark to check.
+	- parameter bookmark: the name of the bookmark to check.
 	*/
 	func checkBookmarkIsEditable(bookmark: String) -> Bool {
 		if bookmark == "1. All" ||  bookmark ==  "2. Images" ||  bookmark == "4. Audio" ||  bookmark == "5. Documents" ||  bookmark == "3. Videos" {
@@ -127,7 +127,7 @@ class BookmarksViewController: NSViewController, ModelBookmarksDelegate {
 	
 	/*
 	Delegate method.
-	Called whenevere the Model has a change in its bookmarks.
+	Called whenever the Model has a change in its bookmarks.
 	*/
 	func tableDataDidChange() {
 		tableView.reloadData()

@@ -42,7 +42,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	
 	/**
 	Helper function to reload the previous saved data upon opening the applicaiton.
-	- paramter filename: the name of the file the state is save in
+	- parameter filename: the name of the file the state is save in.
 	*/
 	func loadAtStart(filename: String) {
 		var commandInput: String = ""
@@ -57,7 +57,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 	
 	/**
 	Prompts the user with an NSOpenPanel to choose a .json file.
-	Calles the import command and populates the table.
+	Calls the import command and populates the table.
 	*/
     @IBAction func importFilesButtonAction(_ sender: Any) {
 		
@@ -161,7 +161,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
                     // Bookmark is one of the permanent, cannot overwrite
                     LibraryMainWindow.bookmarksVC.alertUserOfForbidden(bookmark: newBookmarkName)
                 } else {
-                    // Prompt user to convirm overwrite
+                    // Prompt user to confirm overwrite
                     let msg = NSAlert()
                     msg.addButton(withTitle: "Yes")
                     msg.addButton(withTitle: "Cancel")
@@ -209,7 +209,7 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 
 	/**
 	Alternative to double clicking a file name.
-	Opens the Media Viewer Window
+	Opens the Media Viewer Window.
 	*/
 	@IBAction func openViewerButtonAction(_ sender: Any) {
         LibraryViewController.rowSelection = tableView.selectedRow
@@ -375,7 +375,6 @@ class LibraryViewController: NSViewController, ModelLibraryDelegate {
 		let numItemsSelected = tableView.selectedRowIndexes.count
 
 		if filesInTable.count == 0 {
-//			searchButton.isEnabled = false
 			exportFilesButton.isEnabled = false
 		} else {
 			searchButton.isEnabled = true

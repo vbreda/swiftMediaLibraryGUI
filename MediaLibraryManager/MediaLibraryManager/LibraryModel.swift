@@ -28,7 +28,7 @@ public protocol ModelLibraryDelegate {
 Library Model - the base of the MVC pattern.
 Similar to the main.swift of asgn1.
 Creates an instance of the Library and handles the bookmarks.
-Handles all commands for intereacting with the library.
+Handles all commands for interacting with the library.
 */
 public class LibraryModel {
 	
@@ -66,7 +66,7 @@ public class LibraryModel {
 	}
 	
 	/**
-	Handles all input commands as per the asgn1 terminal prompt.
+	Handles all input commands as per asgn1 terminal prompt.
 	Takes input as a string and calls the right command through a switch case.
 
 	- parameter input: the keyword and needed parameters to call the command, as a String.

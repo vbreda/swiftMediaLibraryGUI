@@ -11,7 +11,7 @@ import AVFoundation;
 import AVKit;
 
 /**
-The View Controller for our Video media.
+The View Controller for our Video and Audio media.
 Sets up and displays the media.
 */
 class AVViewController: NSViewController {
@@ -42,13 +42,12 @@ class AVViewController: NSViewController {
     }
 	
 	/**
-	Sets up the necessary components to display the video.
-	Leaves it at ready to play (when user chooses
+	Sets up the necessary components to display the video/audio.
+	Leaves it at ready to play (when user chooses the view).
      */
     func showAV() {
         let filepath : String = NSString(string: fullpath).expandingTildeInPath
         let fileURL = NSURL(fileURLWithPath: filepath)
-//        print("Printing filepath: \(filepath)")
         playView = AVPlayer(url: fileURL as URL)
         avView.player = playView
     }
