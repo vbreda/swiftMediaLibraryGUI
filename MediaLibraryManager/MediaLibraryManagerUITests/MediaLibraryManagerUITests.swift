@@ -2,8 +2,8 @@
 //  MediaLibraryManagerUITests.swift
 //  MediaLibraryManagerUITests
 //
-//  Created by Nikolah Pearce on 18/09/18.
-//  Copyright © 2018 Nikolah Pearce. All rights reserved.
+//  Created by Nikolah Pearce and Vivian Breda on 18/09/18.
+//  Copyright © 2018 Nikolah Pearce and Vivian Breda. All rights reserved.
 //
 
 import XCTest

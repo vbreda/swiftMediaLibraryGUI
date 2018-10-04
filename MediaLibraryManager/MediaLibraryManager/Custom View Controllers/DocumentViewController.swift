@@ -2,8 +2,8 @@
 //  DocumentViewController.swift
 //  MediaLibraryManager
 //
-//  Created by Vivian Breda Bezerra Rego on 9/26/18.
-//  Copyright © 2018 Nikolah Pearce. All rights reserved.
+//  Created by VNikolah Pearce and Vivian Breda on 9/26/18.
+//  Copyright © 2018 Nikolah Pearce and Vivian Breda. All rights reserved.
 //
 
 import Cocoa

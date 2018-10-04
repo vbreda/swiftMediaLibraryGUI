@@ -2,7 +2,7 @@
 //  MediaViewerWindowController.swift
 //  MediaLibraryManager
 //
-//  Created by Nikolah Pearce on 23/09/18.
+//  Created by Nikolah Pearce and Vivian Breda on 23/09/18.
 //  Copyright © 2018 Nikolah Pearce and Vivian Breda. All rights reserved.
 //
 
@@ -63,6 +63,14 @@ class MediaViewerWindowController: NSWindowController {
         detailsView.dataSource = self
 		notesTextView.isEditable = false
 		setCorrectController()
+    }
+    
+    /**
+    Called when the Window is closed.
+    Sets customView to its default state when the viewer window is closed.
+    */
+    func windowWillClose(_ notification: Notification) {
+        setCorrectController()
     }
     
     /**
@@ -134,6 +142,7 @@ class MediaViewerWindowController: NSWindowController {
     @IBAction func saveNotesButtonAction(_ sender: Any) {
 		let text = notesTextView.string
 		LibraryMainWindow.model.library.addNotesToFile(notes: text, file: allFiles[currentFileIndex])
+        LibraryMainWindow.model.alertLibraryDelegate()
 		notesTextView.isEditable = false
     }
     
@@ -289,7 +298,7 @@ class MediaViewerWindowController: NSWindowController {
     }
 	
 	/**
-	Helper function that is called when ever the file within the Custom View changes.
+	Helper function that is called whenever the file within the Custom View changes.
 	Calls the other helped methods to ensure everything is updated.
 	Including, the buttons, the label, the metadata and the notes.
 	*/
