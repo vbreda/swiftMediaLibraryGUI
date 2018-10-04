@@ -1,7 +1,0 @@
-How to create media: asgn2 346
-
-Fordocumentpreview,thepreviousextensionsareamusttoimplement,otherextensionsare by choice. If the extension is not supported you can always show an error message image for example instead of a preview. However, in both cases (supported or not) the metadata should be previewed as well. As there are many di erent extensions of media file we will be testing the following ones that are easy to create on mac machines:
-• forimages,ascreenshotwillprovideapngextension;
-• foraudiofiles,quicktimerecordsthemintom4aextention; 
-• forvideofiles,quicktimerecordsthemintomovextension; 
-• fordocuments,plaintextfiles.
